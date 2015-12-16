@@ -3,13 +3,24 @@ SET MG_SRC_DIR=%1
 SET MG_VERSION=%2
 
 pushd "src/MapGuide"
-if exist "%MG_VERSION%" (
-    rmdir "%MG_VERSION%"
-    echo Removed old %MG_VERSION% symlink
+if exist MgDev (
+    echo MgDev symlink already exists. Moving on
+) else (
+    mklink /D MgDev %MG_SRC_DIR%
+    echo Created symbolic link [MgDev] to [%MG_SRC_DIR%]
+    echo We assume [%MG_SRC_DIR%] refers to the [%MG_VERSION%] branch
 )
-mklink /D "%MG_VERSION%" %MG_SRC_DIR%
-echo Created symbolic link [%MG_VERSION%] to [%MG_SRC_DIR%]
 popd
 
-SET MG_SOURCE_ROOT=%CD%/src/MapGuide/%MG_VERSION%
-call %CD%/Env/%MG_VERSION%/setup.cmd
+SET SWIG_TOOL_PATH=D:\swigwin-3.0.7
+
+SET MG_SOURCE_ROOT=%CD%\src\MapGuide\MgDev
+call "%CD%\Env\%MG_VERSION%\setup.cmd"
+REM Post setup
+echo Copying API generation configuration files
+pushd "src/Bindings"
+if not exist MapGuideApi mkdir MapGuideApi
+popd
+copy /Y "%CD%\Env\%MG_VERSION%\MapGuideApiGen.xml" "%CD%\src\Bindings\MapGuideApi"
+copy /Y "%CD%\Env\%MG_VERSION%\Constants.xml" "%CD%\src\Bindings\MapGuideApi"
+echo Environment set for [%MG_VERSION%]
