@@ -1,0 +1,1 @@
+This folder conatins the 32-bit unmanaged windows binaries for the MapGuide API
