@@ -25,3 +25,6 @@
 /src/Bindings/MapGuideApi
 /src/Bindings/ipch
 /src/IMake/.vs
+/src/lib
+/src/IMake/Release
+/src/Bindings/DotNetCore/wrapper/project.lock.json
