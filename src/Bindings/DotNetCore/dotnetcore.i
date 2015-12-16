@@ -15,12 +15,32 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 %include <wchar.i>
+%include <exception.i>
+
+// These methods have to be invoked C-style
+%ignore MgObject::GetClassId;
+%ignore MgObject::GetClassName;
 
 // SWIG is refcounting aware and since our C++ classes follow a refcounting scheme
 // we can tap into this feature
 //
-%feature("ref")   MgDisposable "SAFE_ADDREF($this);"
+// NOTE: We don't implement ref because anything from the native boundary is already AddRef'd
+// All the managed layer should do when Disposed or GC'd is to make sure it is released
+%feature("ref")   MgDisposable ""
 %feature("unref") MgDisposable "SAFE_RELEASE($this);"
+
+// Exception support
+%exception {
+  try 
+  {
+    $action
+  } 
+  catch (MgException* ex) 
+  {
+    //TODO: Custom SWIG MgException helper that uses the same pending exception mechanism
+    SAFE_RELEASE(ex);
+  }
+}
 
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "in" typemap
