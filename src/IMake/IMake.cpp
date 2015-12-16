@@ -12,7 +12,7 @@ enum Language
     java
 };
 
-static char version[] = "1.2.4";
+static char version[] = "1.2.5";
 static char EXTERNAL_API_DOCUMENTATION[] = "(NOTE: This API is not officially supported and may be subject to removal in a future release without warning. Use with caution.)";
 
 static string module;
@@ -1120,12 +1120,15 @@ void outputClassDoc(const string& className, const string& commentStr)
         return;
 
     string convertedDoc;
+
+    //NOTE: SWIG 3.0 doesn't implictly insert class in the modifier
+    string classKeyword = "class";
     if (language == java) {
         convertedDoc = doxygenToJavaDoc(commentStr, true); //EXTERNAL_API only applies to class members, so treat this fragment as PUBLISHED_API
-        fprintf(docOutFile, "\n%%typemap(javaclassmodifiers) %s %%{%s public%%}\n", className.c_str(), convertedDoc.c_str());
+        fprintf(docOutFile, "\n%%typemap(javaclassmodifiers) %s %%{%s public %s%%}\n", className.c_str(), convertedDoc.c_str(), classKeyword.c_str());
     } else if(language == csharp) {
         convertedDoc = doxygenToCsharpDoc(commentStr, true); //EXTERNAL_API only applies to class members, so treat this fragment as PUBLISHED_API
-        fprintf(docOutFile, "\n%%typemap(csclassmodifiers) %s %%{%s public partial%%}\n", className.c_str(), convertedDoc.c_str());
+        fprintf(docOutFile, "\n%%typemap(csclassmodifiers) %s %%{%s public partial %s%%}\n", className.c_str(), convertedDoc.c_str(), classKeyword.c_str());
     }
 }
 
@@ -1380,6 +1383,7 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
 
                 if (string::npos != methodStart && (setProp || getProp))
                 {
+                    /*
                     if (NULL == propertyFile)
                     {
                         string fname = ".\\custom\\";
@@ -1431,6 +1435,7 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
 
                         fprintf(propertyFile, "}\n");\
                     }
+                    */
                 }
             }
         }
