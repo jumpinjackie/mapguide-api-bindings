@@ -1,0 +1,1 @@
+This directory contains a symlink to the MgDev directory of the branch we want to build our bindings against

@@ -27,8 +27,9 @@ Eventually reaching platform parity with our existing offerings:
  * Java
  * .net (Full Framework)
 
-With future experimental (a.k.a Use at your own risk) support for:
+With future experimental (a.k.a Use at your own risk) support for other platforms that a current and unmodified SWIG can offer us:
 
  * Ruby
  * Python
  * node.js
+ * and much more!
