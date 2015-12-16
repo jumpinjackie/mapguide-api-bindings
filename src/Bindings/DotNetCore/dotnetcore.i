@@ -16,6 +16,7 @@
 //
 %include <wchar.i>
 %include <exception.i>
+%include "../Common/DotNet/coreclr_compat.i"
 
 // These methods have to be invoked C-style
 %ignore MgObject::GetClassId;
