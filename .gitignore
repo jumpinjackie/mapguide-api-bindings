@@ -22,3 +22,6 @@
 /src/Bindings/DotNetCore/*.user
 /src/Bindings/*.opendb
 /src/Bindings/DotNetCore/wrapper/*.cs
+/src/Bindings/MapGuideApi
+/src/Bindings/ipch
+/src/IMake/.vs
