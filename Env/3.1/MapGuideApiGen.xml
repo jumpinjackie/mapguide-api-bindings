@@ -58,12 +58,12 @@ typedef wchar_t* STRINGPARAM;
 <SwigInline>
   %include "MapGuideApi_Doc.i" //translated doxygen fragments
   %include "language.i"   //typemaps specific for each language
-  %include "../../MapGuide/MgDev/Common/Foundation/System/FoundationClassId.h"
-  %include "../../MapGuide/MgDev/Common/Geometry/GeometryClassId.h"
-  %include "../../MapGuide/MgDev/Common/PlatformBase/Services/PlatformBaseClassId.h"
-  %include "../../MapGuide/MgDev/Common/MapGuideCommon/System/MapGuideCommonClassId.h"
-  %include "../../MapGuide/MgDev/Web/src/WebApp/WebAppClassId.h"
-  %include "../../MapGuide/MgDev/Web/src/HttpHandler/HttpHandlerClassId.h"
+  //%include "../../MapGuide/MgDev/Common/Foundation/System/FoundationClassId.h"
+  //%include "../../MapGuide/MgDev/Common/Geometry/GeometryClassId.h"
+  //%include "../../MapGuide/MgDev/Common/PlatformBase/Services/PlatformBaseClassId.h"
+  //%include "../../MapGuide/MgDev/Common/MapGuideCommon/System/MapGuideCommonClassId.h"
+  //%include "../../MapGuide/MgDev/Web/src/WebApp/WebAppClassId.h"
+  //%include "../../MapGuide/MgDev/Web/src/HttpHandler/HttpHandlerClassId.h"
 
 #if defined(PHPSWIG)
   // We force UTF-8 encoding for PHP
