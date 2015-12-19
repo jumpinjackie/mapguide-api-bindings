@@ -18,6 +18,23 @@
 %include "../Common/DotNet/string.i"
 %include "../Common/DotNet/coreclr_compat.i"
 
+// Add default namespaces for all generated proxies
+%typemap(csimports) SWIGTYPE %{
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+//These warnings are false positives as a result of SWIG generated code
+#pragma warning disable 0108, 0114
+%}
+
+%pragma(csharp) moduleimports=%{
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+%}
+
 // These methods have to be invoked C-style
 %ignore MgObject::GetClassId;
 %ignore MgObject::GetClassName;
@@ -88,16 +105,16 @@
 // BYTE_ARRAY_OUT "cstype" typemap
 // Type substitution in .NET and proxy code
 //
-%typemap(cstype) BYTE_ARRAY_OUT "Byte[]"
-%typemap(imtype) BYTE_ARRAY_OUT "Byte[]"
+%typemap(cstype) BYTE_ARRAY_OUT "global::System.Byte[]"
+%typemap(imtype) BYTE_ARRAY_OUT "global::System.Byte[]"
 %typemap(ctype)  BYTE_ARRAY_OUT "unsigned char*"
 
 ///////////////////////////////////////////////////////////
 // BYTE_ARRAY_IN "cstype" typemap
 // Type substitution in .NET and proxy code
 //
-%typemap(cstype) BYTE_ARRAY_IN "Byte[]"
-%typemap(imtype) BYTE_ARRAY_IN "Byte[]"
+%typemap(cstype) BYTE_ARRAY_IN "global::System.Byte[]"
+%typemap(imtype) BYTE_ARRAY_IN "global::System.Byte[]"
 %typemap(ctype)  BYTE_ARRAY_IN "unsigned char*"
 
 ///////////////////////////////////////////////////////////

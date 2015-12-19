@@ -1,5 +1,5 @@
-%typemap(imtype) STRINGPARAM "[MarshalAs(UnmanagedType.LPWStr)] String"
-%typemap(imtype) STRING      "IntPtr"
+%typemap(imtype) STRINGPARAM "[global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPWStr)] System.String"
+%typemap(imtype) STRING      "global::System.IntPtr"
 
 %typemap(cstype) STRINGPARAM "string"
 %typemap(cstype) STRING      "string"
@@ -17,10 +17,9 @@
     
 %typemap(csin) STRINGPARAM "$csinput"
 
-%typemap(csout) STRING {
-    System.IntPtr cPtr = $imcall;
-    $excode;
-    String str = global::System.Runtime.InteropServices.Marshal.PtrToStringUni(cPtr);
+%typemap(csout, excode=SWIGEXCODE) STRING {
+    System.IntPtr cPtr = $imcall;$excode
+    System.String str = global::System.Runtime.InteropServices.Marshal.PtrToStringUni(cPtr);
     global::System.Runtime.InteropServices.Marshal.FreeCoTaskMem(cPtr);
     return str;
 }
@@ -28,6 +27,7 @@
 %typemap(csvarout) STRINGPARAM, STRING %{
     get 
     {
-        return $imcall;
+        var result = $imcall;$excode
+        return result;
     } 
 %}

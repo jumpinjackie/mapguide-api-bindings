@@ -97,7 +97,8 @@
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\wrapper\Constants.cs"
 copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -132,7 +133,8 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\wrapper\Constants.cs"
 copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -167,7 +169,8 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\wrapper\Constants.cs"
 copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -203,7 +206,8 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\wrapper\Constants.cs"
 copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\wrapper" MapGuideApi.i
+del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -218,9 +222,9 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)MapGuideDotNetCoreUnmanagedApi.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetCoreUnmanagedApi.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>

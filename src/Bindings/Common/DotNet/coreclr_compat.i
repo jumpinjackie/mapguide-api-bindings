@@ -6,9 +6,13 @@
  *
  * NOTE: Only covers whatever's necessary so that proxy classes in the MapGuide API no longer
  * use HandleRefs
+ *
+ * NOTE: SWIG must be run with SWIG_CSHARP_NO_EXCEPTION_HELPER defined
  */
 
-%include <exception.i>
+//We need to break the inheritance hierarchy of MgException so that it is an actual
+//CLR exception type
+%typemap(csbase, replace="1") MgException "ManagedException"
 
 %insert(runtime) %{
 
@@ -27,14 +31,14 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterMgExceptionCallback_$module(SWIG_CSharpM
 
 %pragma(csharp) imclasscode=%{
     protected class MgExceptionHelper {
-        public delegate void MgExceptionDelegate(IntPtr exPtr, string className);
+        public delegate void MgExceptionDelegate(global::System.IntPtr exPtr, string className);
         
         static MgExceptionDelegate mgExceptionDelegate = new MgExceptionDelegate(SetPendingMgException);
         
-        [DllImport("$dllimport", EntryPoint="SWIGRegisterMgExceptionCallback_$module")]
+        [global::System.Runtime.InteropServices.DllImport("$dllimport", EntryPoint="SWIGRegisterMgExceptionCallback_$module")]
         static extern void SWIGRegisterMgExceptionCallback_$module(MgExceptionDelegate mgDelegate);
         
-        static void SetPendingMgException(IntPtr exPtr, string className)
+        static void SetPendingMgException(global::System.IntPtr exPtr, string className)
         {
             //IMPORTANT: It is imperative that nothing throws here as while such behavior is acceptable on Windows, in
             //CoreCLR on Linux such a throw is treated as a native throw and will crash the running application with SIGABRT
@@ -45,19 +49,19 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterMgExceptionCallback_$module(SWIG_CSharpM
             //we will use the same mechanism
         
             string qualifiedName = "OSGeo.MapGuide." + className;
-            Type exType = Type.GetType(qualifiedName);
+            global::System.Type exType = global::System.Type.GetType(qualifiedName);
             if (exType == null)
             {
                 object[] args = new object[2] { exPtr, true /* ownMemory */ };
-                Exception ex = Activator.CreateInstance(exType, args) as Exception;
+                global::System.Exception ex = global::System.Activator.CreateInstance(exType, args) as global::System.Exception;
                 if (ex != null)
                     SWIGPendingException.Set(ex);
                 else //Shouldn't get here
-                    SWIGPendingException.Set(new Exception("Attempted to construct a .net proxy of " + qualifiedName + ", but instance is not an exception type");
+                    SWIGPendingException.Set(new global::System.Exception("Attempted to construct a .net proxy of " + qualifiedName + ", but instance is not an exception type"));
             }
             else
             {
-                SWIGPendingException.Set(new Exception("Attempted to construct a .net proxy of " + qualifiedName + ", but no such type exists");
+                SWIGPendingException.Set(new global::System.Exception("Attempted to construct a .net proxy of " + qualifiedName + ", but no such type exists"));
             } 
         }
         
@@ -68,6 +72,54 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterMgExceptionCallback_$module(SWIG_CSharpM
     }
     
     protected static MgExceptionHelper mgExceptionHelper = new MgExceptionHelper();
+    
+    public class SWIGPendingException
+    {
+        [global::System.ThreadStatic]
+        private static global::System.Exception pendingException = null;
+        private static int numExceptionsPending = 0;
+
+        public static bool Pending
+        {
+            get
+            {
+                bool pending = false;
+                if (numExceptionsPending > 0)
+                if (pendingException != null)
+                pending = true;
+                return pending;
+            } 
+        }
+
+        public static void Set(global::System.Exception e)
+        {
+            if (pendingException != null)
+                throw new global::System.Exception("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
+            pendingException = e;
+            lock(typeof($imclassname))
+            {
+                numExceptionsPending++;
+            }
+        }
+
+        public static global::System.Exception Retrieve()
+        {
+            global::System.Exception e = null;
+            if (numExceptionsPending > 0) 
+            {
+                if (pendingException != null) 
+                {
+                    e = pendingException;
+                    pendingException = null;
+                    lock(typeof($imclassname))
+                    {
+                        numExceptionsPending--;
+                    }
+                }
+            }
+            return e;
+        }
+    }
 %}
 
 // Exception support
@@ -188,15 +240,28 @@ SWIG_BACKCOMPAT_CSBODY_TYPEWRAPPER(internal, protected, internal, SWIGTYPE)
   }
 
 %typemap(csdestruct_derived, methodname="Dispose", methodmodifiers="public") SWIGTYPE {
-    lock(this) {
+    lock(this) 
+    {
+      //Unlike the standard Dispose() implemented generated by SWIG, we are reversing the order
+      //so that the top-most parent Dispose() is the one that will be called first, which will
+      //be Dispose() of MgDisposable, that will perform the necessary release of the underlying
+      //pointer
+      global::System.GC.SuppressFinalize(this);
+      base.Dispose();
       if (swigCPtr != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          $imcall;
+          //Anything derived from MgDisposable can simply chain up to the parent Dispose()
+          //where it will be properly de-referenced', otherwise call the SWIG generated
+          //free function
+          //
+          //HACK: This should not be a runtime check, it should be a check we should ideally do from SWIG
+          //$csclassname
+          if (!typeof(MgDisposable).GetTypeInfo().IsAssignableFrom(typeof($csclassname).GetTypeInfo())) {
+            $imcall;
+          }
         }
         swigCPtr = global::System.IntPtr.Zero;
       }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
