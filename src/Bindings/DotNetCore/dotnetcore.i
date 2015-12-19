@@ -15,7 +15,7 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 %include <wchar.i>
-%include <exception.i>
+%include "../Common/DotNet/string.i"
 %include "../Common/DotNet/coreclr_compat.i"
 
 // These methods have to be invoked C-style
@@ -29,19 +29,6 @@
 // All the managed layer should do when Disposed or GC'd is to make sure it is released
 %feature("ref")   MgDisposable ""
 %feature("unref") MgDisposable "SAFE_RELEASE($this);"
-
-// Exception support
-%exception {
-  try 
-  {
-    $action
-  } 
-  catch (MgException* ex) 
-  {
-    //TODO: Custom SWIG MgException helper that uses the same pending exception mechanism
-    SAFE_RELEASE(ex);
-  }
-}
 
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "in" typemap

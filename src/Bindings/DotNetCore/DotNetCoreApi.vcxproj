@@ -110,6 +110,7 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -144,6 +145,7 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -177,6 +179,7 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -212,6 +215,7 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -239,36 +243,6 @@ $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -namespace OSGeo.MapGui
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DotNetCoreApi.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="$(MG_FOUNDATION_INCLUDE_DIR)\Foundation.vcxproj">
-      <Project>{a82adc7d-4da4-42f2-9bf6-df5dcfb44425}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(MG_GEOMETRY_INCLUDE_DIR)\Geometry.vcxproj">
-      <Project>{d954daac-e305-40ce-b3f3-c229a0bef4f0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(MG_MAPGUIDECOMMON_INCLUDE_DIR)\MapGuideCommon.vcxproj">
-      <Project>{5287a594-4d4f-43fe-a281-e279ab708cf1}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(MG_PLATFORMBASE_INCLUDE_DIR)\PlatformBase.vcxproj">
-      <Project>{f7334b1b-0efa-47e3-8e66-df158e61b7e4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(MG_HTTPHANDLER_INCLUDE_DIR)\HttpHandler.vcxproj">
-      <Project>{78619d0e-d3f9-4ddf-b90e-f99cb03dfc44}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(MG_WEBAPP_INCLUDE_DIR)\WebApp.vcxproj">
-      <Project>{b797917b-6842-467c-8b14-e00b76a91247}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(MG_WEBSUPPORT_INCLUDE_DIR)\WebSupport.vcxproj">
-      <Project>{795b1b0e-4ec8-469d-b641-e26324266fbf}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

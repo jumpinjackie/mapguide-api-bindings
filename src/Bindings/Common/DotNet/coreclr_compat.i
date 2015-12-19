@@ -8,6 +8,79 @@
  * use HandleRefs
  */
 
+%include <exception.i>
+
+%insert(runtime) %{
+
+typedef void (SWIGSTDCALL* SWIG_CSharpMgExceptionCallback_t)(const void*, const char*); 
+
+static SWIG_CSharpMgExceptionCallback_t mg_exception_callback = NULL;
+
+#ifdef __cplusplus
+extern "C" 
+#endif
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterMgExceptionCallback_$module(SWIG_CSharpMgExceptionCallback_t callback)
+{
+    mg_exception_callback = callback;
+}
+%}
+
+%pragma(csharp) imclasscode=%{
+    protected class MgExceptionHelper {
+        public delegate void MgExceptionDelegate(IntPtr exPtr, string className);
+        
+        static MgExceptionDelegate mgExceptionDelegate = new MgExceptionDelegate(SetPendingMgException);
+        
+        [DllImport("$dllimport", EntryPoint="SWIGRegisterMgExceptionCallback_$module")]
+        static extern void SWIGRegisterMgExceptionCallback_$module(MgExceptionDelegate mgDelegate);
+        
+        static void SetPendingMgException(IntPtr exPtr, string className)
+        {
+            //IMPORTANT: It is imperative that nothing throws here as while such behavior is acceptable on Windows, in
+            //CoreCLR on Linux such a throw is treated as a native throw and will crash the running application with SIGABRT
+            //
+            //See: https://github.com/dotnet/coreclr/issues/2263
+            //
+            //SWIG by default will use SWIGPendingException to "stash" exceptions to be rethrown later on
+            //we will use the same mechanism
+        
+            string qualifiedName = "OSGeo.MapGuide." + className;
+            Type exType = Type.GetType(qualifiedName);
+            if (exType == null)
+            {
+                object[] args = new object[2] { exPtr, true /* ownMemory */ };
+                Exception ex = Activator.CreateInstance(exType, args) as Exception;
+                if (ex != null)
+                    SWIGPendingException.Set(ex);
+                else //Shouldn't get here
+                    SWIGPendingException.Set(new Exception("Attempted to construct a .net proxy of " + qualifiedName + ", but instance is not an exception type");
+            }
+            else
+            {
+                SWIGPendingException.Set(new Exception("Attempted to construct a .net proxy of " + qualifiedName + ", but no such type exists");
+            } 
+        }
+        
+        static MgExceptionHelper()
+        {
+            SWIGRegisterMgExceptionCallback_$module(mgExceptionDelegate);
+        }
+    }
+    
+    protected static MgExceptionHelper mgExceptionHelper = new MgExceptionHelper();
+%}
+
+// Exception support
+%exception {
+    MG_TRY()
+        $action
+    MG_CATCH(L"$wrapname")
+    if (mgException != NULL) {
+        char* exClassName = mgException->GetMultiByteClassName();
+        mg_exception_callback(mgException.p, exClassName);
+    }
+}
+
 /* Non primitive types */
 %typemap(ctype) SWIGTYPE "void *"
 %typemap(imtype) SWIGTYPE "global::System.IntPtr"
