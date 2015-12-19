@@ -12,7 +12,7 @@
 /src/bin
 /src/Bindings/Bindings.sdf
 /src/Bindings/.vs
-/src/Bindings/DotNetCore/wrapper/Constants.cs
+/src/Bindings/DotNetCore/MapGuideDotNetCoreApi/Constants.cs
 /src/IMake/IMake.sdf
 /src/MapGuide/MgDev
 /src/Bindings/DotNetCore/MapGuideApi.i
@@ -21,10 +21,11 @@
 /src/Bindings/DotNetCore/MgApi_wrap.cpp
 /src/Bindings/DotNetCore/*.user
 /src/Bindings/*.opendb
-/src/Bindings/DotNetCore/wrapper/*.cs
+/src/Bindings/DotNetCore/MapGuideDotNetCoreApi/*.cs
 /src/Bindings/MapGuideApi
 /src/Bindings/ipch
 /src/IMake/.vs
 /src/lib
 /src/IMake/Release
-/src/Bindings/DotNetCore/wrapper/project.lock.json
+/src/Bindings/DotNetCore/MapGuideDotNetCoreApi/project.lock.json
+/src/Bindings/DotNetCore/MapGuideDotNetCoreApi/bin
