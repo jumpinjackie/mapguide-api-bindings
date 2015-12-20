@@ -17,6 +17,7 @@
 %include <wchar.i>
 %include "../Common/DotNet/string.i"
 %include "../Common/DotNet/coreclr_compat.i"
+%include "../Common/DotNet/sugar.i"
 
 // Add default namespaces for all generated proxies
 %typemap(csimports) SWIGTYPE %{
@@ -46,6 +47,16 @@ using System.Collections.Generic;
 // All the managed layer should do when Disposed or GC'd is to make sure it is released
 %feature("ref")   MgDisposable ""
 %feature("unref") MgDisposable "SAFE_RELEASE($this);"
+
+// Have these collections implement the .net collection interfaces
+IMPLEMENT_LIST(MgClassDefinitionCollection, MgClassDefinition)
+IMPLEMENT_LIST(MgFeatureSchemaCollection, MgFeatureSchema)
+IMPLEMENT_LIST(MgPropertyDefinitionCollection, MgPropertyDefinition)
+IMPLEMENT_LIST(MgPropertyCollection, MgProperty)
+IMPLEMENT_LIST(MgStringCollection, String)
+IMPLEMENT_LIST(MgLayerCollection, MgLayerBase)
+IMPLEMENT_LIST(MgLayerGroupCollection, MgLayerGroup)
+IMPLEMENT_READONLY_LIST(MgReadOnlyLayerCollection, MgLayerBase)
 
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "in" typemap
