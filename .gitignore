@@ -29,3 +29,6 @@
 /src/IMake/Release
 /src/Bindings/DotNetCore/MapGuideDotNetCoreApi/project.lock.json
 /src/Bindings/DotNetCore/MapGuideDotNetCoreApi/bin
+/src/Bindings/DotNetCore/obj
+/src/Bindings/DotNetCore/bin
+/src/Bindings/DotNetCore/lib

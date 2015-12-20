@@ -62,17 +62,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bin\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\obj\$(Configuration)\DotNetCoreApi\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">obj\$(Configuration)\DotNetCoreApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\bin\$(Configuration)64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\obj\$(Configuration)64\DotNetCoreApi\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">bin\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">obj\$(Configuration)64\DotNetCoreApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bin\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\obj\$(Configuration)\DotNetCoreApi\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\$(Configuration)\DotNetCoreApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\bin\$(Configuration)64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\obj\$(Configuration)64\DotNetCoreApi\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">bin\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">obj\$(Configuration)64\DotNetCoreApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -93,11 +93,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)\MapGuideDotNetCoreApi\*.cs"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\MapGuideDotNetCoreApi\Constants.cs"
-copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\MapGuideDotNetCoreApi" MapGuideApi.i
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
 del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
@@ -123,17 +123,17 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)\MapGuideDotNetCoreUnmanagedApid.lib</ImportLibrary>
+      <ImportLibrary>lib\$(Configuration)\MapGuideDotNetCoreUnmanagedApid.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)\MapGuideDotNetCoreApi\*.cs"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\MapGuideDotNetCoreApi\Constants.cs"
-copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\MapGuideDotNetCoreApi" MapGuideApi.i
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
 del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
@@ -159,17 +159,17 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)64\MapGuideDotNetCoreUnmanagedApid.lib</ImportLibrary>
+      <ImportLibrary>lib\$(Configuration)64\MapGuideDotNetCoreUnmanagedApid.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>del /Q $(ProjectDir)\MapGuideDotNetCoreApi\*.cs
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\MapGuideDotNetCoreApi\Constants.cs"
-copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\MapGuideDotNetCoreApi" MapGuideApi.i
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
 del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
@@ -196,17 +196,17 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)\MapGuideDotNetCoreUnmanagedApi.lib</ImportLibrary>
+      <ImportLibrary>lib\$(Configuration)\MapGuideDotNetCoreUnmanagedApi.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
-      <Command>del /Q $(ProjectDir)\MapGuideDotNetCoreApi\*.cs
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\Constants.xml" C# "$(ProjectDir)\MapGuideDotNetCoreApi\Constants.cs"
-copy "$(ProjectDir)\dotnetcore.i" "$(ProjectDir)\language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)\..\MapGuideApi\MapGuideApiGen.xml" C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)\MgApi_wrap.cpp" -outdir "$(ProjectDir)\MapGuideDotNetCoreApi" MapGuideApi.i
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
 del /Q MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
@@ -233,7 +233,7 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)64\MapGuideDotNetCoreUnmanagedApi.lib</ImportLibrary>
+      <ImportLibrary>lib\$(Configuration)64\MapGuideDotNetCoreUnmanagedApi.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
