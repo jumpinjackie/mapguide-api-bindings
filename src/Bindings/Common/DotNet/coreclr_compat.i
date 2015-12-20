@@ -256,7 +256,6 @@ SWIG_BACKCOMPAT_CSBODY_TYPEWRAPPER(internal, protected, internal, SWIGTYPE)
           //free function
           //
           //HACK: This should not be a runtime check, it should be a check we should ideally do from SWIG
-          //$csclassname
           if (!typeof(MgDisposable).GetTypeInfo().IsAssignableFrom(typeof($csclassname).GetTypeInfo())) {
             $imcall;
           }

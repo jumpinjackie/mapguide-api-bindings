@@ -18,6 +18,7 @@
 %include "../Common/DotNet/string.i"
 %include "../Common/DotNet/coreclr_compat.i"
 %include "../Common/DotNet/sugar.i"
+%include "../Common/DotNet/custom.i"
 
 // Add default namespaces for all generated proxies
 %typemap(csimports) SWIGTYPE %{
@@ -56,6 +57,22 @@ IMPLEMENT_LIST(MgPropertyCollection, MgProperty)
 IMPLEMENT_LIST(MgStringCollection, String)
 IMPLEMENT_LIST(MgLayerCollection, MgLayerBase)
 IMPLEMENT_LIST(MgLayerGroupCollection, MgLayerGroup)
+IMPLEMENT_LIST(MgStringPropertyCollection, MgStringProperty)
+IMPLEMENT_LIST(MgFeatureCommandCollection, MgFeatureCommand)
+IMPLEMENT_LIST(MgMapCollection, MgMapBase)
+IMPLEMENT_LIST(MgMapPlotCollection, MgMapPlot)
+//IMPLEMENT_LIST(MgBatchPropertyCollection, MgPropertyCollection)
+IMPLEMENT_LIST(MgIntCollection, int)
+IMPLEMENT_LIST(MgCoordinateCollection, MgCoordinate)
+IMPLEMENT_LIST(MgPointCollection, MgPoint)
+IMPLEMENT_LIST(MgLineStringCollection, MgLineString)
+IMPLEMENT_LIST(MgLinearRingCollection, MgLinearRing)
+IMPLEMENT_LIST(MgCurveRingCollection, MgCurveRing)
+IMPLEMENT_LIST(MgCurveStringCollection, MgCurveString)
+IMPLEMENT_LIST(MgCurveSegmentCollection, MgCurveSegment)
+IMPLEMENT_LIST(MgCurvePolygonCollection, MgCurvePolygon)
+IMPLEMENT_LIST(MgPolygonCollection, MgPolygon)
+IMPLEMENT_LIST(MgGeometryCollection, MgGeometry)
 IMPLEMENT_READONLY_LIST(MgReadOnlyLayerCollection, MgLayerBase)
 
 ///////////////////////////////////////////////////////////
