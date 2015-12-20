@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TestRunner": {
+      "commandName": "TestRunner",
+      "commandLineArgs": "\"C:\\Program Files\\OSGeo\\MapGuide\\Web\\www\\webconfig.ini\" \"C:\\Program Files\\OSGeo\\MapGuide\\CS-Map\\Dictionaries\""
+    }
+  }
+}
