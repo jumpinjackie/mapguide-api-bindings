@@ -15,6 +15,7 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 %include <wchar.i>
+%include "MapGuideApi_Properties.i"
 %include "../Common/DotNet/string.i"
 %include "../Common/DotNet/coreclr_compat.i"
 %include "../Common/DotNet/sugar.i"

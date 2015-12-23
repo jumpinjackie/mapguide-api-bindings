@@ -1381,28 +1381,35 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
                     }
                 }
 
+                bool firstProp = true;
                 if (string::npos != methodStart && (setProp || getProp))
                 {
-                    /*
                     if (NULL == propertyFile)
                     {
-                        string fname = ".\\custom\\";
+                        string fname = ".\\";
                         if (!customPath.empty())
                         {
                             fname = customPath;
                             if (fname[fname.size() - 1] != '\\')
                                 fname.append("\\");
                         }
-                        fname.append(className);
-                        fname.append("Prop");
-                        propertyFile = fopen(fname.c_str(),"w");
+                        fname.append("MapGuideApi_Properties.i");
+                        //fname.append(className);
+                        //fname.append("Prop");
+                        propertyFile = fopen(fname.c_str(),"a+");
                         if (NULL == propertyFile)
                         {
                             printf("Unable to open autogen property file %s\n", fname.c_str());
                         }
                         else
                         {
-                            printf("Writing autogen property file %s\n", fname.c_str());
+                            printf("Appending autogen property file %s\n", fname.c_str());
+                            if (firstProp) {
+                                //Start SWIG typemap section for this class
+                                fprintf(propertyFile, "//BEGIN - Property typemaps for %s\n", className.c_str());
+                                fprintf(propertyFile, "%%typemap(cscode) %s %%{\n", className.c_str());
+                                firstProp = false;
+                            }
                         }
                     }
 
@@ -1429,13 +1436,12 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
                         fprintf(propertyFile, "public %s%s %s\n{\n",
                                         inherited? "new ": "",
                                         propType.c_str(), propName.c_str());
-
+                        
                         if (setProp) { fprintf(propertyFile, "   set { Set%s(value); }\n", propName.c_str()); }
                         if (getProp) { fprintf(propertyFile, "   get { return Get%s(); }\n", propName.c_str()); }
 
                         fprintf(propertyFile, "}\n");\
                     }
-                    */
                 }
             }
         }
@@ -1479,6 +1485,8 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
 
     if (NULL != propertyFile)
     {
+        //End SWIG typemap section for class
+        fprintf(propertyFile, "%%} //END - Properties typemap for %s\n", className.c_str());
         fclose(propertyFile);
     }
 }

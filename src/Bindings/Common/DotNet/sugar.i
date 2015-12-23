@@ -16,6 +16,7 @@ using System.Collections.Generic;
 %typemap(csinterfaces_derived) collection_type "IList<item_type>"
 //This is the IList<T> implementation that is injected into the implementing proxy class
 %typemap(cscode) collection_type %{
+    /*
     int IList<item_type>.IndexOf(item_type item)
     {
         return this.IndexOf(item);
@@ -30,13 +31,13 @@ using System.Collections.Generic;
     {
         this.RemoveAt(index);
     }
-    
-    item_type IList<item_type>.this[int index]
+    */
+    public item_type this[int index]
     {
         get { return this.GetItem(index); }
         set { this.SetItem(index, value); }
     }
-    
+    /*
     void ICollection<item_type>.Add(item_type item)
     {
         this.Add(item);
@@ -51,8 +52,8 @@ using System.Collections.Generic;
     {
         return this.Contains(item);
     }
-    
-    void ICollection<item_type>.CopyTo(item_type[] array, int arrayIndex)
+    */
+    public void CopyTo(item_type[] array, int arrayIndex)
     {
         throw new global::System.NotImplementedException();
     }
@@ -64,12 +65,12 @@ using System.Collections.Generic;
         return this.GetCount() < count;
     }
     
-    int ICollection<item_type>.Count
+    public int Count
     {
         get { return this.GetCount(); }
     }
     
-    bool ICollection<item_type>.IsReadOnly
+    public bool IsReadOnly
     {
         get { return false; }
     }
@@ -111,7 +112,7 @@ using System.Collections.Generic;
         public void Dispose() { }
     }
     
-    IEnumerator<item_type> IEnumerable<item_type>.GetEnumerator()
+    public IEnumerator<item_type> GetEnumerator()
     {
         return new CollectionEnumerator(this);
     }

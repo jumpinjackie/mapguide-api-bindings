@@ -32,3 +32,4 @@
 /src/Bindings/DotNetCore/obj
 /src/Bindings/DotNetCore/bin
 /src/Bindings/DotNetCore/lib
+/src/Bindings/DotNetCore/MapGuideApi_Properties.i

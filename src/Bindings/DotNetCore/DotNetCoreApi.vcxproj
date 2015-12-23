@@ -94,11 +94,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
-del /Q MapGuideDotNetCoreUnmanagedApi.cs
+del /Q MapGuideDotNetCoreApi\MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -130,11 +131,12 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
-del /Q MapGuideDotNetCoreUnmanagedApi.cs
+del /Q MapGuideDotNetCoreApi\MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -166,11 +168,12 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
-del /Q MapGuideDotNetCoreUnmanagedApi.cs
+del /Q MapGuideDotNetCoreApi\MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -203,11 +206,12 @@ del /Q MapGuideDotNetCoreUnmanagedApi.cs
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetCoreApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetCoreApi\Constants.cs"
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetCoreApi" MapGuideApi.i
-del /Q MapGuideDotNetCoreUnmanagedApi.cs
+del /Q MapGuideDotNetCoreApi\MapGuideDotNetCoreUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>

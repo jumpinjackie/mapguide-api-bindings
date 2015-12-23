@@ -1,3 +1,9 @@
+/**
+ * custom.i
+ *
+ * Custom class augmentations for specific classes of the MapGuide API
+ */
+
 // MgBatchPropertyCollection
 
 %typemap(csimports) MgBatchPropertyCollection %{
@@ -7,14 +13,15 @@ using System.Collections;
 using System.Collections.Generic;
 %}
 
-%typemap(csinterfaces_derived) collection_type "IList<MgPropertyCollection>"
+%typemap(csinterfaces_derived) MgBatchPropertyCollection "System.Collections.Generic.IList<MgPropertyCollection>"
 
-%typemap(cscode) collection_type %{
+%typemap(cscode) MgBatchPropertyCollection %{
     int IList<MgPropertyCollection>.IndexOf(MgPropertyCollection item)
     {
         return -1;
     }
     
+    /*
     void IList<MgPropertyCollection>.Insert(int index, MgPropertyCollection item)
     {
         this.Insert(index, item);
@@ -24,13 +31,15 @@ using System.Collections.Generic;
     {
         this.RemoveAt(index);
     }
+    */
     
-    MgPropertyCollection IList<MgPropertyCollection>.this[int index]
+    public MgPropertyCollection this[int index]
     {
         get { return this.GetItem(index); }
         set { this.SetItem(index, value); }
     }
     
+    /*
     void ICollection<MgPropertyCollection>.Add(MgPropertyCollection item)
     {
         this.Add(item);
@@ -40,13 +49,14 @@ using System.Collections.Generic;
     {
         this.Clear();
     }
+    */
     
     bool ICollection<MgPropertyCollection>.Contains(MgPropertyCollection item)
     {
         return false;
     }
     
-    void ICollection<MgPropertyCollection>.CopyTo(MgPropertyCollection[] array, int arrayIndex)
+    public void CopyTo(MgPropertyCollection[] array, int arrayIndex)
     {
         throw new global::System.NotImplementedException();
     }
@@ -58,12 +68,12 @@ using System.Collections.Generic;
         return this.GetCount() < count;
     }
     
-    int ICollection<MgPropertyCollection>.Count
+    public int Count
     {
         get { return this.GetCount(); }
     }
     
-    bool ICollection<MgPropertyCollection>.IsReadOnly
+    public bool IsReadOnly
     {
         get { return false; }
     }
@@ -105,7 +115,7 @@ using System.Collections.Generic;
         public void Dispose() { }
     }
     
-    IEnumerator<MgPropertyCollection> IEnumerable<MgPropertyCollection>.GetEnumerator()
+    public IEnumerator<MgPropertyCollection> GetEnumerator()
     {
         return new CollectionEnumerator(this);
     }
