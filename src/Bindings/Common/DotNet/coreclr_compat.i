@@ -1,19 +1,25 @@
 /**
  * coreclr_compat.i
  *
- * This overrides the standard pointer marshaling to revert back to System.IntPtr instead of 
- * System.Runtime.InteropServices.HandleRef as the latter is not supported on .net Core
- *
- * NOTE: Only covers whatever's necessary so that proxy classes in the MapGuide API no longer
- * use HandleRefs
+ * SWIG typemaps and macros for CoreCLR support
  *
  * NOTE: SWIG must be run with SWIG_CSHARP_NO_EXCEPTION_HELPER defined
  */
 
-//We need to break the inheritance hierarchy of MgException so that it is an actual
-//CLR exception type
+/**
+ * .net Exception hierarchy
+ *
+ * By default MgException inherits from MgSerializable. For it to be throwable in .net, we have to break
+ * the inheritance chain and have MgException derive from our ManagedException base exception class instead
+ *
+ * Breaking the MgSerializable inheritance chain is inconsequential as the methods provided by MgSerializable
+ * are not available for managed code consumption
+ */
 %typemap(csbase, replace="1") MgException "ManagedException"
 
+/**
+ * Exception propagation support
+ */
 %insert(runtime) %{
 
 typedef void (SWIGSTDCALL* SWIG_CSharpMgExceptionCallback_t)(const void*, const char*); 
@@ -73,7 +79,7 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterMgExceptionCallback_$module(SWIG_CSharpM
     
     protected static MgExceptionHelper mgExceptionHelper = new MgExceptionHelper();
     
-    public class SWIGPendingException
+    internal class SWIGPendingException
     {
         [global::System.ThreadStatic]
         private static global::System.Exception pendingException = null;
@@ -132,6 +138,14 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterMgExceptionCallback_$module(SWIG_CSharpM
         mg_exception_callback(mgException.p, exClassName);
     }
 }
+
+/**
+ * This overrides the standard pointer marshaling to revert back to System.IntPtr instead of 
+ * System.Runtime.InteropServices.HandleRef as the latter is not supported on .net Core
+ *
+ * NOTE: Only covers whatever's necessary so that proxy classes in the MapGuide API no longer
+ * use HandleRefs
+ */
 
 /* Non primitive types */
 %typemap(ctype) SWIGTYPE "void *"
@@ -264,3 +278,59 @@ SWIG_BACKCOMPAT_CSBODY_TYPEWRAPPER(internal, protected, internal, SWIGTYPE)
       }
     }
   }
+
+/**
+ * .net polymorphism support
+ *
+ * We leverage the fact that every object type derives from MgObject which can describe its own class name
+ * We use this information to determine what .net proxy class to create when any method returns a Mg* class
+ */
+
+//Insert the necessary helper functions on the native side to assist
+//
+//NOTE: extern "C" not required as SWIG will already take care of that
+%insert(header) %{
+
+#ifdef __cplusplus
+extern "C"
+#endif
+SWIGEXPORT int SWIGSTDCALL GetClassId(void* ptrObj)
+{
+    return ((MgObject*)ptrObj)->GetClassId();
+}
+
+#ifdef __cplusplus
+extern "C"
+#endif
+SWIGEXPORT void* SWIGSTDCALL GetClassName(void* ptrObj)
+{
+    void* result = NULL;
+    char* clsName = ((MgObject*)ptrObj)->GetMultiByteClassName();
+    result = SWIG_csharp_string_callback(clsName);
+    return result;
+}
+
+%}
+
+//Override the default typemap. All 
+%typemap(csout) SWIGTYPE * 
+{
+    var objPtr = $imcall;$excode
+    if (objPtr == global::System.IntPtr.Zero)
+    {
+        return null;
+    }
+    else
+    {
+        var result = MgObjectFactory.CreateObject<$csclassname>(objPtr);
+        return result;
+    }
+}
+
+%pragma(csharp) imclasscode=%{
+    [global::System.Runtime.InteropServices.DllImport("$dllimport", EntryPoint="GetClassId")]
+    internal static extern int GetClassId(global::System.IntPtr objPtr);
+
+    [global::System.Runtime.InteropServices.DllImport("$dllimport", EntryPoint="GetClassName")]
+    internal static extern global::System.IntPtr GetClassName(global::System.IntPtr objPtr);
+%}

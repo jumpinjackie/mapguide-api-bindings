@@ -11,6 +11,8 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+//These warnings are false positives as a result of SWIG generated code
+#pragma warning disable 0108, 0114
 %}
 
 %typemap(csinterfaces_derived) MgBatchPropertyCollection "System.Collections.Generic.IList<MgPropertyCollection>"

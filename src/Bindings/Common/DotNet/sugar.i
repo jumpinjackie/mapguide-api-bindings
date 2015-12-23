@@ -11,6 +11,8 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+//These warnings are false positives as a result of SWIG generated code
+#pragma warning disable 0108, 0114
 %}
 //Collection Interfaces implemented by the implementing proxy class
 %typemap(csinterfaces_derived) collection_type "IList<item_type>"
