@@ -19,7 +19,7 @@ which makes it difficult for us to expand language support beyond what we curren
 Our current focus of this project is to use the current version of SWIG (3.0.7 as of writing) to generate
 MapGuide API bindings to support the following languages/platforms:
 
- * .net Core (Windows and Linux)
+ * .net Core (Windows and Linux) [Binding Notes](src/Bindings/DotNetCore/README.md)
  
 Eventually reaching platform parity with our existing offerings:
 
