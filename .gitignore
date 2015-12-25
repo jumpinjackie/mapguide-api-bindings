@@ -46,3 +46,11 @@
 /src/Test/Dnx/src/TestMapGuide/project.lock.json
 /src/Test/Dnx/src/TestMapGuideApi/project.lock.json
 /src/Test/Dnx/src/TestRunner/project.lock.json
+/src/Test/Dnx/src/TestRunner/metadata.txt
+/src/Test/Dnx/src/TestRunner/metadata2.txt
+/src/TestData/MapLayer/MapLayerTest.db
+/src/TestData/MappingService/MappingServiceTest.db
+/src/TestData/ServerAdmin/ServerAdminTest.db
+/src/TestData/SiteService/SiteServiceTest.db
+/src/TestData/Unicode/UnicodeTest.db
+/src/TestData/WebLayout/WebLayoutTest.db
