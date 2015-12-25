@@ -34,37 +34,17 @@ namespace OSGeo.MapGuide
         internal static T CreateObject<T>(IntPtr objPtr) where T : class
         {
             T obj = null;
-            //int clsId = MapGuideDotNetCoreUnmanagedApiPINVOKE.GetClassId(objPtr);
-            string className = GetClassName(objPtr);
-            
-            //DIRTY HACK: 
-            //
-            //In vanilla SWIG, there doesn't appear to be a way to intercept and capture the value of the m_cls_id member of 
-            //each class that is to be wrapped. The version of SWIG in the MapGuide Oem source tree is able to do this as it 
-            //was modified to look for this member and be able to construct the appropriate class id -> class name map which 
-            //the original .net wrapper uses to resolve the appropriate System.Type for any IntPtr we get back from the
-            //P/Invoke boundary
-            //
-            //What that means in this implementation is that certain classes can lie about what class names they are returning
-            //due to declaring their correct class name but re-using the same class id as its parent class.
-            //
-            //Fortunately, this problem only really applies to a really small set of classes: The proxy classes in the
-            //MapGuideCommon component. So until we can find a way to generate this class id -> System.Type mapping (as the
-            //reported class id and not class name is the ultimate source of truth) with vanilla SWIG, we'll do the dirtiest
-            //alternative: Just replace MgProxyClassName with MgClassName because ultimately this is the System.Type we are
-            //after for such classes. All other classes *should* cleanly resolve to their System.Type counterparts.
-            //
-            if (className.StartsWith("MgProxy"))
+            int clsId = MapGuideDotNetCoreUnmanagedApiPINVOKE.GetClassId(objPtr);
+            string typeName = MgClassMap.GetTypeName(clsId);
+            if (typeName == null) //Shouldn't happen. But if it did, this would mean we missed a spot when compiling class ids
             {
-                className = className.Replace("MgProxy", "Mg");
+                throw new Exception("Could not resolve .net type for this unmanaged pointer. The unmanaged pointer reported a class ID of: " + clsId);
             }
             
-            string typeName = "OSGeo.MapGuide." + className;
             var type = Type.GetType(typeName);
-            if (type == null)
+            if (type == null) //Shouldn't happen. But if it did, this would mean we didn't expose this class to SWIG
             {
-                //throw new Exception("The type " + typeName + " does not exist. The requested class ID is: " + clsId + ". The internal unmanaged pointer reported a class name of: " + className);
-                throw new Exception("The type " + typeName + " does not exist. The internal unmanaged pointer reported a class name of: " + className);
+                throw new Exception("The type " + typeName + " does not exist. The unmanaged pointer reported a class ID of: " + clsId);
             }
             else
             {
@@ -94,8 +74,7 @@ namespace OSGeo.MapGuide
                     
                 obj = ctor.Invoke(args) as T;
                 if (obj == null)
-                    throw new Exception("Could not create an instance of type " + typeof(T).Name + " (concrete type: " + type.Name + "). The internal unmanaged pointer reported a class name of: " + className);
-                    //throw new Exception("Could not create an instance of type " + typeof(T).Name + ". The requested class ID is: " + clsId + ". The internal unmanaged pointer reported a class name of: " + className);
+                    throw new Exception("Could not create an instance of type " + typeof(T).Name + " (concrete type: " + type.Name + "). The unmanaged pointer reported a class ID of: " + clsId);
             }
             return obj;
         }
