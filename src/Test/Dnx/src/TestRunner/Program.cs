@@ -80,6 +80,9 @@ namespace TestRunner
                         Environment.SetEnvironmentVariable("MENTOR_DICTIONARY_PATH", args[1], EnvironmentVariableTarget.Process);
 #endif
 
+                        MgCoordinateSystemFactory csFactory = new MgCoordinateSystemFactory();
+                        Console.WriteLine($"Using CS Library: {csFactory.GetBaseLibrary()}");
+
                         MapGuideApi.MgInitializeWebTier(args[0]);
                         userInfo = new MgUserInformation("Administrator", "admin");
                         siteConn = new MgSiteConnection();

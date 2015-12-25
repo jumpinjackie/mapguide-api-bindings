@@ -81,10 +81,5 @@ namespace OSGeo.MapGuide
             string className = this.GetType().ToString();
             return string.Format("{0}: {1}{2}{3}", className, this.Message, Environment.NewLine, this.StackTrace);
         }
-
-        public virtual void Dispose()
-        {
-            //implemented by derived classes
-        }
     }
 }

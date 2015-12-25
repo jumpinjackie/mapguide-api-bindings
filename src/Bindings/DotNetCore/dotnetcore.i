@@ -112,21 +112,24 @@ IMPLEMENT_READONLY_LIST(MgReadOnlyLayerCollection, MgLayerBase)
 %typemap(out) STRING
 {
     //out typemap - WIN32 (DOTNETCORE)
-    $result = SWIG_csharp_wstring_callback(result.c_str());
+    $result = mg_string_callback((int)($1.length()+1)*sizeof(wchar_t));
+    wcscpy((wchar_t*)$result, $1.c_str());
 }
 #else
 %typemap(out) STRING
 {
     //out typemap - LINUX (DOTNETCORE)
     xstring u16String;
-    UnicodeString::UTF32toUTF16((const LCh*) result.c_str(), u16String);
-    $result = SWIG_csharp_wstring_callback(u16String.c_str());
+    UnicodeString::UTF32toUTF16((const LCh*) $1.c_str(), u16String);
+    $result = mg_string_callback((int)(u16String.length()+1)*sizeof(LCh));
+    XMLString::copyString((XMLCh*)$result, u16String.c_str());
 }
 #endif
 #else
 %typemap(out) STRING
 {
-    $result = SWIG_csharp_wstring_callback(result.c_str());
+    $result = mg_string_callback((int)($1.length()+1)*sizeof(wchar_t));
+    wcscpy((wchar_t*)$result, $1.c_str());
 }
 #endif
 
