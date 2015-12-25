@@ -63,6 +63,8 @@ For the rest of these instructions refer to these variables:
  * ```$MG_VERSION_MAJOR_MINOR``` (the major.minor version number this MapGuide source directory corresponds to)
  * ```$MG_VERSION_FULL``` (the major.minor.rev version number this MapGuide source directory corresponds to)
 
+Also note that this build process on Linux will only build the SWIG glue library for .net Core. The .net wrapper itself is expected to be built on Windows
+
 ## Build Steps
 
  1. Run ```source ./envsetup.sh $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR $MG_VERSION_FULL``` if this is the first time, run the command as administrator (so that symlinks can be created)
