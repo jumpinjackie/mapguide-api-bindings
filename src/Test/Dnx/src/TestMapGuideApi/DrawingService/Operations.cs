@@ -89,7 +89,7 @@ namespace OSGeo.MapGuide.Test.Operations
                 }
 
                 MgStringCollection coll = _drawingService.EnumerateLayers(resId, param["SECTION"] ?? "");
-                MgByteReader reader = coll.ToXml();
+                MgByteReader reader = coll?.ToXml();
                 return TestResult.FromByteReader(reader);
             }
             catch (MgException ex)

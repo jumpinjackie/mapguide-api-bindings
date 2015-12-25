@@ -3,7 +3,7 @@
  *
  * SWIG typemaps and macros for CoreCLR support
  *
- * NOTE: SWIG must be run with SWIG_CSHARP_NO_EXCEPTION_HELPER defined
+ * NOTE: SWIG must be run with SWIG_CSHARP_NO_EXCEPTION_HELPER and SWIG_CSHARP_NO_STRING_HELPER defined
  */
 
 /**
@@ -348,7 +348,7 @@ SWIGEXPORT void* SWIGSTDCALL GetClassName(void* ptrObj)
 %}
 
 //Override the default typemap.
-%typemap(csout) SWIGTYPE * 
+%typemap(csout, excode=SWIGEXCODE) SWIGTYPE * 
 {
     var objPtr = $imcall;$excode
     if (objPtr == global::System.IntPtr.Zero)
