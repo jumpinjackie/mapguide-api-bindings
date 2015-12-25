@@ -33,3 +33,38 @@ With future experimental (a.k.a Use at your own risk) support for other platform
  * Python
  * node.js
  * and much more!
+
+# Build Instructions (Windows)
+
+## Before you start
+
+Make sure you have built the MapGuide source
+
+For the rest of these instructions refer to these variables:
+ * ```$PATH_TO_MAPGUIDE_SOURCE_MGDEV``` (the path where you built the MapGuide source)
+ * ```$MG_VERSION_MAJOR_MINOR``` (the major.minor version number this MapGuide source directory corresponds to)
+
+## Build Steps
+
+ 1. Run ```envsetup.cmd $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR``` if this is the first time, run the command as administrator (so that symlinks can be created)
+ 2. Build ```src/Bindings/Bindings.sln``` either through MSBuild or Visual Studio
+ 3. Set up DNX ```dnvm use 1.0.0-rc1-update1 -r coreclr -arch x64```
+ 4. Enter ```src/Bindings/DotNetCore/MapGuideDotNetCoreApi```
+ 5. Run ```dnu pack --configuration Release``` the nuget package will reside in ```src/Bindings/DotNetCore/MapGuideDotNetCoreApi/bin/release```
+
+# Build Instructions (Linux)
+
+## Before you start
+
+Make sure you have built the MapGuide source and installed the binaries
+
+For the rest of these instructions refer to these variables:
+ * ```$PATH_TO_MAPGUIDE_SOURCE_MGDEV``` (the path where you built the MapGuide source)
+ * ```$MG_VERSION_MAJOR_MINOR``` (the major.minor version number this MapGuide source directory corresponds to)
+ * ```$MG_VERSION_FULL``` (the major.minor.rev version number this MapGuide source directory corresponds to)
+
+## Build Steps
+
+ 1. Run ```source ./envsetup.sh $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR $MG_VERSION_FULL``` if this is the first time, run the command as administrator (so that symlinks can be created)
+ 2. Enter ```src/Bindings/DotNetCore```
+ 3. Run ```make```
