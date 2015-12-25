@@ -1,6 +1,7 @@
 #!/bin/sh
-MG_DEV_ROOT=$1
-MG_VER=$2
+export MG_DEV_ROOT=$1
+export MG_VER=$2
+export MG_VER_FULL=$3
 
 if [ ! -d swig ]; then
 	./swigsetup.sh

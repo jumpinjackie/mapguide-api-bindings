@@ -1,7 +1,7 @@
 #!/bin/sh
 export MG_OEM_ACE_INCLUDE_DIR=${MG_SOURCE_ROOT}/Oem/ACE/ACE_wrappers
 export MG_OEM_XERCES_INCLUDE_DIR=${MG_SOURCE_ROOT}/Oem/dbxml/xerces-c-src/src
-export MG_HTTPHANDLER_INCLUDE_DIR=${MG_SOURCE_ROOT}/Web/src/Httphandler
+export MG_HTTPHANDLER_INCLUDE_DIR=${MG_SOURCE_ROOT}/Web/src/HttpHandler
 export MG_WEBAPP_INCLUDE_DIR=${MG_SOURCE_ROOT}/Web/src/WebApp
 export MG_WEBSUPPORT_INCLUDE_DIR=${MG_SOURCE_ROOT}/Web/src/WebSupport
 export MG_MDFMODEL_INCLUDE_DIR=${MG_SOURCE_ROOT}/Common/MdfModel

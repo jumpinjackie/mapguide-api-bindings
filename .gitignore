@@ -58,3 +58,6 @@
 /swig-3.0.7
 swig-3.0.7.tar.gz
 /src/IMake/Linux
+/src/Bindings/DotNetCore/libMapGuideDotNetCoreUnmanagedApi.so
+/src/Bindings/DotNetCore/MgApi_wrap.cpp
+/src/Bindings/DotNetCore/MgApi_wrap.o
