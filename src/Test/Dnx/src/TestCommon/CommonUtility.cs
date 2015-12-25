@@ -342,6 +342,9 @@ namespace OSGeo.MapGuide.Test.Common
                 case "GETLONGTRANSACTIONS":
                     res = RemoveCreationDate(resultData.ToString());
                     break;
+                case "GETSPATIALCONTEXTS":
+                    res = RemoveFdoProviderVersion(resultData.ToString());
+                    break;
             }
 
             string strRes = res as string;
@@ -353,7 +356,7 @@ namespace OSGeo.MapGuide.Test.Common
             }
             return res;
         }
-
+        
         internal static bool IsWindows() => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         class InvertedComparer<T> : IComparer<T>
@@ -617,6 +620,33 @@ namespace OSGeo.MapGuide.Test.Common
             if (resultData.IndexOf("(DWF V06.01)") >= 0)
                 resultData = "(DWF V06.01)";
             return resultData;
+        }
+
+        private static string RemoveFdoProviderVersion(string resultData)
+        {
+            string newResult = resultData;
+
+            int istart = resultData.IndexOf("<ProviderName>") + "<ProviderName>".Length;
+            int iend = resultData.IndexOf("</ProviderName>");
+            newResult = resultData.Substring(0, istart);
+
+            string provider = resultData.Substring(istart, iend - istart);
+
+            newResult += StripVersionFromFdoProvider(provider);
+
+            newResult += resultData.Substring(iend);
+            resultData = newResult;
+
+            return newResult;
+        }
+
+        private static string StripVersionFromFdoProvider(string provider)
+        {
+            string[] tokens = provider.Split('.');
+            if (tokens.Length == 4)
+                return $"{tokens[0]}.{tokens[1]}";
+            else
+                return provider;
         }
 
         private static string RemoveCreationDate(string resultData)
