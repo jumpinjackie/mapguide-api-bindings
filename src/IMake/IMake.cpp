@@ -1384,6 +1384,12 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
                 bool firstProp = true;
                 if (string::npos != methodStart && (setProp || getProp))
                 {
+                    //NOTE: We could leverage the SWIG attribute system here to generate properties, but
+                    //for purposes of compatibility, we'll generate properties the "old fashioned way" as
+                    //pass-throughs to their respective Get/Set methods. Using the attribute system actually
+                    //replaces the Get/Set methods, which although is cleaner, it will cause lots of unnecessary
+                    //breakage
+
                     if (NULL == propertyFile)
                     {
                         string fname = ".\\";
