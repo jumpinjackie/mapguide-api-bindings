@@ -628,6 +628,9 @@ namespace OSGeo.MapGuide.Test.Common
 
             int istart = resultData.IndexOf("<ProviderName>") + "<ProviderName>".Length;
             int iend = resultData.IndexOf("</ProviderName>");
+            if (istart < 0 || iend < 0)
+                return resultData;
+
             newResult = resultData.Substring(0, istart);
 
             string provider = resultData.Substring(istart, iend - istart);
