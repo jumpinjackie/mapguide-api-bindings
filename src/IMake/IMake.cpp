@@ -1392,12 +1392,21 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
 
                     if (NULL == propertyFile)
                     {
+                    #ifdef _WIN32
                         string fname = ".\\";
+                    #else
+                        string fname = "./";
+                    #endif
                         if (!customPath.empty())
                         {
                             fname = customPath;
+                        #ifdef _WIN32
                             if (fname[fname.size() - 1] != '\\')
                                 fname.append("\\");
+                        #else
+                            if (fname[fname.size() - 1] != '/')
+                                fname.append("/");
+                        #endif
                         }
                         fname.append("MapGuideApi_Properties.i");
                         //fname.append(className);
