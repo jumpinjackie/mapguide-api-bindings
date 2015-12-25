@@ -33,3 +33,16 @@
 /src/Bindings/DotNetCore/bin
 /src/Bindings/DotNetCore/lib
 /src/Bindings/DotNetCore/MapGuideApi_Properties.i
+/src/Test/Dnx/src/TestRunner/*.bin
+/src/Bindings/DotNetCore/MapGuideDotNetCoreApi/runtimes/win7-x64/native/*.dll
+/src/Bindings/DotNetCore/MapGuideDotNetCoreApi/runtimes/win7-x86/native/*.dll
+*.suo
+*.user
+/src/Test/Dnx/src/TestRunner/UnitTests.log
+/src/TestData/DrawingService/DrawingServiceTest.db
+/src/TestData/FeatureService/FeatureServiceTest.db
+/src/TestData/ResourceService/ResourceServiceTest.db
+/src/Test/Dnx/src/TestCommon/project.lock.json
+/src/Test/Dnx/src/TestMapGuide/project.lock.json
+/src/Test/Dnx/src/TestMapGuideApi/project.lock.json
+/src/Test/Dnx/src/TestRunner/project.lock.json
