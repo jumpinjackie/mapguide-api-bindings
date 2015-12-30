@@ -21,11 +21,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
                 MgByteReader byteReader = _resourceService.EnumerateResources(resId, Convert.ToInt32(param["DEPTH"]), param["TYPE"] ?? "");
 
                 return TestResult.FromByteReader(byteReader, "GETRESOURCEDATA");
@@ -55,14 +51,10 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
-                MgByteReader content = CommonUtility.GetByteReaderFromPath(param["CONTENT"]);
-                MgByteReader header = CommonUtility.GetByteReaderFromPath(param["HEADER"]);
+                MgByteReader content = param.TryGetByteReader("CONTENT");
+                MgByteReader header = param.TryGetByteReader("HEADER");
 
                 _resourceService.SetResource(resId, content, header);
 
@@ -93,11 +85,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 _resourceService.DeleteResource(resId);
 
@@ -128,11 +116,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _resourceService.GetResourceContent(resId);
 
@@ -163,11 +147,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _resourceService.GetResourceHeader(resId);
 
@@ -198,11 +178,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _resourceService.EnumerateResourceData(resId);
 
@@ -233,11 +209,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _resourceService.GetResourceData(resId, param["DATANAME"]);
 
@@ -268,11 +240,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 string extension = CommonUtility.GetExtension(param["DATANAME"]);
                 string mimeType = CommonUtility.GetMimeType(extension);
@@ -320,11 +288,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 _resourceService.RenameResourceData(resId, param["OLDDATANAME"], param["NEWDATANAME"], false);
 
@@ -355,11 +319,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 _resourceService.DeleteResourceData(resId, param["DATANAME"] ?? "");
 
@@ -390,11 +350,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader result = _resourceService.GetRepositoryContent(resId);
 
@@ -425,11 +381,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader result = _resourceService.GetRepositoryHeader(resId);
 
@@ -460,14 +412,10 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
-                MgByteReader content = CommonUtility.GetByteReaderFromPath(param["CONTENT"]);
-                MgByteReader header = CommonUtility.GetByteReaderFromPath(param["HEADER"]);
+                MgByteReader content = param.TryGetByteReader("CONTENT");
+                MgByteReader header = param.TryGetByteReader("HEADER");
 
                 _resourceService.UpdateRepository(resId, content, header);
 
@@ -498,11 +446,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _resourceService.EnumerateReferences(resId);
 
@@ -615,11 +559,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 _resourceService.ChangeResourceOwner(resId, param["OWNER"], (param["INCLUDEDESCENDANTS"] == "1"));
 
@@ -650,11 +590,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 _resourceService.InheritPermissionsFrom(resId);
 
@@ -687,7 +623,7 @@ namespace OSGeo.MapGuide.Test.Operations
             {
                 if (CommonUtility.IsWindows())
                 {
-                    MgByteReader reader = CommonUtility.GetByteReaderFromPath(param["PACKAGE"] ?? "", false);
+                    MgByteReader reader = param.TryGetByteReader("PACKAGE", false);
     
                     _resourceService.ApplyResourcePackage(reader);
     

@@ -20,11 +20,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.DescribeDrawing(resId);
                 return TestResult.FromByteReader(reader);
@@ -49,11 +45,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.GetDrawing(resId);
                 return TestResult.FromByteReader(reader, "GETDRAWING");
@@ -78,11 +70,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgStringCollection coll = _drawingService.EnumerateLayers(resId, param["SECTION"] ?? "");
                 MgByteReader reader = coll?.ToXml();
@@ -108,11 +96,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.GetLayer(resId, param["SECTION"], param["LAYER"]);
                 return TestResult.FromByteReader(reader, "GETDRAWINGLAYER");
@@ -137,11 +121,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.GetSection(resId, param["SECTION"]);
                 return TestResult.FromByteReader(reader, "GETDRAWINGSECTION");
@@ -166,11 +146,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.EnumerateSections(resId);
                 return TestResult.FromByteReader(reader);
@@ -195,11 +171,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.EnumerateSectionResources(resId, param["SECTION"] ?? "");
                 return TestResult.FromByteReader(reader);
@@ -224,11 +196,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgByteReader reader = _drawingService.GetSectionResource(resId, param["RESOURCENAME"]);
                 return TestResult.FromByteReader(reader, "GETDRAWINGSECTIONRESOURCE");

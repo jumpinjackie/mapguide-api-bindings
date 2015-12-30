@@ -103,11 +103,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 string result = _featureService.DescribeSchemaAsXml(resId, param["SCHEMA"]);
 
@@ -138,11 +134,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgFeatureQueryOptions query = new MgFeatureQueryOptions();
                 //TODO: Set query options
@@ -191,11 +183,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgFeatureAggregateOptions query = new MgFeatureAggregateOptions();
                 //TODO: Set query options
@@ -246,11 +234,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgSqlDataReader reader = _featureService.ExecuteSqlQuery(resId, param["SQL"]);
                 MgByteReader byteReader = reader.ToXml();
@@ -282,11 +266,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgSpatialContextReader reader = _featureService.GetSpatialContexts(resId, (param["ACTIVEONLY"] == "1"));
                 MgByteReader byteReader = reader.ToXml();
@@ -318,11 +298,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgLongTransactionReader reader = _featureService.GetLongTransactions(resId, (param["ACTIVEONLY"] == "1"));
                 MgByteReader byteReader = reader.ToXml();
@@ -368,11 +344,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 if (param["CREATESESSION"] == "TRUE")
                 {
@@ -448,11 +420,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgStringCollection result = _featureService.GetSchemas(resId);
                 return new TestResult(CommonUtility.MgStringCollectionToString(result), "text/plain");
@@ -482,11 +450,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgResourceIdentifier resId = null;
-                if (param["RESOURCEID"] != null)
-                {
-                    resId = new MgResourceIdentifier(param["RESOURCEID"]);
-                }
+                MgResourceIdentifier resId = param.TryGetResourceId("RESOURCEID");
 
                 MgStringCollection result = _featureService.GetClasses(resId, param["SCHEMANAME"]);
                 return new TestResult(CommonUtility.MgStringCollectionToString(result), "text/plain");

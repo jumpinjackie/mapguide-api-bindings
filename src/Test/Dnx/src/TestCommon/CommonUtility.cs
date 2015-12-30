@@ -73,8 +73,17 @@ namespace OSGeo.MapGuide.Test.Common
     /// <summary>
     /// Common utility methods
     /// </summary>
-    public class CommonUtility
+    public static class CommonUtility
     {
+        public static MgResourceIdentifier TryGetResourceId(this NameValueCollection param, string key)
+        {
+            if (param[key] != null)
+            {
+                return new MgResourceIdentifier(param[key]);
+            }
+            return null;
+        }
+
         public static NameValueCollection SetCommonParams(int paramSet, SqliteDb db)
         {
             NameValueCollection result = null;
@@ -112,7 +121,12 @@ namespace OSGeo.MapGuide.Test.Common
             return result;
         }
 
-        public static MgByteReader GetByteReaderFromPath(string path, bool bCheck = true)
+        public static MgByteReader TryGetByteReader(this NameValueCollection param, string key, bool bCheck = true)
+        {
+            return GetByteReaderFromPath(param[key] ?? string.Empty, bCheck);
+        }
+
+        private static MgByteReader GetByteReaderFromPath(string path, bool bCheck = true)
         {
             string fixedPath = FixRelativePath(path);
 
@@ -176,8 +190,6 @@ namespace OSGeo.MapGuide.Test.Common
 
         public static string FixRelativePath(string path)
         {
-            //Console.WriteLine($"FixRelativePath('{path}')");
-            
             //Our DNX root is 2 levels deeper, so fix any input paths that expect the original depth
             string fixedPath = path?.Replace("\\", "/");
             if (path?.Contains(TestDataRoot.Path) == false)
@@ -185,7 +197,6 @@ namespace OSGeo.MapGuide.Test.Common
                 fixedPath = path?.Replace("\\", "/");
                 fixedPath = fixedPath?.Replace("../../TestData", TestDataRoot.Path) ?? string.Empty;
                 fixedPath = fixedPath?.Replace("\\", "/");
-                //Console.WriteLine($"\tfixedPath = '{fixedPath}'");
             }
             return fixedPath;
         }
