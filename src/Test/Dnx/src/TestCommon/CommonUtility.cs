@@ -176,10 +176,17 @@ namespace OSGeo.MapGuide.Test.Common
 
         public static string FixRelativePath(string path)
         {
+            //Console.WriteLine($"FixRelativePath('{path}')");
+            
             //Our DNX root is 2 levels deeper, so fix any input paths that expect the original depth
-            string fixedPath = path;
+            string fixedPath = path?.Replace("\\", "/");
             if (path?.Contains(TestDataRoot.Path) == false)
-                fixedPath = path?.Replace("../../TestData", TestDataRoot.Path) ?? string.Empty;
+            {
+                fixedPath = path?.Replace("\\", "/");
+                fixedPath = fixedPath?.Replace("../../TestData", TestDataRoot.Path) ?? string.Empty;
+                fixedPath = fixedPath?.Replace("\\", "/");
+                //Console.WriteLine($"\tfixedPath = '{fixedPath}'");
+            }
             return fixedPath;
         }
 
