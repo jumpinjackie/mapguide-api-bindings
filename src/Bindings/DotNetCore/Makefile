@@ -26,4 +26,4 @@ MgApi_wrap.cpp:
 	../../IMake/Linux/IMake ../MapGuideApi/Constants.xml C# MapGuideDotNetCoreApi/Constants.cs
 	cp dotnetcore.i language.i
 	../../IMake/Linux/IMake ../MapGuideApi/MapGuideApiGen.xml C#
-	$(SWIG_TOOL_PATH)/swig -c++ -csharp -DDOTNETCORE -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o MgApi_wrap.cpp -outdir ./MapGuideDotNetCoreApi MapGuideApi.i
+	$(SWIG_TOOL_PATH)/swig -c++ -csharp -DDOTNETCORE -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetCoreUnmanagedApi -o MgApi_wrap.cpp -outdir ./MapGuideDotNetCoreApi MapGuideApi.i
