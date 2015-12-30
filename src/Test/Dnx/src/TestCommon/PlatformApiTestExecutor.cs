@@ -35,7 +35,10 @@ namespace OSGeo.MapGuide.Test.Operations
 
             foreach (var name in this.ParameterNames.Concat(new string[] { "OPERATION" }))
             {
-                _unitTestVm.ReadParameterValue(paramSetId, name, param, fp.Contains(name));
+                var isFile = fp.Contains(name);
+                _unitTestVm.ReadParameterValue(paramSetId, name, param, isFile);
+                if (isFile && string.IsNullOrEmpty(param[name]))
+                    param.Remove(name);
             }
 
             return param;
