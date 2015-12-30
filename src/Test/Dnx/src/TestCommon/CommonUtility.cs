@@ -123,7 +123,11 @@ namespace OSGeo.MapGuide.Test.Common
 
         public static MgByteReader TryGetByteReader(this NameValueCollection param, string key, bool bCheck = true)
         {
-            return GetByteReaderFromPath(param[key] ?? string.Empty, bCheck);
+            string path = param[key] ?? string.Empty;
+            if (string.IsNullOrEmpty(path))
+                return null;
+            else
+                return GetByteReaderFromPath(path, bCheck);
         }
 
         private static MgByteReader GetByteReaderFromPath(string path, bool bCheck = true)
