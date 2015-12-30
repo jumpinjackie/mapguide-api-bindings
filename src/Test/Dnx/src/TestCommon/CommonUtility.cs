@@ -169,9 +169,9 @@ namespace OSGeo.MapGuide.Test.Common
             string fixedPath = FixRelativePath(path);
 
             if (Path.IsPathRooted(fixedPath))
-                return fixedPath.Replace("\\", "/");
+                return Path.GetFullPath(fixedPath.Replace("\\", "/"));
             else
-                return Path.Combine(GetAssemblyPath(), fixedPath).Replace("\\", "/");
+                return Path.GetFullPath(Path.Combine(GetAssemblyPath(), fixedPath).Replace("\\", "/"));
         }
 
         public static string FixRelativePath(string path)

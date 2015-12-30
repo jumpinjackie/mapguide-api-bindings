@@ -50,7 +50,7 @@ namespace OSGeo.MapGuide.Test.Operations
             foreach (var name in this.PathParameterNames)
             {
                 if (param[name] != null)
-                    param[name] = CommonUtility.FixRelativePath(param[name]);
+                    param[name] = CommonUtility.GetPath(param[name]);
             }
         }
 
