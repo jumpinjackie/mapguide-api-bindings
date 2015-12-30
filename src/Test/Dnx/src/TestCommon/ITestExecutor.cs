@@ -24,7 +24,8 @@ namespace OSGeo.MapGuide.Test.Common
         /// Executes the API with the particular parameter set
         /// </summary>
         /// <param name="paramSetId"></param>
+        /// <param name="logger"></param>
         /// <returns></returns>
-        TestResult Execute(int paramSetId);
+        TestResult Execute(int paramSetId, ITestLogger logger);
     }
 }

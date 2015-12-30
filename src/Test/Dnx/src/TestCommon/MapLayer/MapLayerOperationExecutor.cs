@@ -1,6 +1,7 @@
 ﻿using OSGeo.MapGuide.Test.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,6 +30,7 @@ namespace OSGeo.MapGuide.Test.Operations
             _creator = creator;
         }
 
+        /*
         protected void CreateMapFromResource(int paramSetId)
         {
             if (_map != null)
@@ -41,6 +43,17 @@ namespace OSGeo.MapGuide.Test.Operations
                 mapName = "Library://maplayertest/World.MapDefinition";
             }
 
+            MgResourceIdentifier mdfId = new MgResourceIdentifier(mapName);
+            _map = _creator.CreateMap(mdfId);
+        }
+        */
+
+        protected void CreateMapFromResource(NameValueCollection param)
+        {
+            if (_map != null)
+                return;
+
+            string mapName = param["MAPDEFINITION"] ?? "Library://maplayertest/World.MapDefinition";
             MgResourceIdentifier mdfId = new MgResourceIdentifier(mapName);
             _map = _creator.CreateMap(mdfId);
         }

@@ -17,11 +17,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 return new TestResult(_wl.GetTitle(), "text/plain");
             }
             catch (MgException ex)
@@ -39,11 +41,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 return new TestResult(_wl.GetMapDefinition(), "text/plain");
             }
             catch (MgException ex)
@@ -61,11 +65,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 return new TestResult(_wl.GetScale().ToString(CultureInfo.InvariantCulture), "text/plain");
             }
             catch (MgException ex)
@@ -83,11 +89,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var center = _wl.GetCenter();
                 if (center == null)
                 {
@@ -114,11 +122,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tb = _wl.GetToolBar();
                 return new TestResult(CommonUtility.BooleanToString(tb.IsVisible()), "text/plain");
             }
@@ -137,11 +147,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var sb = _wl.GetStatusBar();
                 return new TestResult(CommonUtility.BooleanToString(sb.IsVisible()), "text/plain");
             }
@@ -160,11 +172,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 return new TestResult(CommonUtility.BooleanToString(tp.IsVisible()), "text/plain");
             }
@@ -183,11 +197,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tb = tp.GetTaskBar();
                 return new TestResult(CommonUtility.BooleanToString(tb.IsVisible()), "text/plain");
@@ -207,11 +223,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var ip = _wl.GetInformationPane();
                 return new TestResult(CommonUtility.BooleanToString(ip.IsLegendBandVisible()), "text/plain");
             }
@@ -230,11 +248,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var ip = _wl.GetInformationPane();
                 return new TestResult(CommonUtility.BooleanToString(ip.IsPropertiesBandVisible()), "text/plain");
             }
@@ -253,11 +273,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 return new TestResult(tp.GetWidth().ToString(), "text/plain");
             }
@@ -276,11 +298,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var ip = _wl.GetInformationPane();
                 return new TestResult(ip.GetWidth().ToString(), "text/plain");
             }
@@ -299,11 +323,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 return new TestResult(tp.GetInitialTaskUrl(), "text/plain");
             }
@@ -322,11 +348,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var ctx = _wl.GetContextMenu();
                 return new TestResult(CommonUtility.BooleanToString(ctx.IsVisible()), "text/plain");
             }
@@ -345,16 +373,15 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT", "CONTAINER", "INDEX" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
 
                 MgWebWidgetCollection coll = null;
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "CONTAINER", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "INDEX", param);
 
                 switch (param["CONTAINER"])
                 {
@@ -393,11 +420,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -419,11 +448,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -445,11 +476,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -471,11 +504,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -497,11 +532,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -523,11 +560,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -549,11 +588,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -575,11 +616,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();
@@ -601,11 +644,13 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "WEBLAYOUT" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                CreateWebLayoutFromResource(paramSetId);
+                CreateWebLayoutFromResource(param);
                 var tp = _wl.GetTaskPane();
                 var tbar = tp.GetTaskBar();
                 var tbuttons = tbar.GetTaskButtons();

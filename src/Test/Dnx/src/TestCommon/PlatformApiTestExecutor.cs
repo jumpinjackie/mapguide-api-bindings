@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
 
 namespace OSGeo.MapGuide.Test.Operations
 {
@@ -25,6 +26,32 @@ namespace OSGeo.MapGuide.Test.Operations
             _unitTestDb.Open(_unitTestVmPath);
 
             _unitTestVm = new SqliteVm(_unitTestDb, true);
+        }
+
+        protected virtual string[] ParameterNames => new string[0];
+
+        protected virtual string[] PathParameterNames => new string[0];
+
+        protected override NameValueCollection CollectParameters(int paramSetId)
+        {
+            var param = new NameValueCollection();
+            var fp = this.PathParameterNames;
+
+            foreach (var name in this.ParameterNames.Concat(new string[] { "OPERATION" }))
+            {
+                _unitTestVm.ReadParameterValue(paramSetId, name, param, fp.Contains(name));
+            }
+
+            return param;
+        }
+
+        protected override void CleanParamSet(NameValueCollection param)
+        {
+            foreach (var name in this.PathParameterNames)
+            {
+                if (param[name] != null)
+                    param[name] = CommonUtility.FixRelativePath(param[name]);
+            }
         }
 
         public override void Dispose()

@@ -15,16 +15,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "TYPE", "DEPTH" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "TYPE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DEPTH", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -53,15 +49,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "CONTENT", "HEADER" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "CONTENT", param, true);
-                _unitTestVm.ReadParameterValue(paramSetId, "HEADER", param, true);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -94,13 +87,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -130,14 +122,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "PREPROCESS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "PREPROCESS", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -167,13 +157,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -203,13 +192,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -239,14 +227,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "DATANAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DATANAME", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -276,16 +262,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "DATANAME", "DATATYPE", "DATA" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DATANAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DATATYPE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DATA", param, true);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -332,15 +314,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "OLDDATANAME", "NEWDATANAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "OLDDATANAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWDATANAME", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -370,14 +349,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "DATANAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DATANAME", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -407,13 +384,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -443,13 +419,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -479,15 +454,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "CONTENT", "HEADER" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "CONTENT", param, true);
-                _unitTestVm.ReadParameterValue(paramSetId, "HEADER", param, true);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -520,13 +492,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -556,14 +527,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "SOURCE", "DESTINATION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "SOURCE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DESTINATION", param);
-
                 MgResourceIdentifier srcId = null;
                 if (param["SOURCE"] != null)
                 {
@@ -599,14 +568,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "SOURCE", "DESTINATION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "SOURCE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DESTINATION", param);
-
                 MgResourceIdentifier srcId = null;
                 if (param["SOURCE"] != null)
                 {
@@ -642,15 +609,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID", "OWNER", "INCLUDEDESCENDANTS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "OWNER", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "INCLUDEDESCENDANTS", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -680,13 +644,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "RESOURCEID" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "RESOURCEID", param);
-
                 MgResourceIdentifier resId = null;
                 if (param["RESOURCEID"] != null)
                 {
@@ -716,13 +679,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "PACKAGE" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "PACKAGE", param, true);
-
                 MgByteReader reader = CommonUtility.GetByteReaderFromPath(param["PACKAGE"] ?? "", false);
 
                 _resourceService.ApplyResourcePackage(reader);

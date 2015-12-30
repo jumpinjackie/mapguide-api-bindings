@@ -19,5 +19,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             _resourceService = resSvc;
         }
+
+        protected override string[] PathParameterNames => new string[] { "HEADER", "CONTENT", "DATA", "PACKAGE" };
     }
 }

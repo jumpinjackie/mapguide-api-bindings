@@ -1,6 +1,7 @@
 ﻿using OSGeo.MapGuide.Test.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace OSGeo.MapGuide.Test.Operations
             _creator = wl;
         }
 
+        /*
         protected void CreateWebLayoutFromResource(int paramSetId)
         {
             if (_wl != null)
@@ -38,6 +40,14 @@ namespace OSGeo.MapGuide.Test.Operations
             {
                 wlId = "Library://UnitTest/layouts/Test.WebLayout";
             }
+            MgResourceIdentifier resId = new MgResourceIdentifier(wlId);
+            _wl = _creator.CreateWebLayout(resId);
+        }
+        */
+
+        protected void CreateWebLayoutFromResource(NameValueCollection param)
+        {
+            string wlId = param["WEBLAYOUT"] ?? "Library://UnitTest/layouts/Test.WebLayout";
             MgResourceIdentifier resId = new MgResourceIdentifier(wlId);
             _wl = _creator.CreateWebLayout(resId);
         }

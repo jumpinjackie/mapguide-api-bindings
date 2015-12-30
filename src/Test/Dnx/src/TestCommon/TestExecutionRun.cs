@@ -68,10 +68,10 @@ namespace OSGeo.MapGuide.Test.Common
                     testsRun++;
 
                     //Add the operation to the log file
-                    AddLogFileEntry(logger, paramValue, paramSetId, _unitTestResultVm);
+                    //AddLogFileEntry(logger, paramValue, paramSetId, _unitTestResultVm);
 
                     var exec = _executors.GetTestExecutor(paramValue);
-                    actualResult = exec.Execute(paramSetId);
+                    actualResult = exec.Execute(paramSetId, logger);
 
                     exitStatus += _executors.ValidateRequest(_unitTestDb, testName, paramSetId, paramValue, actualResult, logger);
                 }
@@ -84,6 +84,7 @@ namespace OSGeo.MapGuide.Test.Common
             }
         }
 
+        /*
         private static void AddLogFileEntry(ITestLogger logger, string operation, int paramSetId, SqliteVm vm)
         {
             logger.Write("\nParamSet: {0}\n", paramSetId);
@@ -98,6 +99,7 @@ namespace OSGeo.MapGuide.Test.Common
                 status = vm.NextRow();
             }
         }
+        */
 
         public void Cleanup()
         {

@@ -1,6 +1,7 @@
 ﻿using OSGeo.MapGuide.Test.Common;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +15,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 var extent = _map.GetMapExtent();
                 return new TestResult(CommonUtility.MgEnvelopeToString(extent), "text/plain");
             }
@@ -36,11 +39,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 return new TestResult(_map.GetMapSRS(), "text/plain");
             }
             catch (MgException ex)
@@ -57,11 +62,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 return new TestResult(_map.GetName(), "text/plain");
             }
             catch (MgException ex)
@@ -78,11 +85,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 var layers = _map.GetLayers();
                 var names = new List<string>();
                 for (int i = 0; i < layers.GetCount(); i++)
@@ -107,11 +116,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 var groups = _map.GetLayerGroups();
                 var names = new List<string>();
                 for (int i = 0; i < groups.GetCount(); i++)
@@ -136,14 +147,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 if (layer == null)
@@ -164,14 +175,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 if (layer == null)
@@ -192,14 +203,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 if (layer == null)
@@ -220,14 +231,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 if (layer == null)
@@ -249,14 +260,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 if (layer == null)
@@ -277,17 +288,16 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "GROUPNAME", "PARENTGROUPNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"GROUPNAME\"", paramSetId);
-                string groupName = _unitTestVm.GetString("ParamValue");
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"PARENTGROUPNAME\"", paramSetId);
-                string parentGroupName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                
+                string groupName = param["GROUPNAME"];
+                string parentGroupName = param["PARENTGROUPNAME"];
 
                 var groups = _map.GetLayerGroups();
                 var group = new MgLayerGroup(groupName);
@@ -314,17 +324,15 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERDEFINITION", "GROUPNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERDEFINITION\"", paramSetId);
-                string layerDefinition = _unitTestVm.GetString("ParamValue");
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"GROUPNAME\"", paramSetId);
-                string groupName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerDefinition = param["LAYERDEFINITION"];
+                string groupName = param["GROUPNAME"];
 
                 var ldfId = new MgResourceIdentifier(layerDefinition);
                 var layer = _creator.CreateLayer(ldfId);
@@ -356,14 +364,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "GROUPNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"GROUPNAME\"", paramSetId);
-                string groupName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string groupName = param["GROUPNAME"];
 
                 var groups = _map.GetLayerGroups();
                 var group = groups.GetItem(groupName);
@@ -385,14 +393,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "GROUPNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"GROUPNAME\"", paramSetId);
-                string groupName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string groupName = param["GROUPNAME"];
 
                 var groups = _map.GetLayerGroups();
                 var group = groups.GetItem(groupName);
@@ -414,11 +422,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 return new TestResult(CommonUtility.MgPointToString(_map.GetViewCenter()), "text/plain");
             }
             catch (MgException ex)
@@ -435,11 +445,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
                 return new TestResult(_map.GetViewScale().ToString(CultureInfo.InvariantCulture), "text/plain");
             }
             catch (MgException ex)
@@ -456,11 +468,13 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
+                this.CreateMapFromResource(param);
 
                 var extent = _map.GetDataExtent();
                 return new TestResult(CommonUtility.MgEnvelopeToString(extent), "text/plain");
@@ -479,14 +493,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "GROUPNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"GROUPNAME\"", paramSetId);
-                string groupName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string groupName = param["GROUPNAME"];
 
                 var groups = _map.GetLayerGroups();
                 var group = groups.GetItem(groupName);
@@ -509,14 +523,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
 
@@ -536,14 +550,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 if (layer == null)
@@ -564,14 +578,14 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "MAPDEFINITION", "LAYERNAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                this.CreateMapFromResource(paramSetId);
-
-                _unitTestVm.Execute("Select ParamValue from Params WHERE ParamSet={0} AND ParamName=\"LAYERNAME\"", paramSetId);
-                string layerName = _unitTestVm.GetString("ParamValue");
+                this.CreateMapFromResource(param);
+                string layerName = param["LAYERNAME"];
 
                 var layer = this.FindLayer(layerName);
                 return new TestResult(layer.GetFeatureClassName(), "text/plain");

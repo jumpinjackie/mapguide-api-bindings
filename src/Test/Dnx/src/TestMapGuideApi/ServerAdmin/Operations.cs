@@ -16,7 +16,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -78,14 +78,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "LOGTYPE", "NUMENTRIES" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "LOGTYPE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NUMENTRIES", param);
-
                 MgByteReader reader = null;
                 if (param["NUMENTRIES"] == null)
                 {
@@ -112,15 +110,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "LOGTYPE", "FROMDATE", "TODATE" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "LOGTYPE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "FROMDATE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "TODATE", param);
-
                 string[] fromDatePieces = (param["FROMDATE"] ?? "").Split(',');
                 string[] toDatePieces = (param["TODATE"] ?? "").Split(',');
 
@@ -162,13 +157,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "LOGTYPE" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "LOGTYPE", param);
-
                 bool cleared = _serverAdmin.ClearLog(param["LOGTYPE"]);
                 return new TestResult(CommonUtility.BooleanToString(cleared), "text/plain");
             }
@@ -187,7 +181,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -208,13 +202,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "FILENAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "FILENAME", param);
-
                 _serverAdmin.DeleteLog(param["FILENAME"]);
                 return new TestResult();
             }
@@ -232,14 +225,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "OLDFILENAME", "NEWFILENAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "OLDFILENAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWFILENAME", param);
-
                 _serverAdmin.RenameLog(param["OLDFILENAME"], param["NEWFILENAME"]);
                 return new TestResult();
             }
@@ -257,7 +248,7 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -278,13 +269,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "PACKAGENAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "PACKAGENAME", param);
-
                 _serverAdmin.DeletePackage(param["PACKAGENAME"]);
                 return new TestResult();
             }
@@ -302,13 +292,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "PACKAGENAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "PACKAGENAME", param);
-
                 _serverAdmin.LoadPackage(param["PACKAGENAME"]);
                 return new TestResult();
             }
@@ -326,13 +315,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "PACKAGENAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "PACKAGENAME", param);
-
                 MgPackageStatusInformation status = _serverAdmin.GetPackageStatus(param["PACKAGENAME"]);
                 string code = status.GetStatusCode();
                 return new TestResult(code, "text/plain");
@@ -351,13 +339,12 @@ namespace OSGeo.MapGuide.Test.Operations
         {
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "PACKAGENAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "PACKAGENAME", param);
-
                 MgByteReader reader = _serverAdmin.GetPackageLog(param["PACKAGENAME"]);
                 return TestResult.FromByteReader(reader);
             }

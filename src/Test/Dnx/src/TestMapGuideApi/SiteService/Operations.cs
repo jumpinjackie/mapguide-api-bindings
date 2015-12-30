@@ -23,7 +23,7 @@ namespace OSGeo.MapGuide.Test.Operations
             _session = session;
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace OSGeo.MapGuide.Test.Operations
             _session = session;
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -130,15 +130,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "GROUP", "ROLE", "INCLUDEGROUPS" };
+        
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUP", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "ROLE", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "INCLUDEGROUPS", param);
-
                 MgByteReader reader = null;
                 if (param["ROLE"] != null)
                 {
@@ -165,16 +162,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USERID", "USERNAME", "PASSWORD", "DESCRIPTION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USERID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "USERNAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "PASSWORD", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DESCRIPTION", param);
-
                 _site.AddUser(param["USERID"], param["USERNAME"], param["PASSWORD"], param["DESCRIPTION"]);
                 return new TestResult();
             }
@@ -193,17 +186,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USERID", "NEWUSERID", "NEWUSERNAME", "NEWPASSWORD", "NEWDESCRIPTION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USERID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWUSERID", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWUSERNAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWPASSWORD", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWDESCRIPTION", param);
-
                 _site.UpdateUser(param["USERID"], param["NEWUSERID"], param["NEWUSERNAME"], param["NEWPASSWORD"], param["NEWDESCRIPTION"]);
                 return new TestResult();
             }
@@ -222,13 +210,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USERS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USERS", param);
-
                 MgStringCollection users = CommonUtility.StringToMgStringCollection(param["USERS"]);
 
                 _site.DeleteUsers(users);
@@ -249,14 +236,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "ROLES", "USERS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "ROLES", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "USERS", param);
-
                 MgStringCollection roles = CommonUtility.StringToMgStringCollection(param["ROLES"]);
                 MgStringCollection users = CommonUtility.StringToMgStringCollection(param["USERS"]);
 
@@ -279,14 +264,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "ROLES", "USERS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "ROLES", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "USERS", param);
-
                 MgStringCollection roles = CommonUtility.StringToMgStringCollection(param["ROLES"]);
                 MgStringCollection users = CommonUtility.StringToMgStringCollection(param["USERS"]);
 
@@ -309,14 +292,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "GROUPS", "USERS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUPS", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "USERS", param);
-
                 MgStringCollection groups = CommonUtility.StringToMgStringCollection(param["GROUPS"]);
                 MgStringCollection users = CommonUtility.StringToMgStringCollection(param["USERS"]);
 
@@ -339,14 +320,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "GROUPS", "USERS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUPS", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "USERS", param);
-
                 MgStringCollection groups = CommonUtility.StringToMgStringCollection(param["GROUPS"]);
                 MgStringCollection users = CommonUtility.StringToMgStringCollection(param["USERS"]);
 
@@ -369,14 +348,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USER", "ROLE" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USER", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "ROLE", param);
-
                 MgByteReader reader = _site.EnumerateGroups(param["USER"] ?? "", param["ROLE"] ?? "");
                 return TestResult.FromByteReader(reader);
             }
@@ -395,15 +372,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USER", "LOGIN", "PASSWORD" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USER", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "LOGIN", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "PASSWORD", param);
-
                 var userInfo = new MgUserInformation();
                 userInfo.SetMgUsernamePassword(param["LOGIN"], param["PASSWORD"]);
                 userInfo.SetLocale("en");
@@ -431,15 +405,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USER", "LOGIN", "PASSWORD" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USER", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "LOGIN", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "PASSWORD", param);
-
                 var userInfo = new MgUserInformation();
                 userInfo.SetMgUsernamePassword(param["LOGIN"], param["PASSWORD"]);
                 userInfo.SetLocale("en");
@@ -467,14 +438,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "GROUP", "DESCRIPTION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUP", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DESCRIPTION", param);
-
                 _site.AddGroup(param["GROUP"] ?? "", param["DESCRIPTION"] ?? "");
                 return new TestResult();
             }
@@ -493,15 +462,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "GROUP", "NEWGROUP", "NEWDESCRIPTION" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUP", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWGROUP", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWDESCRIPTION", param);
-
                 _site.UpdateGroup(param["GROUP"] ?? "", param["NEWGROUP"] ?? "", param["NEWDESCRIPTION"] ?? "");
                 return new TestResult();
             }
@@ -520,13 +486,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "GROUPS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUPS", param);
-
                 MgStringCollection groups = CommonUtility.StringToMgStringCollection(param["GROUPS"]);
                 _site.DeleteGroups(groups);
 
@@ -547,14 +512,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "ROLES", "GROUPS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "ROLES", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUPS", param);
-
                 MgStringCollection roles = CommonUtility.StringToMgStringCollection(param["ROLES"]);
                 MgStringCollection groups = CommonUtility.StringToMgStringCollection(param["GROUPS"]);
 
@@ -577,14 +540,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "ROLES", "GROUPS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "ROLES", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUPS", param);
-
                 MgStringCollection roles = CommonUtility.StringToMgStringCollection(param["ROLES"]);
                 MgStringCollection groups = CommonUtility.StringToMgStringCollection(param["GROUPS"]);
 
@@ -607,14 +568,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "USER", "GROUP" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "USER", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "GROUP", param);
-
                 MgStringCollection roles = _site.EnumerateRoles(param["USER"], param["GROUP"]);
 
                 return new TestResult(CommonUtility.MgStringCollectionToString(roles), "text/plain");
@@ -634,7 +593,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -656,15 +615,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "NAME", "DESCRIPTION", "ADDRESS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "NAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "DESCRIPTION", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "ADDRESS", param);
-
                 _site.AddServer(param["NAME"], param["DESCRIPTION"], param["ADDRESS"]);
                 return new TestResult();
             }
@@ -683,16 +639,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "OLDNAME", "NEWNAME", "NEWDESCRIPTION", "NEWADDRESS" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "OLDNAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWNAME", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWDESCRIPTION", param);
-                _unitTestVm.ReadParameterValue(paramSetId, "NEWADDRESS", param);
-
                 _site.UpdateServer(param["OLDNAME"], param["NEWNAME"], param["NEWDESCRIPTION"], param["NEWADDRESS"]);
                 return new TestResult();
             }
@@ -711,13 +663,12 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override string[] ParameterNames => new string[] { "NAME" };
+
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
-                var param = new NameValueCollection();
-                _unitTestVm.ReadParameterValue(paramSetId, "NAME", param);
-
                 _site.RemoveServer(param["NAME"]);
                 return new TestResult();
             }
@@ -737,7 +688,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -758,7 +709,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
@@ -779,7 +730,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
         }
 
-        public override TestResult Execute(int paramSetId)
+        protected override TestResult ExecuteInternal(NameValueCollection param)
         {
             try
             {
