@@ -685,11 +685,18 @@ namespace OSGeo.MapGuide.Test.Operations
         {
             try
             {
-                MgByteReader reader = CommonUtility.GetByteReaderFromPath(param["PACKAGE"] ?? "", false);
-
-                _resourceService.ApplyResourcePackage(reader);
-
-                return TestResult.FromByteReader(null);
+                if (CommonUtility.IsWindows())
+                {
+                    MgByteReader reader = CommonUtility.GetByteReaderFromPath(param["PACKAGE"] ?? "", false);
+    
+                    _resourceService.ApplyResourcePackage(reader);
+    
+                    return TestResult.FromByteReader(null);
+                }
+                else
+                {
+                    throw new Exception("FIXME: ApplyResourcePackage will kill the mgserver on invalid package files");
+                }
             }
             catch (MgException ex)
             {
