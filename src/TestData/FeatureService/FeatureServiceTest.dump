@@ -635,10 +635,10 @@ INSERT INTO "Params" VALUES(2, 'CONTENT', '../../TestData/FeatureService/SDF/TES
 INSERT INTO "Params" VALUES(2, 'HEADER', '');
 INSERT INTO "Params" VALUES(3, 'OPERATION', 'SETRESOURCEDATA');
 INSERT INTO "Params" VALUES(3, 'RESOURCEID', 'Library://Test/FeatureSources/test.FeatureSource');
-INSERT INTO "Params" VALUES(3, 'DATANAME', 'TEST.SDf');
+INSERT INTO "Params" VALUES(3, 'DATANAME', 'TEST.sdf');
 INSERT INTO "Params" VALUES(3, 'DATATYPE', 'File');
 INSERT INTO "Params" VALUES(3, 'DATALENGTH', '0');
-INSERT INTO "Params" VALUES(3, 'DATA', '../../TestData/FeatureService/SDF/TEST.SDf');
+INSERT INTO "Params" VALUES(3, 'DATA', '../../TestData/FeatureService/SDF/TEST.sdf');
 INSERT INTO "Params" VALUES(1, 'ALWAYSPASS', 'This operation always passes');
 INSERT INTO "Params" VALUES(2001, 'OPERATION', 'DELETERESOURCE');
 INSERT INTO "Params" VALUES(2001, 'RESOURCEID', 'Library://Test/');
