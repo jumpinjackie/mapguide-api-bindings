@@ -1,6 +1,7 @@
 %typemap(imtype) STRINGPARAM "[global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPWStr)] System.String"
 %typemap(imtype) STRING      "global::System.IntPtr"
 
+%typemap(ctype)  STRINGPARAM "const wchar_t *"
 %typemap(cstype) STRINGPARAM "string"
 %typemap(cstype) STRING      "string"
 
