@@ -31,6 +31,7 @@ namespace OSGeo.MapGuide.Test.Common
 
         public TestResult(string resultData = "", string contentType = "", string statusCode = "")
         {
+            this.IsException = false;
             this.ResultData = resultData;
             this.ContentType = contentType;
             this.HttpStatusCode = statusCode;
@@ -79,15 +80,33 @@ namespace OSGeo.MapGuide.Test.Common
             }
         }
 
+        public bool IsException
+        {
+            get;
+            private set;
+        }
+
+        public string FullExceptionDetails
+        {
+            get;
+            private set;
+        }
+
         public static TestResult FromMgException(MgException ex)
         {
             //Need to be lowercase to satisfy a PHP-ism. Ugh!
-            return new TestResult(ex.GetType().Name.ToLower(), "text/plain");
+            var res = new TestResult(ex.GetType().Name.ToLower(), "text/plain");
+            res.IsException = true;
+            res.FullExceptionDetails = ex.ToString();
+            return res;
         }
 
         public static TestResult FromException(Exception ex)
         {
-            return new TestResult(ex.Message, "text/plain");
+            var res = new TestResult(ex.Message, "text/plain");
+            res.IsException = true;
+            res.FullExceptionDetails = ex.ToString();
+            return res;
         }
     }
 }

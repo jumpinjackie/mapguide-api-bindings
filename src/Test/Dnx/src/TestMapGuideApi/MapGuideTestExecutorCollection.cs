@@ -457,10 +457,21 @@ namespace OSGeo.MapGuide.Test
             if (outcome == "fail")
             {
                 Console.WriteLine("****{0} {1} {2} failed.\n", testName, paramSetId, operation);
-                string str = string.Format("\n****ACTUAL RESULT****\n{0}\n****EXPECTED RESULT****\n{1}\n********\n\n\n", resultData, expectedResult);
-                //Console.WriteLine(str);
-                //Console.WriteLine("<FAIL>");
-                logger.Write(str);
+                if (string.Empty.Equals(expectedResult) && actualResult.IsException)
+                {
+                    //If expected result is empty and we got an exception, log the full details instead of exception name so we have a clue where to look
+                    string str = string.Format("\n****ACTUAL RESULT****\n{0}\n****EXPECTED RESULT****\n{1}\n********\n\n\n", actualResult.FullExceptionDetails, expectedResult);
+                    //Console.WriteLine(str);
+                    //Console.WriteLine("<FAIL>");
+                    logger.Write(str);
+                }
+                else
+                {
+                    string str = string.Format("\n****ACTUAL RESULT****\n{0}\n****EXPECTED RESULT****\n{1}\n********\n\n\n", resultData, expectedResult);
+                    //Console.WriteLine(str);
+                    //Console.WriteLine("<FAIL>");
+                    logger.Write(str);
+                }
             }
 
             vm.SqlFinalize();
