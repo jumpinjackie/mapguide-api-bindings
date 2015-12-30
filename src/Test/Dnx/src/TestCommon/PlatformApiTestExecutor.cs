@@ -27,11 +27,7 @@ namespace OSGeo.MapGuide.Test.Operations
 
             _unitTestVm = new SqliteVm(_unitTestDb, true);
         }
-
-        protected virtual string[] ParameterNames => new string[0];
-
-        protected virtual string[] PathParameterNames => new string[0];
-
+        
         protected override NameValueCollection CollectParameters(int paramSetId)
         {
             var param = new NameValueCollection();
