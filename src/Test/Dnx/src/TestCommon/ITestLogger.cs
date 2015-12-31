@@ -56,6 +56,7 @@ namespace OSGeo.MapGuide.Test.Common
 
             var fs = new FileStream(file, mode);
             sw = new StreamWriter(fs);
+            sw.AutoFlush = true;
         }
 
         public void Write(string format, params object[] args)
