@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OSGeo.MapGuide.Test.Common
@@ -76,7 +78,7 @@ namespace OSGeo.MapGuide.Test.Common
             }
             catch (MgException ex)
             {
-                return FromMgException(ex);
+                return FromMgException(ex, null);
             }
         }
 
@@ -92,12 +94,27 @@ namespace OSGeo.MapGuide.Test.Common
             private set;
         }
 
-        public static TestResult FromMgException(MgException ex)
+        private void AppendExceptionDetails(string data)
+        {
+            this.FullExceptionDetails += data;
+        }
+
+        public static TestResult FromMgException(MgException ex, NameValueCollection param)
         {
             //Need to be lowercase to satisfy a PHP-ism. Ugh!
             var res = new TestResult(ex.GetType().Name.ToLower(), "text/plain");
             res.IsException = true;
             res.FullExceptionDetails = ex.ToString();
+            if (param != null)
+            {
+                var strp = new StringBuilder();
+                foreach (string key in param.Keys)
+                {
+                    strp.AppendLine($"{key} = {param[key]}");
+                }
+
+                res.AppendExceptionDetails($"\n\n{strp.ToString()}");
+            }
             return res;
         }
 

@@ -27,7 +27,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -50,7 +50,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -73,7 +73,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -104,7 +104,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -135,7 +135,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -163,7 +163,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -191,7 +191,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -219,7 +219,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -248,7 +248,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -276,7 +276,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -312,7 +312,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -352,7 +352,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -381,7 +381,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -410,7 +410,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -433,7 +433,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -456,7 +456,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -481,7 +481,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -511,7 +511,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -538,7 +538,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -566,7 +566,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
@@ -592,7 +592,7 @@ namespace OSGeo.MapGuide.Test.Operations
             }
             catch (MgException ex)
             {
-                return TestResult.FromMgException(ex);
+                return TestResult.FromMgException(ex, param);
             }
         }
     }
