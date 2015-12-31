@@ -93,7 +93,14 @@ IMPLEMENT_READONLY_LIST(MgReadOnlyLayerCollection, MgLayerBase)
 %typemap(in) STRINGPARAM
 {
     //out typemap - LINUX (DOTNETCORE)
-    $1 = (STRINGPARAM) X2W((XMLCh*)$input);
+    if (NULL == $input)
+    {
+        $1 = STRINGPARAM(L"");
+    }
+    else
+    {
+        $1 = (STRINGPARAM) X2W((XMLCh*)$input);
+    }
 }
 #endif
 #else
