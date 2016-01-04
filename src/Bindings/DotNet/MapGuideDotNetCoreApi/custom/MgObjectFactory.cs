@@ -25,7 +25,7 @@ namespace OSGeo.MapGuide
     {
         static string GetClassName(IntPtr objPtr)
         {
-            IntPtr cPtr = MapGuideDotNetCoreUnmanagedApiPINVOKE.GetClassName(objPtr);
+            IntPtr cPtr = MapGuideDotNetUnmanagedApiPINVOKE.GetClassName(objPtr);
             string str = Marshal.PtrToStringUni(cPtr);
             Marshal.FreeCoTaskMem(cPtr);
             return str;
@@ -34,7 +34,7 @@ namespace OSGeo.MapGuide
         internal static T CreateObject<T>(IntPtr objPtr) where T : class
         {
             T obj = null;
-            int clsId = MapGuideDotNetCoreUnmanagedApiPINVOKE.GetClassId(objPtr);
+            int clsId = MapGuideDotNetUnmanagedApiPINVOKE.GetClassId(objPtr);
             string typeName = MgClassMap.GetTypeName(clsId);
             if (typeName == null) //Shouldn't happen. But if it did, this would mean we missed a spot when compiling class ids
             {

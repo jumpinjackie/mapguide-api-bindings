@@ -37,7 +37,7 @@ namespace OSGeo.MapGuide
         /// <param name="configFile">The path to the web tier configuration file</param>
         /// <remarks>Subsequent calls do nothing and return immediately</remarks>
         public static void MgInitializeWebTier(string configFile) {
-            MapGuideDotNetCoreUnmanagedApiPINVOKE.MgInitializeWebTier(configFile);
+            MapGuideDotNetUnmanagedApiPINVOKE.MgInitializeWebTier(configFile);
         }
     }
 }

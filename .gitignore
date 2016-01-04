@@ -61,3 +61,4 @@ swig-3.0.7.tar.gz
 /src/Bindings/DotNet/libMapGuideDotNetCoreUnmanagedApi.so
 /src/Bindings/DotNet/MgApi_wrap.cpp
 /src/Bindings/DotNet/MgApi_wrap.o
+/src/Bindings/artifacts
