@@ -19,7 +19,7 @@ which makes it difficult for us to expand language support beyond what we curren
 Our current focus of this project is to use the current version of SWIG (3.0.7 as of writing) to generate
 MapGuide API bindings to support the following languages/platforms:
 
- * .net Core (Windows and Linux) [Binding Notes](src/Bindings/DotNetCore/README.md)
+ * .net Core (Windows and Linux) [Binding Notes](src/Bindings/DotNet/README.md)
  
 Eventually reaching platform parity with our existing offerings:
 
@@ -49,8 +49,8 @@ For the rest of these instructions refer to these variables:
  1. Run ```envsetup.cmd $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR``` if this is the first time, run the command as administrator (so that symlinks can be created)
  2. Build ```src/Bindings/Bindings.sln``` either through MSBuild or Visual Studio
  3. Set up DNX ```dnvm use 1.0.0-rc1-update1 -r coreclr -arch x64```
- 4. Enter ```src/Bindings/DotNetCore/MapGuideDotNetCoreApi```
- 5. Run ```dnu pack --configuration Release``` the nuget package will reside in ```src/Bindings/DotNetCore/MapGuideDotNetCoreApi/bin/release```
+ 4. Enter ```src/Bindings/DotNet/MapGuideDotNetCoreApi```
+ 5. Run ```dnu pack --configuration Release``` the nuget package will reside in ```src/Bindings/DotNet/MapGuideDotNetCoreApi/bin/release```
 
 # Build Instructions (Linux)
 
@@ -68,5 +68,5 @@ Also note that this build process on Linux will only build the SWIG glue library
 ## Build Steps
 
  1. Run ```source ./envsetup.sh $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR $MG_VERSION_FULL``` if this is the first time, run the command as administrator (so that symlinks can be created)
- 2. Enter ```src/Bindings/DotNetCore```
+ 2. Enter ```src/Bindings/DotNet```
  3. Run ```make```
