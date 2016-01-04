@@ -2,21 +2,21 @@ CPPFLAGS=-g -m64 -fPIC -Wno-write-strings -DDOTNETCORE -I$(MG_OEM_ACE_INCLUDE_DI
 LDFLAGS=-g -m64 -fPIC -shared
 LDLIBS=-L/usr/local/mapguideopensource-$(MG_VER_FULL)/lib -L/usr/local/mapguideopensource-$(MG_VER_FULL)/webserverextensions/lib -lMgFoundation -lMgGeometry -lMgPlatformBase -lMgMapGuideCommon -lMgHttpHandler -lMgWebApp -lMgWebSupport
 
-all: libMapGuideDotNetCoreUnmanagedApi.so
+all: libMapGuideDotNetUnmanagedApi.so
 
 clean:
-	rm -rf libMapGuideDotNetCoreUnmanagedApi.so
+	rm -rf libMapGuideDotNetUnmanagedApi.so
 	rm -rf *.o
 	rm -rf MgApi_wrap.cpp
 	@rm -f MapGuideApi.i
 	@rm -f MapGuideApi_Doc.i
 	@rm -f MapGuideApi_Properties.i
 
-install: libMapGuideDotNetCoreUnmanagedApi.so
-	@cp libMapGuideDotNetCoreUnmanagedApi.so /usr/local/mapguideopensource-$(MG_VER_FULL)/webserverextensions/lib
+install: libMapGuideDotNetUnmanagedApi.so
+	@cp libMapGuideDotNetUnmanagedApi.so /usr/local/mapguideopensource-$(MG_VER_FULL)/webserverextensions/lib
 
-libMapGuideDotNetCoreUnmanagedApi.so: MgApi_wrap.o
-	g++ $(LDFLAGS) -o libMapGuideDotNetCoreUnmanagedApi.so MgApi_wrap.o $(LDLIBS)
+libMapGuideDotNetUnmanagedApi.so: MgApi_wrap.o
+	g++ $(LDFLAGS) -o libMapGuideDotNetUnmanagedApi.so MgApi_wrap.o $(LDLIBS)
 
 MgApi_wrap.o: MgApi_wrap.cpp
 	g++ $(CPPFLAGS) -c MgApi_wrap.cpp
