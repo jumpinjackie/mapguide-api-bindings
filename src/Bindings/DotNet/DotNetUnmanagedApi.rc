@@ -64,11 +64,11 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", "Open Source Geospatial Foundation"
-            VALUE "FileDescription", "MapGuideDotNetCoreApi Dynamic Link Library"
+            VALUE "FileDescription", "MapGuideDotNetUnmanagedApi Dynamic Link Library"
             VALUE "FileVersion", "3, 0, 0, 0"
             VALUE "InternalName", "MapGuideDotNetCoreApi"
             VALUE "LegalCopyright", "Copyright (C) 2006-2015 by Autodesk, Inc."
-            VALUE "OriginalFilename", "MapGuideDotNetCoreApi.dll"
+            VALUE "OriginalFilename", "MapGuideDotNetUnmanagedApi.dll"
             VALUE "ProductName", "MapGuide Open Source"
             VALUE "ProductVersion", "3, 0, 0, 0"
         END
