@@ -6,27 +6,40 @@
     "projectUrl": "",
     "licenseUrl": "",
     "frameworks": {
+        "dnx451": {
+            "frameworkAssemblies": {
+                "mscorlib": "4.0.0.0",
+                "System": "4.0.0.0",
+                "System.Xml": "4.0.0.0",
+                "System.Runtime": "4.0.10.0"
+            },
+            "dependencies": {
+                "System.Xml.ReaderWriter": "4.0.11-beta-23516",
+                "Microsoft.Data.Sqlite": "1.0.0-rc1-final",
+                "MapGuideDotNetApi": "3.1.0"
+            }
+        },
         "dnxcore50": {
             "dependencies": {
                 "Microsoft.CSharp": "4.0.1-beta-23516",
                 "System.Console": "4.0.0-beta-23516",
                 "System.Collections": "4.0.11-beta-23516",
+                "System.Collections.Specialized": "4.0.1-beta-23516",
                 "System.Linq": "4.0.1-beta-23516",
                 "System.Runtime": "4.0.21-beta-23516",
                 "System.Threading": "4.0.11-beta-23516",
                 "System.Reflection": "4.1.0-beta-23516",
                 "System.Reflection.TypeExtensions": "4.1.0-beta-23516",
-                "System.Runtime.InteropServices.RuntimeInformation": "4.0.0-beta-23516",
+                "System.Xml.XmlDocument": "4.0.1-beta-23516",
                 "Microsoft.Data.Sqlite": "1.0.0-rc1-final",
-                "MapGuideDotNetCoreApi": "3.1.0"
+                "MapGuideDotNetApi": "3.1.0"
             }
         }
     },
     "dependencies": {
         "Microsoft.Extensions.PlatformAbstractions": "1.0.0-rc1-final",
-        "System.Collections.Specialized": "4.0.1-beta-23516",
+        "System.Runtime.InteropServices.RuntimeInformation": "4.0.0-beta-23516",
         "System.Globalization": "4.0.11-beta-23516",
-        "System.IO": "4.0.11-beta-23516",
-        "System.Xml.XmlDocument": "4.0.1-beta-23516"
+        "System.IO": "4.0.11-beta-23516"
     }
 }
