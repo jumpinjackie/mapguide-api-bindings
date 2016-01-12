@@ -104,7 +104,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -117,7 +117,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x86\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -141,7 +141,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -154,7 +154,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -178,7 +178,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -190,7 +190,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <Link>
       <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x86\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_SOURCE_ROOT)\Common\lib\Release;$(MG_SOURCE_ROOT)\Web\lib\Release;$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_SOURCE_ROOT)\Common\lib\Release;$(MG_SOURCE_ROOT)\Web\lib\Release;$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -216,7 +216,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -228,7 +228,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <Link>
       <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>

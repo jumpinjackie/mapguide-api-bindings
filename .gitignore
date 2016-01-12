@@ -62,3 +62,14 @@ swig-3.0.7.tar.gz
 /src/Bindings/DotNet/MgApi_wrap.cpp
 /src/Bindings/DotNet/MgApi_wrap.o
 /src/Bindings/artifacts
+/sdk
+/src/FileReplace/.vs
+/src/FileReplace/Release
+/src/FileReplace/Debug
+/src/FileReplace/x64
+/src/FileReplace/x86
+/src/FileReplace/*.opendb
+/src/FileReplace/*.sdf
+/src/FileReplace/bin/*.iobj
+/src/FileReplace/bin/*.ipdb
+/src/FileReplace/bin/*.pdb

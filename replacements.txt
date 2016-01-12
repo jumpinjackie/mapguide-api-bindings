@@ -1,0 +1,12 @@
+../../../Common
+$SDK/Inc/Common
+../WebApp
+$SDK/Inc/Web/WebApp
+../WebSupport
+$SDK/Inc/Web/WebSupport
+../HttpHandler
+$SDK/Inc/Web/HttpHandler
+%include "..
+//%include "..
+#if defined(PHP) || defined(JAVA)
+#if defined(PHP) || defined(JAVA) || (defined(DOTNETCORE) && !defined(_WIN32))

@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		DotNet\MapGuideDotNetApi\global.json = DotNet\MapGuideDotNetApi\global.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".net API", ".net API", "{A9257857-9844-4CEA-AF02-A7D8AB8F46AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{99132700-5CAD-4540-9939-7502C1A448EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,5 +67,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FDC09E9D-72BB-4C74-B88B-727D9D1D6C4E} = {A9257857-9844-4CEA-AF02-A7D8AB8F46AB}
+		{B601F04C-0D42-4AFC-A092-B31185E2EA8C} = {99132700-5CAD-4540-9939-7502C1A448EA}
+		{C0C05E12-2C41-4E73-85D1-2F20C3899693} = {A9257857-9844-4CEA-AF02-A7D8AB8F46AB}
 	EndGlobalSection
 EndGlobal
