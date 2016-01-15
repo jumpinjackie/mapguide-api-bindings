@@ -73,3 +73,5 @@ swig-3.0.7.tar.gz
 /src/FileReplace/bin/*.iobj
 /src/FileReplace/bin/*.ipdb
 /src/FileReplace/bin/*.pdb
+/src/Tools/StampVer/bin
+/src/Tools/artifacts
