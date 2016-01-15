@@ -19,7 +19,9 @@ which makes it difficult for us to expand language support beyond what we curren
 Our current focus of this project is to use the current version of SWIG (3.0.7 as of writing) to generate
 MapGuide API bindings to support the following languages/platforms:
 
- * .net Core (Windows and Linux) [Binding Notes](src/Bindings/DotNet/README.md)
+| Platform | Binding Notes                                |
+| -------- |:--------------------------------------------:|
+| .net     |[Binding Notes](src/Bindings/DotNet/README.md)|
  
 Eventually reaching platform parity with our existing offerings:
 
@@ -34,34 +36,38 @@ With future experimental (a.k.a Use at your own risk) support for other platform
  * node.js
  * and much more!
 
+# Build requirements (Windows)
+
+ * Microsoft Visual C++ 2015 (You can use the Community Edition)
+ * Microsoft Visual C++ 2012 (You can use the Express Edition for Windows Desktop)
+ * SWIG 3.0.7 (On Linux, swigsetup.sh can download and install this for you)
+ * DNX 1.0.0 RC1. Get DNX for both platforms (x86 and x64) and runtimes (clr and coreclr) 
+
+# Build requirements (Linux)
+
+ * Ubuntu 14.04 64-bit
+ * MapGuide is installed
+ * DNX 1.0.0 RC1. Get DNX for coreclr
+
+# Before you build
+
+You will need a pre-compiled "buildpack". This contains the minimum set of headers/libs/dlls from MapGuide needed to build 
+the SWIG bindings. Grab the appropriate buildpacks here (URL TBD) and extract them a versioned directory under the "sdk" directory. 
+
+For example, if you are installing the 3.0 buildpack, extract the buildpack contents to ```sdk\3.0```
+
 # Build Instructions (Windows)
-
-## Before you start
-
-Make sure you have built the MapGuide source
-
-For the rest of these instructions refer to these variables:
- * ```$PATH_TO_MAPGUIDE_SOURCE_MGDEV``` (the path where you built the MapGuide source)
- * ```$MG_VERSION_MAJOR_MINOR``` (the major.minor version number this MapGuide source directory corresponds to)
 
 ## Build Steps
 
- 1. Run ```envsetup.cmd $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR``` if this is the first time, run the command as administrator (so that symlinks can be created)
- 2. Build ```src/Bindings/Bindings.sln``` either through MSBuild or Visual Studio
- 3. Set up DNX ```dnvm use 1.0.0-rc1-update1 -r coreclr -arch x64```
- 4. Enter ```src/Bindings/DotNet/MapGuideDotNetCoreApi```
- 5. Run ```dnu pack --configuration Release``` the nuget package will reside in ```src/Bindings/DotNet/MapGuideDotNetCoreApi/bin/release```
+ 1. Launch the VS 2015 developer command prompt.
+ 2. Activate DNX with ```dnvm use```. Choose the x64 coreclr or clr runtime. 
+ 3. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.0, you would run ```envsetup.cmd 3 0 0 8701```
+ 4. Run ```build.cmd``` to build the SWIG bindings and associated wrappers
 
 # Build Instructions (Linux)
 
 ## Before you start
-
-Make sure you have built the MapGuide source and installed the binaries
-
-For the rest of these instructions refer to these variables:
- * ```$PATH_TO_MAPGUIDE_SOURCE_MGDEV``` (the path where you built the MapGuide source)
- * ```$MG_VERSION_MAJOR_MINOR``` (the major.minor version number this MapGuide source directory corresponds to)
- * ```$MG_VERSION_FULL``` (the major.minor.rev version number this MapGuide source directory corresponds to)
 
 Also note that this build process on Linux will only build the SWIG glue library for .net Core. The .net wrapper itself is expected to be built on Windows
 
