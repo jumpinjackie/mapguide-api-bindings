@@ -42,8 +42,8 @@ namespace SwigPrepare
             }
             if (!Directory.Exists(targetDir))
             {
-                Console.WriteLine($"Directory not found: {targetDir}");
-                return 1;
+                Directory.CreateDirectory(targetDir);
+                Console.WriteLine($"Created directory: {targetDir}");
             }
 
             //Normalize on / as separator
