@@ -62,7 +62,8 @@ swig-3.0.7.tar.gz
 /src/Bindings/DotNet/MgApi_wrap.cpp
 /src/Bindings/DotNet/MgApi_wrap.o
 /src/Bindings/artifacts
-/sdk
+/sdk/*
+!/sdk/README.md
 /src/FileReplace/.vs
 /src/FileReplace/Release
 /src/FileReplace/Debug
