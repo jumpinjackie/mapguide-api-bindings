@@ -2,7 +2,8 @@
   "profiles": {
     "TestRunner": {
       "commandName": "TestRunner",
-      "commandLineArgs": "\"C:\\Program Files\\OSGeo\\MapGuide\\Web\\www\\webconfig.ini\" \"C:\\Program Files\\OSGeo\\MapGuide\\CS-Map\\Dictionaries\""
+      "commandLineArgs": "\"D:\\mg-3.0-install\\Web\\www\\webconfig.ini\" \"D:\\mg-3.0-install\\CS-Map\\Dictionaries\"",
+      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-rc1-update1"
     }
   }
 }
