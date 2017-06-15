@@ -1,5 +1,5 @@
 #!/bin/sh
-SWIG_VER=3.0.7
+SWIG_VER=3.0.12
 ROOT=$PWD
 if [ ! -f swig-${SWIG_VER}.tar.gz ];
 then

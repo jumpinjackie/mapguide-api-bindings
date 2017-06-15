@@ -1,5 +1,7 @@
 @echo off
 SET MG_CONFIG=Release
+IF "%MG_VERSION%"=="3.3" SET MG_CONFIG=Release_VC14
+IF "%MG_VERSION%"=="3.1" SET MG_CONFIG=Release_VC14
 IF "%MG_VERSION%"=="3.0" SET MG_CONFIG=Release_VC11
 IF "%MG_VERSION%"=="2.6" SET MG_CONFIG=Release_VC11
 echo Using configuration [%MG_CONFIG%]

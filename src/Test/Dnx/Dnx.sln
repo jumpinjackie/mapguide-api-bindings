@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2531ADAC-3A0B-4951-A1A6-DC9EA9F4ECEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{724ED7AA-2728-4598-8D46-3FB8933E1822}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestCommon", "src\TestCommon\TestCommon.xproj", "{75850376-F5CC-48E2-A527-79C9613A04DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCommon", "src\TestCommon\TestCommon.csproj", "{75850376-F5CC-48E2-A527-79C9613A04DA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestMapGuideApi", "src\TestMapGuideApi\TestMapGuideApi.xproj", "{B1F5B09F-FEBF-436F-8951-D315B603BBF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMapGuideApi", "src\TestMapGuideApi\TestMapGuideApi.csproj", "{B1F5B09F-FEBF-436F-8951-D315B603BBF4}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestRunner", "src\TestRunner\TestRunner.xproj", "{4DCFCFDB-3698-45B6-908E-19DA1CFF56FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRunner", "src\TestRunner\TestRunner.csproj", "{4DCFCFDB-3698-45B6-908E-19DA1CFF56FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

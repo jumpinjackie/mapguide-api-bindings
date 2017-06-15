@@ -16,7 +16,7 @@ which makes it difficult for us to expand language support beyond what we curren
 
 # Supported Platforms
 
-Our current focus of this project is to use the current version of SWIG (3.0.7 as of writing) to generate
+Our current focus of this project is to use the current version of SWIG (3.0.12 as of writing) to generate
 MapGuide API bindings to support the following languages/platforms:
 
 | Platform | Binding Notes                                |
@@ -39,15 +39,16 @@ With future experimental (a.k.a Use at your own risk) support for other platform
 # Build requirements (Windows)
 
  * Microsoft Visual C++ 2015 (You can use the Community Edition)
+    * If you have VS 2017, make sure it has the MSVC 2015 (v140) toolset installed
  * Microsoft Visual C++ 2012 (You can use the Express Edition for Windows Desktop)
- * SWIG 3.0.7 (On Linux, swigsetup.sh can download and install this for you)
- * DNX 1.0.0 RC1. Get DNX for both platforms (x86 and x64) and runtimes (clr and coreclr) 
+ * SWIG 3.0.12 (On Linux, swigsetup.sh can download and install this for you)
+ * .net Core SDK (if you have VS 2017, make sure you installed it with the .net Core workload)
 
 # Build requirements (Linux)
 
  * Ubuntu 14.04 64-bit
  * MapGuide is installed
- * DNX 1.0.0 RC1. Get DNX for coreclr
+ * .net Core SDK
 
 # Before you build
 
@@ -60,10 +61,9 @@ For example, if you are installing the 3.0 buildpack, extract the buildpack cont
 
 ## Build Steps
 
- 1. Launch the VS 2015 developer command prompt.
- 2. Activate DNX with ```dnvm use```. Choose the x64 coreclr or clr runtime. 
- 3. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.0, you would run ```envsetup.cmd 3 0 0 8701```
- 4. Run ```build.cmd``` to build the SWIG bindings and associated wrappers
+ 1. Launch the VS developer command prompt 
+ 2. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.0, you would run ```envsetup.cmd 3 0 0 8701```
+ 3. Run ```build.cmd``` to build the SWIG bindings and associated wrappers
 
 # Build Instructions (Linux)
 

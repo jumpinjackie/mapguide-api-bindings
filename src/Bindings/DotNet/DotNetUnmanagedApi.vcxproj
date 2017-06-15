@@ -9,6 +9,14 @@
       <Configuration>Debug_VC11</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_VC14|Win32">
+      <Configuration>Debug_VC14</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_VC14|x64">
+      <Configuration>Debug_VC14</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -23,6 +31,14 @@
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release_VC11|x64">
       <Configuration>Release_VC11</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_VC14|Win32">
+      <Configuration>Release_VC14</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_VC14|x64">
+      <Configuration>Release_VC14</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
@@ -51,6 +67,11 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
@@ -61,12 +82,22 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
@@ -81,6 +112,11 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -90,10 +126,16 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
@@ -102,10 +144,16 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -113,60 +161,88 @@
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">bin\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">bin\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">bin\$(Configuration)64\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">bin\$(Configuration)64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">bin\$(Configuration)64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">bin\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">bin\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">bin\$(Configuration)64\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">bin\$(Configuration)64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">bin\$(Configuration)64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">false</LinkIncremental>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'" />
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MapGuideDotNetUnmanagedApid</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">MapGuideDotNetUnmanagedApid</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">MapGuideDotNetUnmanagedApid</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MapGuideDotNetUnmanagedApid</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">MapGuideDotNetUnmanagedApid</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">MapGuideDotNetUnmanagedApid</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MapGuideDotNetUnmanagedApi</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">MapGuideDotNetUnmanagedApi</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">MapGuideDotNetUnmanagedApi</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MapGuideDotNetUnmanagedApi</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">MapGuideDotNetUnmanagedApi</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">MapGuideDotNetUnmanagedApi</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
@@ -206,6 +282,43 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">
+    <PreBuildEvent>
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
+del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x86\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>lib\$(Configuration)\MapGuideDotNetUnmanagedApid.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
@@ -316,6 +429,43 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">
+    <PreBuildEvent>
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
+del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>lib\$(Configuration)64\MapGuideDotNetUnmanagedApid.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
@@ -355,6 +505,44 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">
+    <PreBuildEvent>
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
+del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x86\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_SOURCE_ROOT)\Common\lib\Release;$(MG_SOURCE_ROOT)\Web\lib\Release;$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>lib\$(Configuration)\MapGuideDotNetUnmanagedApi.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
@@ -468,16 +656,58 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">
+    <PreBuildEvent>
+      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
+del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(MG_OEM_XERCES_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>lib\$(Configuration)64\MapGuideDotNetUnmanagedApi.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MgApi_wrap.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">false</PreprocessToFile>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessSuppressLineNumbers>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">false</PreprocessSuppressLineNumbers>
+      <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">false</PreprocessSuppressLineNumbers>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreprocessToFile>
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">false</PreprocessToFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">false</PreprocessToFile>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</PreprocessSuppressLineNumbers>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">false</PreprocessSuppressLineNumbers>
+      <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">false</PreprocessSuppressLineNumbers>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

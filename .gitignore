@@ -1,3 +1,5 @@
+bin
+obj
 /src/MapGuide/3.1
 /src/MapGuide/3.0
 /src/MapGuide/2.6
@@ -8,8 +10,6 @@
 /src/IMake/ipch
 /src/IMake/Win32
 /src/IMake/*.opendb
-/src/obj
-/src/bin
 /src/Bindings/Bindings.sdf
 /src/Bindings/.vs
 /src/Bindings/DotNet/MapGuideDotNetApi/Constants.cs
@@ -27,10 +27,6 @@
 /src/IMake/.vs
 /src/lib
 /src/IMake/Release
-/src/Bindings/DotNet/MapGuideDotNetApi/project.lock.json
-/src/Bindings/DotNet/MapGuideDotNetApi/bin
-/src/Bindings/DotNet/obj
-/src/Bindings/DotNet/bin
 /src/Bindings/DotNet/lib
 /src/Bindings/DotNet/MapGuideApi_Properties.i
 /src/Test/Dnx/src/TestRunner/*.bin
