@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>TestRunner Console Application</Description>
     <Authors>OSGeo</Authors>
-    <TargetFrameworks>dnx451;dnxcore50</TargetFrameworks>
+    <TargetFrameworks>netcoreapp1.1</TargetFrameworks>
     <AssemblyName>TestRunner</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>TestRunner</PackageId>
@@ -19,21 +19,4 @@
     <ProjectReference Include="..\TestCommon\TestCommon.csproj" />
     <ProjectReference Include="..\TestMapGuideApi\TestMapGuideApi.csproj" />
   </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'dnx451' ">
-    <PackageReference Include="MapGuideDotNetApi" Version="3.1.0" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'dnxcore50' ">
-    <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
-    <PackageReference Include="System.Collections" Version="4.0.11" />
-    <PackageReference Include="System.Console" Version="4.0.0" />
-    <PackageReference Include="System.Linq" Version="4.1.0" />
-    <PackageReference Include="System.Threading" Version="4.0.11" />
-    <PackageReference Include="System.Runtime.Extensions" Version="4.1.0" />
-    <PackageReference Include="MapGuideDotNetApi" Version="3.1.0" />
-  </ItemGroup>
-
 </Project>

@@ -51,11 +51,7 @@ namespace TestRunner
         }
 
         //Usage: MgTestRunner.exe <webconfig.ini path> <MENTOR_DICTIONARY_PATH> [test log path]
-#if DNXCORE50
-        static int Main(string[] args)
-#else
         static void Main(string[] args)
-#endif
         {
             if (args.Length >= 2 && args.Length <= 3)
             {

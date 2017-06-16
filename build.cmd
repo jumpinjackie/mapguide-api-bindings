@@ -14,7 +14,7 @@ popd
 pushd src\Bindings\DotNet\MapGuideDotNetApi
 call dotnet restore
 if errorlevel 1 goto error
-call dotnet pack --configuration Release
+call dotnet pack --configuration Release --include-source --include-symbols /p:PackageVersion=%MG_VER_TRIPLET%
 if errorlevel 1 goto error
 popd
 goto end
