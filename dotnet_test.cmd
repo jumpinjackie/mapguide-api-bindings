@@ -1,7 +1,7 @@
 pushd src\Test\Dnx
-call dotnet add src\TestCommon package MapGuideDotNetApi
-call dotnet add src\TestMapGuideApi package MapGuideDotNetApi
-call dotnet add src\TestRunner package MapGuideDotNetApi
-call dotnet restore
-call dotnet build
+dotnet add src\TestCommon package MapGuideDotNetApi
+dotnet add src\TestMapGuideApi package MapGuideDotNetApi
+dotnet add src\TestRunner package MapGuideDotNetApi
+dotnet restore
+dotnet build
 popd
