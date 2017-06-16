@@ -58,7 +58,7 @@ namespace OSGeo.MapGuide
                 //visibility is the ideal one for purposes of encapulsation (this is internal use only). So instead of Activator.CreateInstance()
                 //which does not work with internal constructors, we'll find the ctor ourselves and invoke it.
                 var flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
-                var ctors = type.GetConstructors(flags);
+                var ctors = type.GetTypeInfo().GetConstructors(flags);
                 var ctor = ctors.FirstOrDefault(ci =>
                                 {
                                     var parms = ci.GetParameters();
