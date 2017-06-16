@@ -1,7 +1,7 @@
 ﻿using OSGeo.MapGuide.Test.Common;
 using System;
 using System.Collections.Generic;
-#if !DNXCORE50
+#if HAVE_SYSTEM_DRAWING
 using System.Drawing;
 using System.Drawing.Imaging;
 #endif
@@ -79,7 +79,7 @@ namespace OSGeo.MapGuide.Test.Web.ExternalTests
             {
                 MgByteSink sink = new MgByteSink(img);
                 sink.ToFile("tile.img");
-#if !DNXCORE50
+#if HAVE_SYSTEM_DRAWING
                 using (Image image = Image.FromFile("tile.img"))
                 {
                     Assert.IsNotNull(image);
@@ -127,5 +127,4 @@ namespace OSGeo.MapGuide.Test.Web.ExternalTests
             }
         }
     }
-
 }
