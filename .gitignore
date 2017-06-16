@@ -1,10 +1,6 @@
 bin
 obj
-/src/MapGuide/3.1
-/src/MapGuide/3.0
-/src/MapGuide/2.6
-/src/MapGuide/2.5
-/src/MapGuide/2.4
+/packages/*
 /build
 /src/IMake/Debug
 /src/IMake/ipch
@@ -51,8 +47,8 @@ obj
 /src/TestData/Unicode/UnicodeTest.db
 /src/TestData/WebLayout/WebLayoutTest.db
 /swig
-/swig-3.0.7
-swig-3.0.7.tar.gz
+/swig-3.0.12
+swig-3.0.12.tar.gz
 /src/IMake/Linux
 /src/Bindings/DotNet/libMapGuideDotNetCoreUnmanagedApi.so
 /src/Bindings/DotNet/MgApi_wrap.cpp
