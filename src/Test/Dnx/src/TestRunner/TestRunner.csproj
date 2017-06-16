@@ -18,6 +18,7 @@
     <ProjectReference Include="..\TestMapGuideApi\TestMapGuideApi.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MapGuideDotNetApi" Version="3.3.0" />
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
 </Project>

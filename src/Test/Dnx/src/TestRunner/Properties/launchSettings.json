@@ -1,8 +1,9 @@
 {
   "profiles": {
     "TestRunner": {
-      "commandName": "TestRunner",
-      "commandLineArgs": "\"D:\\mg-3.0-install\\Web\\www\\webconfig.ini\" \"D:\\mg-3.0-install\\CS-Map\\Dictionaries\"",
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\mg-trunk\\MgDev\\Release64\\Web\\www\\webconfig.ini\" \"D:\\mg-trunk\\MgDev\\Release64\\CS-Map\\Dictionaries\"",
+      "workingDirectory": "D:\\Workspace\\mapguide-api-bindings\\src\\Test\\Dnx\\src\\TestRunner",
       "sdkVersion": "dnx-coreclr-win-x64.1.0.0-rc1-update1"
     }
   }

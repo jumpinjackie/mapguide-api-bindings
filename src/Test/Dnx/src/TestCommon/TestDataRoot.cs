@@ -9,7 +9,8 @@ namespace OSGeo.MapGuide.Test.Common
     {
         static TestDataRoot()
         {
-            Path = "../../../../TestData";
+            //Path = "../../../../TestData";
+            Path = "D:/Workspace/mapguide-api-bindings/src/TestData";
         }
 
         public static string Path { get; set; }
