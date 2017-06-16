@@ -29,17 +29,17 @@ SET MG_SDK_LIB64=../../../%MG_SDK_DIR%/Lib64
 
 REM restore nuget packages just in case
 pushd src\Tools
-call dnu restore
+call dotnet restore
 popd
 
 echo Preparing SWIG configurations
 pushd src\Tools\SwigPrepare
-call dnx run ..\..\..\sdk\%MG_VERSION% ..\..\Bindings\MapGuideApi
+call dotnet run ..\..\..\sdk\%MG_VERSION% ..\..\Bindings\MapGuideApi
 popd
 
 echo Stamping version [%MG_VER_MAJOR%.%MG_VER_MINOR%.%MG_VER_REV%.%MG_VER_BUILD%]
 pushd src\Tools\StampVer
-call dnx run ..\.. %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD%
+call dotnet run ..\.. %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD%
 popd
 
 echo Preparing native binaries for nuget package

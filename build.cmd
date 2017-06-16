@@ -12,9 +12,9 @@ msbuild /p:Configuration=%MG_CONFIG%;Platform=x64 Bindings.sln
 if errorlevel 1 goto error
 popd
 pushd src\Bindings\DotNet\MapGuideDotNetApi
-call dnu restore
+call dotnet restore
 if errorlevel 1 goto error
-call dnu pack --configuration Release
+call dotnet pack --configuration Release
 if errorlevel 1 goto error
 popd
 goto end
