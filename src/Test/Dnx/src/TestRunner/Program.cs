@@ -51,7 +51,11 @@ namespace TestRunner
         }
 
         //Usage: MgTestRunner.exe <webconfig.ini path> <MENTOR_DICTIONARY_PATH> [test log path]
+#if NETCOREAPP1_1
+        static int Main(string[] args)
+#else
         static void Main(string[] args)
+#endif
         {
             if (args.Length >= 2 && args.Length <= 3)
             {
@@ -63,14 +67,14 @@ namespace TestRunner
                 int failures = 0;
                 using (var logger = new TestLoggerFile(logFile, false))
                 {
-#if DNXCORE50
+#if NETCOREAPP1_1
                     try
                     {
 #endif
 
                         logger.Write("Run started: {0}\n\n", DateTime.Now.ToString());
 
-#if DNXCORE50
+#if NETCOREAPP1_1
                         Environment.SetEnvironmentVariable("MENTOR_DICTIONARY_PATH", args[1]);
 #else
                         Environment.SetEnvironmentVariable("MENTOR_DICTIONARY_PATH", args[1], EnvironmentVariableTarget.Process);
@@ -104,7 +108,7 @@ namespace TestRunner
                         Console.Write("\n\nTests failed/run: {0}/{1}\n", failures, testsRun);
                         logger.Write("Run ended: {0}\n\n", DateTime.Now.ToString());
 
-#if DNXCORE50
+#if NETCOREAPP1_1
                     }
                     catch (Exception ex)
                     {
@@ -112,7 +116,7 @@ namespace TestRunner
                     }
 #endif
                 }
-#if DNXCORE50
+#if NETCOREAPP1_1
                 return failures;
 #else
                 Environment.ExitCode = failures;
@@ -121,7 +125,7 @@ namespace TestRunner
             else
             {
                 Console.WriteLine("Usage: MgTestRunner.exe <webconfig.ini path> <MENTOR_DICTIONARY_PATH> [test log path]");
-#if DNXCORE50
+#if NETCOREAPP1_1
                 return 1;
 #else
                 Environment.ExitCode = 1;

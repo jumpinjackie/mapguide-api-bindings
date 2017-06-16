@@ -55,12 +55,12 @@ namespace OSGeo.MapGuide.Test.Web.ExternalTests
             string className = FeatureServiceTestUtil.CreateTestDataStore(fsId, "OSGeo.SDF", featSvc);
             MgByteReader content = resSvc.GetResourceContent(fsId);
             MgDateTime mod1 = resSvc.GetResourceModifiedDate(fsId);
-            Thread.Sleep(1500);
+            //Thread.Sleep(1500);
+            Task.Delay(1500).Wait();
             resSvc.SetResource(fsId, content, null);
             MgDateTime mod2 = resSvc.GetResourceModifiedDate(fsId);
 
             Assert.IsFalse(mod1.ToString() == mod2.ToString());
         }
     }
-
 }
