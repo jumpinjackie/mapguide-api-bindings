@@ -267,7 +267,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
@@ -304,7 +304,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
@@ -416,7 +416,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
@@ -454,7 +454,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win7-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);$(MG_OEM_XERCES_LIB_ROOT)\$(Configuration)64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>

@@ -26,8 +26,8 @@ obj
 /src/Bindings/DotNet/lib
 /src/Bindings/DotNet/MapGuideApi_Properties.i
 /src/Test/Dnx/src/TestRunner/*.bin
-/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win7-x64/native/*.dll
-/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win7-x86/native/*.dll
+/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win-x64/native/*.dll
+/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win-x86/native/*.dll
 *.suo
 *.user
 /src/Test/Dnx/src/TestRunner/UnitTests.log
