@@ -17,3 +17,5 @@ This document describes the .net language binding for the MapGuide API
        * Implements ```IList<string>```
        * Optional constructor no longer takes a ```StringCollection```, but a ```IEnumerable<string>```
        * Implicit conversion operators have been removed
+ * New APIs
+    * `MgReadOnlyStream`: A convenience `System.IO.Stream` adapter over any `MgByteReader` instance.
