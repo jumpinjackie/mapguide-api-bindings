@@ -16,6 +16,9 @@
 //
 
 %runtime %{
+# if defined(_MSC_VER)
+#   pragma warning(disable : 4102) /* unreferenced label. SWIG is inserting these, not me */
+# endif
 #include "PhpLocalizer.cpp"
 %}
 
@@ -68,7 +71,7 @@
     if (zendBuf == NULL)
         zend_error(E_ERROR, "Out of memory");
     strcpy(zendBuf, pBuf.c_str());
-    ZVAL_STRINGL(return_value, zendBuf, pBuf.length(), false);
+    ZVAL_STRINGL(return_value, zendBuf, pBuf.length());
 }
 
 ///////////////////////////////////////////////////////////
@@ -78,23 +81,23 @@
 //
 %typemap(in) BYTE_ARRAY_OUT buffer (INT32 length)
 {
-    if (! SWIG_ConvertPtr(*$input, (void**) &$1, $1_descriptor) < 0)
+    if (! SWIG_ConvertPtr(&$input, (void**) &$1, $1_descriptor, 0) < 0)
     {
-        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum-argbase, $1_descriptor->name);
+        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum, $1_descriptor->name);
     }
-    else if ((*$input)->type==IS_STRING ||(*$input)->type==IS_NULL)
+    else if (Z_TYPE($input) == IS_STRING || Z_TYPE($input) == IS_NULL)
     {
         /* use a stack allocated temp string */
-        convert_to_long_ex(args[1-argbase + 1]);
-        length = (INT32)Z_LVAL((**args[1-argbase + 1]));
+        convert_to_long(&args[1 + 1]);
+        length = (INT32)Z_LVAL((args[1 + 1]));
         $1 = (BYTE_ARRAY_OUT)emalloc(length + 1);
         if ($1 == NULL)
             zend_error(E_ERROR, "Out of memory");
-        Z_STRVAL((**$input)) = (char*)$1;
+        Z_STR(($input)) = zend_string_init((char*)$1, length, 0);
     }
     else
     {
-        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum-argbase, $1_descriptor->name);
+        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum, $1_descriptor->name);
     }
 }
 
@@ -105,7 +108,7 @@
 //
 %typemap(argout) BYTE_ARRAY_OUT buffer
 {
-    Z_STRLEN((**args[1-argbase])) = result;
+    Z_STRLEN((args[1])) = result;
 }
 
 ///////////////////////////////////////////////////////////
@@ -114,14 +117,14 @@
 //
 %typemap(in) BYTE_ARRAY_IN
 {
-    if ((*$input)->type==IS_STRING ||(*$input)->type==IS_NULL)
+    if (Z_TYPE($input) == IS_STRING || Z_TYPE($input) == IS_NULL)
     {
         /* use the buffer directly */
-        $1= (unsigned char*)((*$input)->value.str.val);
+        $1= (unsigned char*)(Z_STRVAL($input));
     }
     else
     {
-        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum-argbase, $1_descriptor->name);
+        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum, $1_descriptor->name);
     }
 }
 
@@ -132,24 +135,24 @@
 //
 %typemap(in) long long (const char* str, char* endptr, long long lvalue)
 {
-    if ((*$input)->type == IS_STRING)
+    if (Z_TYPE($input) == IS_STRING)
     {
-        str = (char*)Z_STRVAL_PP($input);
+        str = (char*)Z_STRVAL($input);
 #ifdef WIN32
         lvalue = _strtoi64(str, &endptr, 10);
 #else
         lvalue = strtoll(str, &endptr, 10);
 #endif
         if (*endptr != '\0')
-            zend_error(E_ERROR, "Invalid string encoded number in argument %d", $argnum-argbase);
+            zend_error(E_ERROR, "Invalid string encoded number in argument %d", $argnum);
     }
-    else if ((*$input)->type == IS_LONG)
+    else if (Z_TYPE($input) == IS_LONG)
     {
-        lvalue = Z_LVAL_PP($input);
+        lvalue = Z_LVAL($input);
     }
     else
     {
-        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected a string or an integer", $argnum-argbase);
+        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected a string or an integer", $argnum);
     }
 
     $1 = lvalue;
@@ -168,7 +171,7 @@
     sprintf(buf, "%lld", result);
 #endif
 
-    ZVAL_STRINGL(return_value, buf, strlen(buf), true);
+    ZVAL_STRINGL(return_value, buf, strlen(buf));
 }
 
 ///////////////////////////////////////////////////////////
