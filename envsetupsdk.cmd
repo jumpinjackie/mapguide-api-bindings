@@ -13,6 +13,8 @@ IF NOT EXIST %MG_SDK_DIR% (
     exit /b 1
 )
 
+SET PHP_SRC=%CD%/thirdparty/php7/src/php-7.2.6
+
 SET MG_OEM_ACE_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/ACE_wrappers
 SET MG_OEM_XERCES_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/xerces
 SET MG_HTTPHANDLER_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Web/HttpHandler
@@ -23,6 +25,9 @@ SET MG_FOUNDATION_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Common/Foundation
 SET MG_GEOMETRY_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Common/Geometry
 SET MG_PLATFORMBASE_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Common/PlatformBase
 SET MG_MAPGUIDECOMMON_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Common/MapGuideCommon
+
+SET PHP_LIB=%CD%/thirdparty/php7/dev
+SET PHP_LIB64=%CD%/thirdparty/php7/dev64
 
 SET MG_SDK_INC=../../../%MG_SDK_DIR%/Inc
 SET MG_SDK_LIB=../../../%MG_SDK_DIR%/Lib
