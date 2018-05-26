@@ -80,3 +80,4 @@ swig-3.0.12.tar.gz
 /src/Tools/StampVer/bin
 /src/Tools/artifacts
 constants.php
+/src/Bindings/Php/MgApi_wrap_orig.cpp
