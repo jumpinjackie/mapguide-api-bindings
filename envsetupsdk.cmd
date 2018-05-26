@@ -47,4 +47,43 @@ echo Preparing native binaries for nuget package
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"
 copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x64\native"
 
+IF "%MG_VERSION%"=="3.3" goto setvcvarsall_2015
+IF "%MG_VERSION%"=="3.1" goto setvcvarsall_2015
+goto error
+
+:setvcvarsall_2015
+set PARAM1=x86_amd64
+rem VS 2015 will be default from now
+SET VCBEXTENSION=_vs15
+SET VC_COMPILER=vc140
+SET ACTIVENAMECHECK="Microsoft Visual Studio 15"
+rem Test [VS2017 + 2015 compiler workload] cases first
+SET ACTIVEPATHCHECK="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build"
+if exist %ACTIVEPATHCHECK% goto VS17Exist
+SET ACTIVEPATHCHECK="C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build"
+if exist %ACTIVEPATHCHECK% goto VS17Exist
+SET ACTIVEPATHCHECK="C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build"
+if exist %ACTIVEPATHCHECK% goto VS17Exist
+rem Then test for original VS 2015
+SET ACTIVEPATHCHECK="C:\Program Files\Microsoft Visual Studio 14.0\VC"
+if exist %ACTIVEPATHCHECK% goto VSExist
+SET ACTIVEPATHCHECK="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC"
+if exist %ACTIVEPATHCHECK% goto VSExist
+
+goto error
+
+:VS17Exist
+rem This will instruct the 2017 vcvarsall to use the v140 toolset
+rem https://docs.microsoft.com/en-us/visualstudio/releasenotes/vs2017-relnotes-v15.3#C++ToolsetLibs15
+SET PARAM2=-vcvars_ver=14.0
+
+:VSExist
+call %ACTIVEPATHCHECK%\vcvarsall.bat %PARAM1% %PARAM2%
+goto done
+
+:error
+echo Unable to find Visual Studio or your version of MapGuide is not supported by this script
+exit /B 1
+
+:done
 echo Environment set for [%MG_VERSION%] using SDK in [%MG_SDK_DIR%]
