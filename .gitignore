@@ -21,6 +21,12 @@ obj
 /src/Bindings/DotNet/MapGuideDotNetApi/*.cs
 /src/Bindings/MapGuideApi
 /src/Bindings/ipch
+/src/Bindings/Php/MapGuideApi.i
+/src/Bindings/Php/MapGuideApi_Doc.i
+/src/Bindings/Php/language.i
+/src/Bindings/Php/MgApi_wrap.cpp
+/src/Bindings/Php/MapGuideApi.php
+/src/Bindings/Php/php_MapGuideApi.h
 /src/IMake/.vs
 /src/lib
 /src/IMake/Release
@@ -69,3 +75,4 @@ swig-3.0.12.tar.gz
 /src/FileReplace/bin/*.pdb
 /src/Tools/StampVer/bin
 /src/Tools/artifacts
+constants.php

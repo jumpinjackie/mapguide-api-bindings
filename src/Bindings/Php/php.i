@@ -15,6 +15,18 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+// These methods have to be invoked C-style
+%ignore MgObject::GetClassId;
+%ignore MgObject::GetClassName;
+
+// SWIG is refcounting aware and since our C++ classes follow a refcounting scheme
+// we can tap into this feature
+//
+// NOTE: We don't implement ref because anything from the native boundary is already AddRef'd
+// All the managed layer should do when Disposed or GC'd is to make sure it is released
+%feature("ref")   MgDisposable ""
+%feature("unref") MgDisposable "SAFE_RELEASE($this);"
+
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "in" typemap
 // Marshal a string from PHP to C++

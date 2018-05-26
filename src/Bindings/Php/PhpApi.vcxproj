@@ -93,12 +93,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe -p ..\MapGuideApi\Constants.xml -l PHP -o ./constants.php -t
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
 copy .\constants.php ..\mapadmin
 copy .\constants.php ..\mapviewerphp
-copy .\php.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe -p ..\MapGuideApi\MapGuideApiGen.xml -l PHP
-..\..\..\Oem\SwigEx\Win32\swig -c++ -php -DWIN32 -DPHPSWIG -fcompact -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
+copy .\php.i "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
+$(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -fcompact -nodefaultctor -nodefaultdtor -o MgApi_wrap.cpp MapGuideApi.i
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -128,12 +128,12 @@ copy .\php.i .\language.i
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p ..\MapGuideApi\Constants.xml -l PHP -o ./constants.php -t
+      <Command>..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
 copy .\constants.php ..\mapadmin
 copy .\constants.php ..\mapviewerphp
-copy .\php.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p ..\MapGuideApi\MapGuideApiGen.xml -l PHP
-..\..\..\Oem\SwigEx\Win32\swig -c++ -php -DWIN32 -DPHPSWIG -fcompact -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
+copy .\php.i "$(ProjectDir)language.i"
+..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
+$(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -fcompact -nodefaultctor -nodefaultdtor -o MgApi_wrap.cpp MapGuideApi.i
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -163,12 +163,12 @@ copy .\php.i .\language.i
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe -p ..\MapGuideApi\Constants.xml -l PHP -o ./constants.php -t
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
 copy .\constants.php ..\mapadmin
 copy .\constants.php ..\mapviewerphp
-copy .\php.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe -p ..\MapGuideApi\MapGuideApiGen.xml -l PHP
-..\..\..\Oem\SwigEx\Win32\swig -c++ -php -DWIN32 -DPHPSWIG -fcompact -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
+copy .\php.i "$(ProjectDir)language.i"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
+$(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -fcompact -nodefaultctor -nodefaultdtor -o MgApi_wrap.cpp MapGuideApi.i
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -199,12 +199,12 @@ copy .\php.i .\language.i
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p ..\MapGuideApi\Constants.xml -l PHP -o ./constants.php -t
+      <Command>..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
 copy .\constants.php ..\mapadmin
 copy .\constants.php ..\mapviewerphp
-copy .\php.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p ..\MapGuideApi\MapGuideApiGen.xml -l PHP
-..\..\..\Oem\SwigEx\Win32\swig -c++ -php -DWIN32 -DPHPSWIG -fcompact -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
+copy .\php.i "$(ProjectDir)language.i"
+..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
+$(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -fcompact -nodefaultctor -nodefaultdtor -o MgApi_wrap.cpp MapGuideApi.i
 </Command>
     </PreBuildEvent>
     <ClCompile>

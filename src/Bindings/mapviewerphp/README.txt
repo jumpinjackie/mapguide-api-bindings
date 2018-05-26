@@ -1,0 +1,1 @@
+This directory is where PhpApi.vcxproj pre-build copies constants.php into
