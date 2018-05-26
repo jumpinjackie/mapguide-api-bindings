@@ -13,7 +13,7 @@ enum Language
     java
 };
 
-static char version[] = "1.3.0";
+static char version[] = "1.4.0";
 static char EXTERNAL_API_DOCUMENTATION[] = "(NOTE: This API is not officially supported and may be subject to removal in a future release without warning. Use with caution.)";
 
 static string module;
@@ -1146,12 +1146,15 @@ void outputClassDoc(const string& className, const string& commentStr)
         return;
 
     string convertedDoc;
+
+    //NOTE: SWIG 3.0 doesn't implictly insert class in the modifier
+    string classKeyword = "class";
     if (language == java) {
         convertedDoc = doxygenToJavaDoc(commentStr, true); //EXTERNAL_API only applies to class members, so treat this fragment as PUBLISHED_API
-        fprintf(docOutFile, "\n%%typemap(javaclassmodifiers) %s %%{%s public%%}\n", className.c_str(), convertedDoc.c_str());
+        fprintf(docOutFile, "\n%%typemap(javaclassmodifiers) %s %%{%s public %s%%}\n", className.c_str(), convertedDoc.c_str(), classKeyword.c_str());
     } else if(language == csharp) {
         convertedDoc = doxygenToCsharpDoc(commentStr, true); //EXTERNAL_API only applies to class members, so treat this fragment as PUBLISHED_API
-        fprintf(docOutFile, "\n%%typemap(csclassmodifiers) %s %%{%s public partial%%}\n", className.c_str(), convertedDoc.c_str());
+        fprintf(docOutFile, "\n%%typemap(csclassmodifiers) %s %%{%s public partial %s%%}\n", className.c_str(), convertedDoc.c_str(), classKeyword.c_str());
     }
 }
 
@@ -1404,27 +1407,50 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
                     }
                 }
 
+                bool firstProp = true;
                 if (string::npos != methodStart && (setProp || getProp))
                 {
+                    //NOTE: We could leverage the SWIG attribute system here to generate properties, but
+                    //for purposes of compatibility, we'll generate properties the "old fashioned way" as
+                    //pass-throughs to their respective Get/Set methods. Using the attribute system actually
+                    //replaces the Get/Set methods, which although is cleaner, it will cause lots of unnecessary
+                    //breakage
+
                     if (NULL == propertyFile)
                     {
-                        string fname = ".\\custom\\";
+                    #ifdef _WIN32
+                        string fname = ".\\";
+                    #else
+                        string fname = "./";
+                    #endif
                         if (!customPath.empty())
                         {
                             fname = customPath;
+                        #ifdef _WIN32
                             if (fname[fname.size() - 1] != '\\')
                                 fname.append("\\");
+                        #else
+                            if (fname[fname.size() - 1] != '/')
+                                fname.append("/");
+                        #endif
                         }
-                        fname.append(className);
-                        fname.append("Prop");
-                        propertyFile = fopen(fname.c_str(),"w");
+                        fname.append("MapGuideApi_Properties.i");
+                        //fname.append(className);
+                        //fname.append("Prop");
+                        propertyFile = fopen(fname.c_str(),"a+");
                         if (NULL == propertyFile)
                         {
                             printf("Unable to open autogen property file %s\n", fname.c_str());
                         }
                         else
                         {
-                            printf("Writing autogen property file %s\n", fname.c_str());
+                            printf("Appending autogen property file %s\n", fname.c_str());
+                            if (firstProp) {
+                                //Start SWIG typemap section for this class
+                                fprintf(propertyFile, "//BEGIN - Property typemaps for %s\n", className.c_str());
+                                fprintf(propertyFile, "%%typemap(cscode) %s %%{\n", className.c_str());
+                                firstProp = false;
+                            }
                         }
                     }
 
@@ -1451,7 +1477,7 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
                         fprintf(propertyFile, "public %s%s %s\n{\n",
                                         inherited? "new ": "",
                                         propType.c_str(), propName.c_str());
-
+                        
                         if (setProp) { fprintf(propertyFile, "   set { Set%s(value); }\n", propName.c_str()); }
                         if (getProp) { fprintf(propertyFile, "   get { return Get%s(); }\n", propName.c_str()); }
 
@@ -1500,6 +1526,8 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
 
     if (NULL != propertyFile)
     {
+        //End SWIG typemap section for class
+        fprintf(propertyFile, "%%} //END - Properties typemap for %s\n", className.c_str());
         fclose(propertyFile);
     }
 }

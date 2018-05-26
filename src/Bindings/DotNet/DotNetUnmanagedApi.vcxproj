@@ -172,9 +172,9 @@
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -209,9 +209,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -246,9 +246,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -283,9 +283,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -320,9 +320,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -358,9 +358,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -396,9 +396,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
@@ -434,9 +434,9 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     <PreBuildEvent>
       <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\Constants.xml" C# "$(ProjectDir)MapGuideDotNetApi\Constants.cs"
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
-"..\..\IMake\Win32\IMake.exe" "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" C#
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
 $(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
 del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
