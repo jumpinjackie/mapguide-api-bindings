@@ -1,8 +1,11 @@
-static string localizationPath;
-static string english = "en";
-typedef map<string, string> STRBUNDLE;
+#include <string>
+#include <map>
+
+static std::string localizationPath;
+static std::string english = "en";
+typedef std::map<std::string, std::string> STRBUNDLE;
 typedef STRBUNDLE* PSTRBUNDLE;
-static map<string, PSTRBUNDLE> languages;
+static std::map<std::string, PSTRBUNDLE> languages;
 typedef char* CHAR_PTR_NOCOPY;
 
 extern "C" {
@@ -12,14 +15,14 @@ extern "C" {
 #include <algorithm>
 #define MAX_LOC_LEN     4096
 
-static string trim(string source)
+static std::string trim(std::string source)
 {
-    string cs = "\t \r\n";
-    string s = source.erase(0, source.find_first_not_of(cs));
+    std::string cs = "\t \r\n";
+    std::string s = source.erase(0, source.find_first_not_of(cs));
     return s.erase(s.find_last_not_of(cs) + 1) ;
 }
 
-static void strlower(string& str)
+static void strlower(std::string& str)
 {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 }
@@ -29,21 +32,21 @@ static void SetLocalizedFilesPath(const char*path)
     localizationPath = path;
 }
 
-PSTRBUNDLE GetStringBundle(string& locale_)
+PSTRBUNDLE GetStringBundle(std::string& locale_)
 {
-    string locale = locale_;
+    std::string locale = locale_;
     if (locale == "")
         locale = english;
     else
         strlower(locale);
     
-    string localKey = localizationPath + locale;
+    std::string localKey = localizationPath + locale;
 
-    map<string, PSTRBUNDLE>::const_iterator it = languages.find(localKey);
+    std::map<std::string, PSTRBUNDLE>::const_iterator it = languages.find(localKey);
     
     if (it == languages.end()) {
         FILE* f = NULL;
-        string fname = localKey;
+        std::string fname = localKey;
         f = fopen(fname.c_str(), "r");
         if(f == NULL) {  // assume file doesn't exists
             // requested locale is not supported, default to English
@@ -58,20 +61,20 @@ PSTRBUNDLE GetStringBundle(string& locale_)
         if(f != NULL) {
             char l[MAX_LOC_LEN + 1];
             for(int lc = 0; fgets(l, MAX_LOC_LEN, f) != NULL; lc++) {
-                string line;
+                std::string line;
                 if(lc == 0 && (unsigned char)l[0] == 0xEF)
-                    line = trim(string(l + 3)); //Skip UTF8 BOF marker
+                    line = trim(std::string(l + 3)); //Skip UTF8 BOF marker
                 else
-                    line = trim(string(l));
+                    line = trim(std::string(l));
                 if(line.empty() || line.at(0) == '#')
                     continue;
                 size_t sep = line.find('=');
-                if (sep == string::npos)
+                if (sep == std::string::npos)
                     continue;
-                string key = trim(line.substr(0, sep));
+                std::string key = trim(line.substr(0, sep));
                 if (key.empty())
                     continue;
-                string value = trim(line.substr(sep + 1));
+                std::string value = trim(line.substr(sep + 1));
                 (*sb)[key] = value;
             }
             fclose(f);
@@ -82,10 +85,10 @@ PSTRBUNDLE GetStringBundle(string& locale_)
 
 static char* Localize(const char* text_, const char* locale_, int os)
 {
-    string locale = locale_;
+    std::string locale = locale_;
     strlower(locale);
-    string text = text_;
-    string fontSuffix = (os == 0 ? "Windows" : (os == 1 ? "Macintosh" : "Linux"));
+    std::string text = text_;
+    std::string fontSuffix = (os == 0 ? "Windows" : (os == 1 ? "Macintosh" : "Linux"));
 
 
     PSTRBUNDLE sb = GetStringBundle(locale);
@@ -96,21 +99,21 @@ static char* Localize(const char* text_, const char* locale_, int os)
     {
         bool fontTag = false;
         size_t pos1 = text.find("__#", i);
-        if (pos1 != string::npos)
+        if (pos1 != std::string::npos)
         {
             size_t pos2 = text.find("#__", pos1 + 3);
-            if (pos2 != string::npos)
+            if (pos2 != std::string::npos)
             {
-                string id = text.substr(pos1 + 3, pos2 - pos1 - 3);
-                string locStr;
-                map<string, string>::const_iterator it = sb->find(id == "@font" || id == "@fontsize" ? id + fontSuffix : id);
+                std::string id = text.substr(pos1 + 3, pos2 - pos1 - 3);
+                std::string locStr;
+                std::map<std::string, std::string>::const_iterator it = sb->find(id == "@font" || id == "@fontsize" ? id + fontSuffix : id);
                 if (it == sb->end())
                     locStr = "";
                 else
                     locStr = it->second;
                 size_t locLen = locStr.length();
 
-                string begin, end;
+                std::string begin, end;
                 if (pos1 > 0)
                     begin = text.substr(0, pos1);
                 else
@@ -133,12 +136,12 @@ static char* Localize(const char* text_, const char* locale_, int os)
 static char* GetLocalizedString(const char* id_, const char* locale_)
 {
     PSTRBUNDLE sb = NULL;
-    string locale = locale_;
+    std::string locale = locale_;
     sb = GetStringBundle(locale);
     if(sb == NULL)
         return estrdup("");
-    string id = id_;
-    map<string, string>::const_iterator it = sb->find(id);
+    std::string id = id_;
+    std::map<std::string, std::string>::const_iterator it = sb->find(id);
     if (it == sb->end())
         return estrdup("");
     return estrdup(it->second.c_str());

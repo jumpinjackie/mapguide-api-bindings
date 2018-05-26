@@ -15,6 +15,10 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+%runtime %{
+#include "PhpLocalizer.cpp"
+%}
+
 // These methods have to be invoked C-style
 %ignore MgObject::GetClassId;
 %ignore MgObject::GetClassName;
@@ -33,8 +37,8 @@
 //
 %typemap(in) STRINGPARAM (char* str)
 {
-    convert_to_string_ex($input);
-    str = (char*)Z_STRVAL_PP($input);
+    convert_to_string(&$input);
+    str = (char*)Z_STRVAL($input);
     try
     {
         MgUtil::MultiByteToWideChar(str, $1);
