@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace OSGeo.MapGuide.Test.Common
 {
@@ -207,7 +204,7 @@ namespace OSGeo.MapGuide.Test.Common
 
         private static string GetAssemblyPath()
         {
-            return PlatformServices.Default.Application.ApplicationBasePath;
+            return Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
         }
 
         public static MgStringCollection StringToMgStringCollection(string str)

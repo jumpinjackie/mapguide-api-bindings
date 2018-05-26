@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>TestRunner Console Application</Description>
+    <Authors>OSGeo</Authors>
+    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <AssemblyName>TestRunner</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>TestRunner</PackageId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestCommon\TestCommon.csproj" />
+    <ProjectReference Include="..\TestMapGuideApi\TestMapGuideApi.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MapGuideDotNetApi" Version="3.1.1" />
+  </ItemGroup>
+</Project>
