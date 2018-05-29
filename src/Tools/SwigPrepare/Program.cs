@@ -78,7 +78,9 @@ namespace SwigPrepare
                 //Fix header relative paths
                 .Replace("<Header path=\"../../../Common", $"<Header path=\"{sdkRoot}/Inc/Common")
                 .Replace("<Header path=\"../WebApp", $"<Header path=\"{sdkRoot}/Inc/Web/WebApp")
-                .Replace("<Header path=\"../HttpHandler", $"<Header path=\"{sdkRoot}/Inc/Web/HttpHandler");
+                .Replace("<Header path=\"../HttpHandler", $"<Header path=\"{sdkRoot}/Inc/Web/HttpHandler")
+                //#elseif must've been valid in our custom version of SWIG we're using. Not here
+                .Replace("#elseif", "#elif");
 
             sbConstants
                 //Fix header relative paths
