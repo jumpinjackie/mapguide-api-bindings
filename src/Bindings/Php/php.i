@@ -15,6 +15,17 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+%begin %{
+//HACK: ACE and PHP conflict on some typedefs. In this battle, PHP must give way through
+//select patched headers on the PHP end.
+//
+//Therefore, we need to make sure that ACE headers are pulled in before PHP
+//
+//So in order to beat it to the punch, this #include is from the SWIG %begin section, 
+//ensuring it will be rendered before the #include of php.h
+#include "MapGuideCommon.h"
+%}
+
 %runtime %{
 # if defined(_MSC_VER)
 #   pragma warning(disable : 4102) /* unreferenced label. SWIG is inserting these, not me */

@@ -116,7 +116,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
     <Link>
       <AdditionalDependencies>ACEd.lib;xerces-c_3mgD.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApid.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_SDK_LIB);..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);..\..\..\Oem\dbxml\xerces-c-src\Build\$(Configuration);$(PHP_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);$(PHP_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)php_MapGuideApid.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -185,9 +185,9 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApi.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MG_SDK_LIB);..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);..\..\..\Oem\dbxml\xerces-c-src\Build\$(Configuration);$(PHP_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);$(PHP_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)php_MapGuideApi.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -223,7 +223,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;xerces-c_3mg.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);..\..\..\Oem\ACE\ACE_wrappers\lib64\$(Configuration);..\..\..\Oem\dbxml\xerces-c-src\Build\$(Configuration)64;$(PHP_LIB64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
