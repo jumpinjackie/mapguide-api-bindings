@@ -16,7 +16,6 @@ IF NOT EXIST %MG_SDK_DIR% (
 SET PHP_SRC=%CD%/thirdparty/php7/src/php-7.2.6
 
 SET MG_OEM_ACE_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/ACE_wrappers
-SET MG_OEM_XERCES_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/xerces
 SET MG_HTTPHANDLER_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Web/HttpHandler
 SET MG_WEBAPP_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Web/WebApp
 SET MG_WEBSUPPORT_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/Web/WebSupport
