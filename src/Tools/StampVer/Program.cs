@@ -49,7 +49,7 @@ namespace StampVer
             }
 
             StampAssemblyInfo(arg.Version, GetFullPath(arg, "Bindings/DotNet/MapGuideDotNetApi/Properties/AssemblyInfo.cs"));
-            StampProjectJson(arg.Version, GetFullPath(arg, "Bindings/DotNet/MapGuideDotNetApi/project.json"));
+            StampProjectFile(arg.Version, GetFullPath(arg, "Bindings/DotNet/MapGuideDotNetApi/MapGuideDotNetApi.csproj"));
 
             return 0;
         }
@@ -60,32 +60,17 @@ namespace StampVer
             return Path.GetFullPath(path);
         }
 
-        static void StampProjectJson(Version ver, string path)
+        static void StampProjectFile(Version ver, string path)
         {
             if (!File.Exists(path))
             {
                 Console.WriteLine($"WARNING: File not found ({path}). Skipping");
                 return;
             }
-            dynamic proj = JObject.Parse(File.ReadAllText(path));
-            proj.version = ver.ToString();
-
-            using (var fs = File.Open(path, FileMode.OpenOrCreate))
-            {
-                using (StreamWriter sw = new StreamWriter(fs))
-                {
-                    using (var jw = new JsonTextWriter(sw))
-                    {
-                        jw.Formatting = Formatting.Indented;
-                        jw.IndentChar = ' ';
-                        jw.Indentation = 4;
-
-                        var ser = new JsonSerializer();
-                        ser.Serialize(jw, proj);
-                    }
-                }
-            }
-            File.WriteAllText(path, proj.ToString());
+            var asmVerRegx = new Regex(@"<Version>\d+\.\d+\.\d+\.\d+</Version>");
+            string asmVerReplace = $"<Version>{ver.ToString()}</Version>";
+            string content = asmVerRegx.Replace(File.ReadAllText(path), asmVerReplace);
+            File.WriteAllText(path, content);
             Console.WriteLine($"Updated: {path}");
         }
 
@@ -96,7 +81,7 @@ namespace StampVer
                 Console.WriteLine($"WARNING: File not found ({path}). Skipping");
                 return;
             }
-            var asmVerRegx = new Regex(@"Version\(\""\d{1}\.\d{1}\.\d{1}\.\d{1}\""\)");
+            var asmVerRegx = new Regex(@"Version\(\""\d+\.\d+\.\d+\.\d+\""\)");
             string asmVerReplace = $"Version(\"{ver.ToString()}\")";
             string content = asmVerRegx.Replace(File.ReadAllText(path), asmVerReplace);
             File.WriteAllText(path, content);
