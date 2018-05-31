@@ -99,6 +99,7 @@ copy .\constants.php ..\mapviewerphp
 copy .\php.i "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
 $(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -nodefaultctor -nodefaultdtor -o "$(ProjectDir)MgApi_wrap_orig.cpp" MapGuideApi.i
+move /Y "$(ProjectDir)\*.php" "$(OutDir)"
 sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g" "$(ProjectDir)MgApi_wrap_orig.cpp" &gt; "$(ProjectDir)MgApi_wrap.cpp"
 </Command>
     </PreBuildEvent>
@@ -135,6 +136,7 @@ copy .\constants.php ..\mapviewerphp
 copy .\php.i "$(ProjectDir)language.i"
 ..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
 $(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -nodefaultctor -nodefaultdtor -o "$(ProjectDir)MgApi_wrap_orig.cpp" MapGuideApi.i
+move /Y "$(ProjectDir)\*.php" "$(OutDir)"
 sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g" "$(ProjectDir)MgApi_wrap_orig.cpp" &gt; "$(ProjectDir)MgApi_wrap.cpp"
 </Command>
     </PreBuildEvent>
@@ -171,6 +173,7 @@ copy .\constants.php ..\mapviewerphp
 copy .\php.i "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
 $(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -nodefaultctor -nodefaultdtor -o "$(ProjectDir)MgApi_wrap_orig.cpp" MapGuideApi.i
+move /Y "$(ProjectDir)\*.php" "$(OutDir)"
 sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g" "$(ProjectDir)MgApi_wrap_orig.cpp" &gt; "$(ProjectDir)MgApi_wrap.cpp"
 </Command>
     </PreBuildEvent>
@@ -208,6 +211,7 @@ copy .\constants.php ..\mapviewerphp
 copy .\php.i "$(ProjectDir)language.i"
 ..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
 $(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -nodefaultctor -nodefaultdtor -o "$(ProjectDir)MgApi_wrap_orig.cpp" MapGuideApi.i
+move /Y "$(ProjectDir)\*.php" "$(OutDir)"
 sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g" "$(ProjectDir)MgApi_wrap_orig.cpp" &gt; "$(ProjectDir)MgApi_wrap.cpp"
 </Command>
     </PreBuildEvent>
