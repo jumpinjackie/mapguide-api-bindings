@@ -1,3 +1,4 @@
+@echo off
 SET MG_INSTALL_DIR=%1
 IF "%MG_INSTALL_DIR%" == "" (
     SET MG_INSTALL_DIR=C:\Program Files\OSGeo\MapGuide

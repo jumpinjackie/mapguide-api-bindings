@@ -46,6 +46,13 @@
 %feature("unref") MgDisposable "SAFE_RELEASE($this);"
 
 ///////////////////////////////////////////////////////////
+// STRINGPARAM "typecheck" typemap
+//
+%typemap(typecheck, precedence=SWIG_TYPECHECK_UNISTRING) STRINGPARAM {
+   $1 = Z_TYPE($input) == IS_STRING;
+}
+
+///////////////////////////////////////////////////////////
 // STRINGPARAM "in" typemap
 // Marshal a string from PHP to C++
 //

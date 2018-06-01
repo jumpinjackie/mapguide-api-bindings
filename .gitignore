@@ -16,6 +16,10 @@ obj
 /src/Test/Php/MapGuideApi.php
 /src/Test/Php/constants.php
 /src/Test/Php/UnitTests.log
+/src/Test/DotNet/src/TestRunner/GETDRAWING*.bin
+/src/Test/DotNet/src/TestRunner/UnitTests.log
+/src/Test/DotNet/src/TestRunner/metadata.txt
+/src/Test/DotNet/src/TestRunner/metadata2.txt
 /src/IMake/Debug
 /src/IMake/ipch
 /src/IMake/Win32
