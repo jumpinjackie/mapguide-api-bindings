@@ -7,6 +7,13 @@ obj
 !/thirdparty/php7/src/php-7.2.6/main/php.h
 !/thirdparty/php7/src/php-7.2.6/win32/readdir.h
 /build
+/runtimes/php/Release
+/runtimes/php/Release64
+/src/Test/Php/*.dll
+/src/Test/Php/*.pdb
+/src/Test/Php/MapGuideApi.php
+/src/Test/Php/constants.php
+/src/Test/Php/UnitTests.log
 /src/IMake/Debug
 /src/IMake/ipch
 /src/IMake/Win32

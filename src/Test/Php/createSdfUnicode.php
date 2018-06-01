@@ -17,8 +17,7 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
-
-require_once("../../../Web/src/PhpApi/constants.php");
+require_once("master.php");
 require_once("Utils.php");
 
 try

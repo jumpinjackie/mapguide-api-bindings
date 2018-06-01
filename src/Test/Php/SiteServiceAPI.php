@@ -22,6 +22,7 @@
 //operation and executes the operation
 //Edit that file to add more operations for Site Service API
 
+require_once("master.php");
 require_once("Result.php");
 require_once("Utils.php");
 

@@ -17,9 +17,9 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+require_once("master.php");
 require_once("Result.php");
 require_once("Utils.php");
-require_once("../../../Web/src/PhpApi/constants.php");
 
 //This file defines the operations that are currently supported for Mapping Service API by the unit test infrastructure.
 //There is one function per operation. Each function tries to retrieve the parameters that are required for its corresponding

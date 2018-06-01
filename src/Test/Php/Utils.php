@@ -19,6 +19,7 @@
 
 //Class that defines static methods that are commonly used in the infrastructure
 
+require_once("master.php");
 require_once("SQLiteEngine.php");
 
 class Utils

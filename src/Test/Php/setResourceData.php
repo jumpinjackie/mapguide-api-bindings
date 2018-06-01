@@ -22,7 +22,7 @@
 // php-cgi updateResource.php user=SomeUserName num=NumberOfResources loop=LoopCount
 //
 //
-require_once("../../../Web/src/PhpApi/constants.php");
+require_once("master.php");
 require_once("Utils.php");
 
 try
