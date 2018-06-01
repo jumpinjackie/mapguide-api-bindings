@@ -6,6 +6,8 @@ obj
 !/thirdparty/php7/src/php-7.2.6/main/config.w32.h
 !/thirdparty/php7/src/php-7.2.6/main/php.h
 !/thirdparty/php7/src/php-7.2.6/win32/readdir.h
+/thirdparty/php7/src/php-7.1.18
+!/thirdparty/php7/src/php-7.1.18/main/config.w32.h
 /build
 /runtimes/php/Release
 /runtimes/php/Release64

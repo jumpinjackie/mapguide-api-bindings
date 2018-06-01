@@ -115,7 +115,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACEd.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACEd.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB);..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);$(PHP_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -130,11 +130,11 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
 copy .\constants.php ..\mapadmin
 copy .\constants.php ..\mapviewerphp
 copy .\php.i "$(ProjectDir)language.i"
-..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
 $(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -nodefaultctor -nodefaultdtor -o "$(ProjectDir)MgApi_wrap_orig.cpp" MapGuideApi.i
 move /Y "$(ProjectDir)\*.php" "$(OutDir)"
 sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g" "$(ProjectDir)MgApi_wrap_orig.cpp" &gt; "$(ProjectDir)MgApi_wrap.cpp"
@@ -152,7 +152,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACEd.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACEd.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);..\..\..\Oem\ACE\ACE_wrappers\lib64\$(Configuration);$(PHP_LIB64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -188,7 +188,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB);..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);$(PHP_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -205,11 +205,11 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l PHP -o ./constants.php -t
 copy .\constants.php ..\mapadmin
 copy .\constants.php ..\mapviewerphp
 copy .\php.i "$(ProjectDir)language.i"
-..\..\..\BuildTools\WebTools\IMake\Win64\IMake.exe -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l PHP
 $(SWIG_TOOL_PATH)\swig -c++ -php7 -DWIN32 -DPHPSWIG -nodefaultctor -nodefaultdtor -o "$(ProjectDir)MgApi_wrap_orig.cpp" MapGuideApi.i
 move /Y "$(ProjectDir)\*.php" "$(OutDir)"
 sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g" "$(ProjectDir)MgApi_wrap_orig.cpp" &gt; "$(ProjectDir)MgApi_wrap.cpp"
@@ -227,7 +227,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;php7ts.lib;;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ACE.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)php_MapGuideApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);..\..\..\Oem\ACE\ACE_wrappers\lib64\$(Configuration);$(PHP_LIB64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
