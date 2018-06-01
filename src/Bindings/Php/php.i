@@ -31,6 +31,7 @@
 #   pragma warning(disable : 4102) /* unreferenced label. SWIG is inserting these, not me */
 # endif
 #include "PhpLocalizer.cpp"
+#include "PhpClassMap.cpp"
 %}
 
 // These methods have to be invoked C-style
@@ -44,6 +45,28 @@
 // All the managed layer should do when Disposed or GC'd is to make sure it is released
 %feature("ref")   MgDisposable ""
 %feature("unref") MgDisposable "SAFE_RELEASE($this);"
+
+///////////////////////////////////////////////////////////
+// Custom generic pointer typemap. This overrides the default
+// typemap to support downcasting
+//
+%typemap(out) SWIGTYPE* {
+    const char* retClassName = ResolveMgClassName(static_cast<MgObject*>($1)->GetClassId());
+    swig_type_info* ty = NULL;
+    if (NULL != retClassName)
+    {
+        ty = SWIG_TypeQuery(retClassName);
+        if (NULL == ty)
+        {
+            ty = $1_descriptor;
+        }
+    }
+    else
+    {
+        ty = $1_descriptor;
+    }
+    SWIG_SetPointerZval(return_value, (void *)$1, ty, $owner);
+}
 
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "typecheck" typemap
