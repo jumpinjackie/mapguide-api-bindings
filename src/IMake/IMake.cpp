@@ -1285,7 +1285,7 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
     {
         assignmentAdded = false;
         string token = tokens[i];
-        string nextToken = (i < tokens.size() - 1) ? tokens[i + 1] : "";
+        string nextToken = (i < (int)tokens.size() - 1) ? tokens[i + 1] : "";
         if(token == "")
             continue;
 
@@ -1667,7 +1667,7 @@ void processHeaderFile(string header, const string& relRoot)
         vector<int> sections;
 
         ++j;
-        for (int nesting = 0; j < (int)tokens.size(); j ++)
+        for (size_t nesting = 0; j < tokens.size(); j++)
         {
             if(tokens[j] == ":")
             {
@@ -1702,8 +1702,8 @@ void processHeaderFile(string header, const string& relRoot)
                 processClassIdSection(tokens, sections[k] + 1, sections[k + 1] - (k < (int)sections.size() - 2? 2: 1));
         }
 
-        // Write destructor if we didn't visit one
-        if (wroteDestructorsFor.find(className) == wroteDestructorsFor.end())
+        // Write destructor if we didn't visit one and we're not generating constants
+        if (!translateMode && wroteDestructorsFor.find(className) == wroteDestructorsFor.end())
         {
             fprintf(outfile, "\r\npublic:\r\n   virtual ~%s(); //Destructor inserted by IMake", className.c_str());
             wroteDestructorsFor.insert(className);
