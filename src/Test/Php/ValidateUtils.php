@@ -177,7 +177,7 @@ class ValidateUtils
         {
             $doc = new DOMDocument();
             $doc->preserveWhiteSpace = true;
-            if ($doc->loadXML($resultData))
+            if (strlen($resultData) > 0 && $doc->loadXML($resultData))
             {
                 $resultData = self::SortElement($doc, '');
             }
