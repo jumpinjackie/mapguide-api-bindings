@@ -37,6 +37,8 @@ static bool translateMode;
 static Language language;
 static bool verbose;
 
+static set<string> wroteDestructorsFor;
+
 #ifdef _WIN32
 #define FILESEP '\\'
 #else
@@ -1283,7 +1285,7 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
     {
         assignmentAdded = false;
         string token = tokens[i];
-
+        string nextToken = (i < tokens.size() - 1) ? tokens[i + 1] : "";
         if(token == "")
             continue;
 
@@ -1491,9 +1493,13 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
         {
             fprintf(outfile, "%s ", token.c_str());
         }
-        if (token.find('~') != string::npos)
+        if (token.find('~') != string::npos && nextToken.find(className) != string::npos)
         {
-            destructor = true;
+            //Register the fact that a destructor was written
+            if (wroteDestructorsFor.find(className) == wroteDestructorsFor.end())
+            {
+                wroteDestructorsFor.insert(className);
+            }
         }
 
         methodDecl.append(" ");
@@ -1518,11 +1524,6 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
             if(-- nesting == 0)
                 fprintf(outfile, "\n   ");
         }
-    }
-
-    if (destructor == false && !translateMode)
-    {
-        fprintf(outfile, "virtual ~%s();\r\n  ", className.c_str());
     }
 
     if (NULL != propertyFile)
@@ -1699,6 +1700,13 @@ void processHeaderFile(string header, const string& relRoot)
                 processExternalApiSection(className, tokens, sections[k] + 1, sections[k + 1] - (k < (int)sections.size() - 2? 2: 1), (sectionName == "PUBLISHED_API"));
             else if(sectionName == "CLASS_ID" && !translateMode)
                 processClassIdSection(tokens, sections[k] + 1, sections[k + 1] - (k < (int)sections.size() - 2? 2: 1));
+        }
+
+        // Write destructor if we didn't visit one
+        if (wroteDestructorsFor.find(className) == wroteDestructorsFor.end())
+        {
+            fprintf(outfile, "\r\npublic:\r\n   virtual ~%s(); //Destructor inserted by IMake", className.c_str());
+            wroteDestructorsFor.insert(className);
         }
 
         //end of class
