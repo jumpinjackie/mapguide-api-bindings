@@ -1667,7 +1667,7 @@ void processHeaderFile(string header, const string& relRoot)
         vector<int> sections;
 
         ++j;
-        for (size_t nesting = 0; j < tokens.size(); j++)
+        for (size_t nesting = 0; j < (int)tokens.size(); j++)
         {
             if(tokens[j] == ":")
             {
