@@ -13,7 +13,7 @@ enum Language
     java
 };
 
-static char version[] = "1.4.0";
+static char version[] = "1.4.1";
 static char EXTERNAL_API_DOCUMENTATION[] = "(NOTE: This API is not officially supported and may be subject to removal in a future release without warning. Use with caution.)";
 
 static string module;
@@ -560,7 +560,7 @@ bool isRootObjectMethod(const string& symbolName)
 
 bool isAllSlashes(const string& str)
 {
-    for (int i = 0; i < str.length(); i++) {
+    for (size_t i = 0; i < str.length(); i++) {
         if (str[i] != '/')
             return false;
     }
@@ -621,7 +621,7 @@ string linkifyCSharpDocFragment(const string& str)
         nspace = "OSGeo.MapGuide";
 
     std::string output;
-    for (int i = 0; i < elems.size(); i++) {
+    for (size_t i = 0; i < elems.size(); i++) {
         if (i != 0) {
             output.append(" ");
         }
@@ -638,7 +638,7 @@ string linkifyCSharpDocFragment(const string& str)
             }
             int cont = -1;
             //Collect the characters in the MapGuide class name
-            for (int j = idx; j < elems[i].length(); j++) {
+            for (size_t j = idx; j < elems[i].length(); j++) {
                 if (!isalnum(elems[i][j])) {
                     cont = j;
                     break;
@@ -647,7 +647,7 @@ string linkifyCSharpDocFragment(const string& str)
                 }
             }
             //Collect any characters afterwards
-            for (int j = cont; j < elems[i].length(); j++) {
+            for (size_t j = cont; j < elems[i].length(); j++) {
                 suffix += elems[i][j];
             }
             output.append(prefix);
@@ -682,7 +682,7 @@ string linkifyJavaDocFragment(const string& str)
         elems.push_back(item);
     }
     std::string output;
-    for (int i = 0; i < elems.size(); i++) {
+    for (size_t i = 0; i < elems.size(); i++) {
         if (i != 0) {
             output.append(" ");
         }
@@ -699,7 +699,7 @@ string linkifyJavaDocFragment(const string& str)
             }
             int cont = -1;
             //Collect the characters in the MapGuide class name
-            for (int j = idx; j < elems[i].length(); j++) {
+            for (size_t j = idx; j < elems[i].length(); j++) {
                 if (!isalnum(elems[i][j])) {
                     cont = j;
                     break;
@@ -708,7 +708,7 @@ string linkifyJavaDocFragment(const string& str)
                 }
             }
             //Collect any characters afterwards
-            for (int j = cont; j < elems[i].length(); j++) {
+            for (size_t j = cont; j < elems[i].length(); j++) {
                 suffix += elems[i][j];
             }
             output.append(prefix);
@@ -774,7 +774,7 @@ string doxygenToJavaDoc(const string& commentStr, bool isPublished)
     while(std::getline(ss, item, '\n')) {
         elems.push_back(item);
     }
-    int i = 0;
+    size_t i = 0;
     
     bool isDeprecated = false;
     std::vector<std::string> descriptionParts;
@@ -873,7 +873,7 @@ string doxygenToJavaDoc(const string& commentStr, bool isPublished)
             javaDoc.append(EXTERNAL_API_DOCUMENTATION);
             javaDoc.append("\n");
         }
-        for (int i = 0; i < descriptionParts.size(); i++) {
+        for (size_t i = 0; i < descriptionParts.size(); i++) {
             javaDoc.append(" *");
             javaDoc.append(linkifyJavaDocFragment(descriptionParts[i]));    
             javaDoc.append("\n");
@@ -890,7 +890,7 @@ string doxygenToJavaDoc(const string& commentStr, bool isPublished)
     }
 
     if (paramParts.size() > 0) {
-        for (int i = 0; i < paramParts.size(); i++) {
+        for (size_t i = 0; i < paramParts.size(); i++) {
             javaDoc.append(" * @param ");
             javaDoc.append(linkifyJavaDocFragment(paramParts[i]));
             javaDoc.append("\n");
@@ -899,7 +899,7 @@ string doxygenToJavaDoc(const string& commentStr, bool isPublished)
 
     if (returnParts.size() > 0) {
         javaDoc.append(" * @return ");
-        for (int i = 0; i < returnParts.size(); i++) {
+        for (size_t i = 0; i < returnParts.size(); i++) {
             javaDoc.append(linkifyJavaDocFragment(returnParts[i]));
             if (i < returnParts.size() - 1)
                 javaDoc.append("\n * ");
@@ -908,7 +908,7 @@ string doxygenToJavaDoc(const string& commentStr, bool isPublished)
     }
 
     if (exceptionParts.size() > 0) {
-        for (int i = 0; i < exceptionParts.size(); i++) {
+        for (size_t i = 0; i < exceptionParts.size(); i++) {
             javaDoc.append(" * @exception ");
             javaDoc.append(exceptionParts[i]);
             javaDoc.append("\n");
@@ -942,7 +942,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
     while(std::getline(ss, item, '\n')) {
         elems.push_back(item);
     }
-    int i = 0;
+    size_t i = 0;
     
     bool isDeprecated = false;
     std::vector<std::string> descriptionParts;
@@ -1035,7 +1035,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
             csharpDoc.append(EXTERNAL_API_DOCUMENTATION);
             csharpDoc.append("\n");
         }
-        for (int i = 0; i < descriptionParts.size(); i++) {
+        for (size_t i = 0; i < descriptionParts.size(); i++) {
             csharpDoc.append("///");
             csharpDoc.append(linkifyCSharpDocFragment(descriptionParts[i]));    
             csharpDoc.append("\n");
@@ -1052,7 +1052,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
     }
 
     if (paramParts.size() > 0) {
-        for (int i = 0; i < paramParts.size(); i++) {
+        for (size_t i = 0; i < paramParts.size(); i++) {
             std::string paramPart = paramParts[i];
             stripHtml(paramPart);
             xmlEscapeString(paramPart);
@@ -1070,7 +1070,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
                 csharpDoc.append(pelems[0]);
                 csharpDoc.append("\">");
                 csharpDoc.append("\n///");
-                for (int i = 1; i < pelems.size(); i++) {
+                for (size_t i = 1; i < pelems.size(); i++) {
                     csharpDoc.append(" ");
                     csharpDoc.append(pelems[i]);
                 }
@@ -1081,7 +1081,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
 
     if (returnParts.size() > 0) {
         csharpDoc.append("///<returns>");
-        for (int i = 0; i < returnParts.size(); i++) {
+        for (size_t i = 0; i < returnParts.size(); i++) {
             string retPart = returnParts[i];
             stripHtml(retPart);
             csharpDoc.append(linkifyCSharpDocFragment(retPart));
@@ -1092,7 +1092,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
     }
 
     if (exceptionParts.size() > 0) {
-        for (int i = 0; i < exceptionParts.size(); i++) {
+        for (size_t i = 0; i < exceptionParts.size(); i++) {
 
             std::vector<std::string> eelems;
             std::stringstream ess(exceptionParts[i]);
@@ -1117,7 +1117,7 @@ string doxygenToCsharpDoc(const string& commentStr, bool isPublished)
                     if (eelems.size() > 1) {
                         csharpDoc.append(eelems[0]);
                         csharpDoc.append("\">");
-                        for (int j = 1; j < eelems.size(); j++) {
+                        for (size_t j = 1; j < eelems.size(); j++) {
                             csharpDoc.append(" ");
                             csharpDoc.append(eelems[j]);
                         }
@@ -1183,7 +1183,7 @@ void outputMethodDoc(const string& className, const string& methodDecl, const st
         elems.push_back(item);
     }
     std::string methodName;
-    for (int i = 0; i < elems.size(); i++) {
+    for (size_t i = 0; i < elems.size(); i++) {
         if (elems[i] == "" || elems[i] == "virtual")
             continue;
 
@@ -1191,7 +1191,7 @@ void outputMethodDoc(const string& className, const string& methodDecl, const st
             if (i > 0) //Should be
                 methodName += elems[i-1];
             methodName += elems[i];
-            int j = i;
+            size_t j = i;
             //Process parameters between the ( and )
             while(j < elems.size()) {
                 j++;
@@ -1487,9 +1487,10 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
             }
         }
 
-        if(token.length() > 0)
+        if (token.length() > 0)
+        {
             fprintf(outfile, "%s ", token.c_str());
-
+        }
         if (token.find('~') != string::npos)
         {
             destructor = true;
