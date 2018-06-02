@@ -13,6 +13,7 @@ IF NOT EXIST %MG_SDK_DIR% (
     exit /b 1
 )
 
+SET SRC_BASE=%CD%/src
 SET PHP_SRC=%CD%/thirdparty/php7/src/php-7.1.18
 
 SET MG_OEM_ACE_INCLUDE_DIR=../../../%MG_SDK_DIR%/Inc/ACE_wrappers
@@ -45,6 +46,11 @@ popd
 echo Stamping version [%MG_VER_MAJOR%.%MG_VER_MINOR%.%MG_VER_REV%.%MG_VER_BUILD%]
 pushd src\Tools\StampVer
 call dotnet run ..\.. %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD%
+popd
+
+echo Regenerating Class Maps
+pushd src\Tools\ClassMapGen
+call dotnet run "%SRC_BASE%"
 popd
 
 echo Preparing native binaries for nuget package
