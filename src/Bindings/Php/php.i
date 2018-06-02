@@ -50,18 +50,15 @@
 // Custom generic pointer typemap. This overrides the default
 // typemap to support downcasting
 //
-%typemap(out) SWIGTYPE* {
+%typemap(out) SWIGTYPE* 
+{
     const char* retClassName = ResolveMgClassName(static_cast<MgObject*>($1)->GetClassId());
     swig_type_info* ty = NULL;
     if (NULL != retClassName)
     {
         ty = SWIG_TypeQuery(retClassName);
-        if (NULL == ty)
-        {
-            ty = $1_descriptor;
-        }
     }
-    else
+    if (NULL == ty) //Fallback to original descriptor
     {
         ty = $1_descriptor;
     }
@@ -71,8 +68,9 @@
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "typecheck" typemap
 //
-%typemap(typecheck, precedence=SWIG_TYPECHECK_UNISTRING) STRINGPARAM {
-   $1 = Z_TYPE($input) == IS_STRING;
+%typemap(typecheck, precedence=SWIG_TYPECHECK_UNISTRING) STRINGPARAM 
+{
+    $1 = Z_TYPE($input) == IS_STRING;
 }
 
 ///////////////////////////////////////////////////////////
@@ -122,7 +120,7 @@
 //
 %typemap(in) BYTE_ARRAY_OUT buffer (INT32 length)
 {
-    if (! SWIG_ConvertPtr(&$input, (void**) &$1, $1_descriptor, 0) < 0)
+    if (!SWIG_ConvertPtr(&$input, (void**) &$1, $1_descriptor, 0))
     {
         zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum, $1_descriptor->name);
     }
@@ -221,7 +219,7 @@
 //
 %typemap(out) CHAR_PTR_NOCOPY
 {
-    ZVAL_STRING(return_value, result, 0);
+    ZVAL_STRING(return_value, result);
 }
 typedef char* CHAR_PTR_NOCOPY;
 
