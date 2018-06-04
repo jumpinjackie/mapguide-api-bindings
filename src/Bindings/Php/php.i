@@ -26,6 +26,9 @@
 #include "MapGuideCommon.h"
 %}
 
+%include "../Common/Php/pointer.i"
+%include "../Common/Php/exception.i"
+
 %runtime %{
 # if defined(_MSC_VER)
 #   pragma warning(disable : 4102) /* unreferenced label. SWIG is inserting these, not me */
@@ -45,25 +48,6 @@
 // All the managed layer should do when Disposed or GC'd is to make sure it is released
 %feature("ref")   MgDisposable ""
 %feature("unref") MgDisposable "SAFE_RELEASE($this);"
-
-///////////////////////////////////////////////////////////
-// Custom generic pointer typemap. This overrides the default
-// typemap to support downcasting
-//
-%typemap(out) SWIGTYPE* 
-{
-    const char* retClassName = ResolveMgClassName(static_cast<MgObject*>($1)->GetClassId());
-    swig_type_info* ty = NULL;
-    if (NULL != retClassName)
-    {
-        ty = SWIG_TypeQuery(retClassName);
-    }
-    if (NULL == ty) //Fallback to original descriptor
-    {
-        ty = $1_descriptor;
-    }
-    SWIG_SetPointerZval(return_value, (void *)$1, ty, $owner);
-}
 
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "typecheck" typemap
