@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwigPrepare", "SwigPrepare\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassMapGen", "ClassMapGen\ClassMapGen.csproj", "{505B50EF-9041-49AD-8B78-7EC6FE98D990}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhpPostProcess", "PhpPostProcess\PhpPostProcess.csproj", "{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{505B50EF-9041-49AD-8B78-7EC6FE98D990}.Release|x64.Build.0 = Release|Any CPU
 		{505B50EF-9041-49AD-8B78-7EC6FE98D990}.Release|x86.ActiveCfg = Release|Any CPU
 		{505B50EF-9041-49AD-8B78-7EC6FE98D990}.Release|x86.Build.0 = Release|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Debug|x64.Build.0 = Debug|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Debug|x86.Build.0 = Debug|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Release|x64.ActiveCfg = Release|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Release|x64.Build.0 = Release|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE54CB22-B574-4BD4-AC6B-0AEF19B56A93}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -185,7 +185,7 @@ if (!extension_loaded("SQLitePhpApi"))
         
         public function GetBlob($name)
         {
-            $str = $this->currentRow[$name];
+            $str = (string)$this->currentRow[$name];
             //SqliteBlob in C++ has a MgByteReader-style interface. Since
             //in PHP if it quacks like a duck ... we'll give them an actual MgByteReader
             $source = new MgByteSource($str, strlen($str));

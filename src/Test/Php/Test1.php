@@ -20,8 +20,8 @@ try {
     echo "Created Resource Service\n";
     $mappingService = $conn->CreateService(MgServiceType::MappingService);
     echo "Created Mapping Service\n";
-    var_dump($resourceService);
-    var_dump($mappingService);
+    $resId = new MgResourceIdentifier("Library://UnitTest/");
+    $resources = $resourceService->EnumerateResources($resId, -1, null);
 } catch (MgException $ex) {
     echo "ERROR: " . $ex->GetExceptionMessage();
 }

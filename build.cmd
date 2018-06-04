@@ -18,6 +18,11 @@ if errorlevel 1 goto error
 call dotnet pack --configuration Release --output "%PACKAGE_DIR%"
 if errorlevel 1 goto error
 popd
+pushd src\Tools\PhpPostProcess
+echo Running PHP post-processor
+call dotnet run "%PACKAGE_DIR%\php\Release"
+call dotnet run "%PACKAGE_DIR%\php\Release64"
+popd
 goto end
 :error
 echo An error occurred while building a component
