@@ -20,6 +20,6 @@
     {
         ty = $1_descriptor;
     }
-    SWIG_SetPointerZval(return_value, (void *)$1, ty, $owner);
+    SWIG_SetPointerZval(return_value, (void *)$1, ty, 1); /* $owner */
     RefCount($1);
 }
