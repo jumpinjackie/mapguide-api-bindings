@@ -14,12 +14,12 @@ void ThrowPhpExceptionWrapper(MgException* e)
         std::string msg = "Tried to throw ";
         msg += exClassName;
         msg += ", but no PHP proxy class definition could be found";
-        zend_throw_exception(NULL, msg.c_str(), 0);
+        zend_throw_exception(zend_ce_exception, msg.c_str(), 0);
     }
     else
     {
         zval obj;
-        SWIG_SetPointerZval(&obj, (void *)e, ty, 0);
+        SWIG_SetPointerZval(&obj, (void *)e, ty, 1);
         zend_throw_exception_object(&obj);
     }
 }

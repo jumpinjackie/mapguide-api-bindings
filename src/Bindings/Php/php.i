@@ -35,6 +35,19 @@
 # endif
 #include "PhpLocalizer.cpp"
 #include "PhpClassMap.cpp"
+
+INT32 RefCount(MgDisposable* obj)
+{
+    INT32 rc = obj->GetRefCount();
+    zend_printf("Ref-count for instance of (%s): %d\n", obj->GetMultiByteClassName(), rc);
+    return rc;
+}
+
+void ReleaseObject(MgDisposable* obj)
+{
+    zend_printf("Releasing instance of: %s\n", obj->GetMultiByteClassName());
+    SAFE_RELEASE(obj);
+}
 %}
 
 // These methods have to be invoked C-style
@@ -46,8 +59,8 @@
 //
 // NOTE: We don't implement ref because anything from the native boundary is already AddRef'd
 // All the managed layer should do when Disposed or GC'd is to make sure it is released
-%feature("ref")   MgDisposable ""
-%feature("unref") MgDisposable "SAFE_RELEASE($this);"
+%feature("ref")   MgDisposable "RefCount($this);"
+%feature("unref") MgDisposable "ReleaseObject($this);"
 
 ///////////////////////////////////////////////////////////
 // STRINGPARAM "typecheck" typemap
