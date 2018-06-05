@@ -39,13 +39,14 @@
 INT32 RefCount(MgDisposable* obj)
 {
     INT32 rc = obj->GetRefCount();
-    zend_printf("Ref-count for instance of (%s): %d\n", obj->GetMultiByteClassName(), rc);
+    zend_printf("Ref-count for instance of (%s): %p - %d\n", obj->GetMultiByteClassName(), (void*)obj, rc);
     return rc;
 }
 
 void ReleaseObject(MgDisposable* obj)
 {
-    zend_printf("Releasing instance of: %s\n", obj->GetMultiByteClassName());
+    INT32 rc = obj->GetRefCount();
+    zend_printf("Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
     SAFE_RELEASE(obj);
 }
 %}
