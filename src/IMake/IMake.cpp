@@ -13,7 +13,7 @@ enum Language
     java
 };
 
-static char version[] = "1.4.1";
+static char version[] = "1.4.2";
 static char EXTERNAL_API_DOCUMENTATION[] = "(NOTE: This API is not officially supported and may be subject to removal in a future release without warning. Use with caution.)";
 
 static string module;
@@ -1286,8 +1286,26 @@ void processExternalApiSection(string& className, vector<string>& tokens, int be
         assignmentAdded = false;
         string token = tokens[i];
         string nextToken = (i < (int)tokens.size() - 1) ? tokens[i + 1] : "";
-        if(token == "")
+        if (token == "")
             continue;
+
+        //Abstract classes really mess with how vanilla SWIG generates the bindings for PHP
+        //So let's just strip off all pure virtuals from our emitted class definitions (ie. Don't emit the "= 0" part)
+        if (!translateMode && language == php)
+        {
+            if (token[0] == '=')
+            {
+                if (nextToken[0] == '0')
+                {
+                    i++; //Advance to nextToken;
+                    continue; //Then skip
+                }
+                else if (token.length() > 1 && token[1] == '0') // "=0"
+                {
+                    continue; //Just skip
+                }
+            }
+        }
 
         //pickup the doc comments for the class, if any.
         //all contiguous doc comment will be considered part of the class comment
