@@ -52,7 +52,10 @@ try {
     echo "[php]: Trigger an exception\n";
     $agfRw->Read(NULL);
 } catch (MgException $ex) {
-    echo "[php]: MgException: " . $ex->GetExceptionMessage() . "\n";
+    echo "[php]: MgException\n";
+    echo "[php]: MgException - Message: ".$ex->GetExceptionMessage()."\n";
+    echo "[php]: MgException - Details: ".$ex->GetDetails()."\n";
+    echo "[php]: MgException - Stack: ".$ex->GetStackTrace()."\n";
 } catch (Exception $ex) {
     echo "[php]: Exception: " . $ex->getMessage() . "\n";
 }
