@@ -23,6 +23,7 @@ try {
     $resId = new MgResourceIdentifier("Library://UnitTest/");
     echo "[php]: Enumeratin'\n";
     $resources = $resourceService->EnumerateResources($resId, -1, "");
+    echo $resources->ToString() . "\n";
     echo "[php]: Coordinate System\n";
     $csFactory = new MgCoordinateSystemFactory();
     echo "[php]: CS Catalog\n";
@@ -46,6 +47,10 @@ try {
     $coord = $pt->GetCoordinate();
     echo "[php]: X: ".$coord->GetX().", Y: ".$coord->GetY()."\n";
     $site->DestroySession($sessionID);
+    echo "[php]: Destroyed session $sessionID";
+    $agfRw = new MgAgfReaderWriter();
+    echo "[php]: Trigger an exception\n";
+    $agfRw->Read(NULL);
 } catch (MgException $ex) {
     echo "[php]: MgException: " . $ex->GetExceptionMessage() . "\n";
 } catch (Exception $ex) {
