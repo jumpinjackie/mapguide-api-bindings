@@ -28,14 +28,16 @@
 
 %include "../Common/Php/pointer.i"
 %include "../Common/Php/exception.i"
+%include "../Common/Php/monkey_patch.i"
 
 %runtime %{
-# if defined(_MSC_VER)
+#if defined(_MSC_VER)
 #   pragma warning(disable : 4102) /* unreferenced label. SWIG is inserting these, not me */
-# endif
+#endif
 #include "PhpLocalizer.cpp"
 #include "PhpClassMap.cpp"
 
+#if defined(REFCOUNTING_DIAGNOSTICS)
 INT32 RefCount(MgDisposable* obj)
 {
     INT32 rc = obj->GetRefCount();
@@ -49,6 +51,13 @@ void ReleaseObject(MgDisposable* obj)
     zend_printf("[zend]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
     SAFE_RELEASE(obj);
 }
+#else
+#define RefCount(obj)
+void ReleaseObject(MgDisposable* obj)
+{
+    SAFE_RELEASE(obj);
+}
+#endif
 %}
 
 // These methods have to be invoked C-style

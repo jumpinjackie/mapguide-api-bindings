@@ -94,3 +94,4 @@ swig-3.0.12.tar.gz
 /src/Tools/artifacts
 constants.php
 /src/Bindings/Php/MgApi_wrap_orig.cpp
+launchSettings.json

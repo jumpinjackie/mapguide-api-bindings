@@ -42,7 +42,7 @@ try {
     echo "[php]: WKT Reader\n";
     $wktRw = new MgWktReaderWriter();
     echo "[php]: WKT Point\n";
-    $pt = $wktRw->Read("POINT (0 0)");
+    $pt = $wktRw->Read("POINT (1 2)");
     $coord = $pt->GetCoordinate();
     echo "[php]: X: ".$coord->GetX().", Y: ".$coord->GetY()."\n";
     $site->DestroySession($sessionID);
