@@ -74,8 +74,13 @@ class ResourceServiceAPI
 
             $this->unitTestParamVm->Execute("Select ParamValue from Params WHERE ParamSet=$paramSet AND ParamName=\"DEPTH\"");
             $arrayParam["DEPTH"]=$this->unitTestParamVm->GetString("ParamValue");
-            if (is_numeric($arrayParam["DEPTH"])) {
+            if (is_numeric($arrayParam["DEPTH"]))
+            {
                 $arrayParam["DEPTH"] = intval($arrayParam["DEPTH"]);
+            }
+            else
+            {
+                $arrayParam["DEPTH"] = -1;
             }
 
             if (array_key_exists("RESOURCEID", $arrayParam))

@@ -109,7 +109,10 @@ class ServerAdminAPI
 
             $this->unitTestParamVm->Execute("Select ParamValue from Params WHERE ParamSet=$paramSet AND ParamName=\"NUMENTRIES\"");
             $numEntries = $this->unitTestParamVm->GetString("ParamValue");
-
+            if ($numEntries != null && is_numeric($numEntries)) 
+            {
+                $numEntries = intval($numEntries);
+            }
             if ($numEntries == null)
             {
                 $byteReader = $this->serverAdmin->GetLog($logtype);
@@ -150,20 +153,20 @@ class ServerAdminAPI
 
             if (sizeof($fromDatePieces) == 3)
             {
-                $fromDate = new MgDateTime($fromDatePieces[0], $fromDatePieces[1], $fromDatePieces[2]);
+                $fromDate = new MgDateTime(intval($fromDatePieces[0]), intval($fromDatePieces[1]), intval($fromDatePieces[2]));
             }
             else if (sizeof($fromDatePieces) == 7)
             {
-                $fromDate = new MgDateTime($fromDatePieces[0], $fromDatePieces[1], $fromDatePieces[2], $fromDatePieces[3], $fromDatePieces[4], $fromDatePieces[5], $fromDatePieces[6]);
+                $fromDate = new MgDateTime(intval($fromDatePieces[0]), intval($fromDatePieces[1]), intval($fromDatePieces[2]), intval($fromDatePieces[3]), intval($fromDatePieces[4]), intval($fromDatePieces[5]), intval($fromDatePieces[6]));
             }
 
             if (sizeof($toDatePieces) == 3)
             {
-                $toDate = new MgDateTime($toDatePieces[0], $toDatePieces[1], $toDatePieces[2]);
+                $toDate = new MgDateTime(intval($toDatePieces[0]), intval($toDatePieces[1]), intval($toDatePieces[2]));
             }
             else if (sizeof($toDatePieces) == 7)
             {
-                $toDate = new MgDateTime($toDatePieces[0], $toDatePieces[1], $toDatePieces[2], $toDatePieces[3], $toDatePieces[4], $toDatePieces[5], $toDatePieces[6]);
+                $toDate = new MgDateTime(intval($toDatePieces[0]), intval($toDatePieces[1]), intval($toDatePieces[2]), intval($toDatePieces[3]), intval($toDatePieces[4]), intval($toDatePieces[5]), intval($toDatePieces[6]));
             }
 
             $byteReader = $this->serverAdmin->GetLog($logtype, $fromDate, $toDate);
