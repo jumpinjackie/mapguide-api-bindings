@@ -25,15 +25,17 @@
  *     it does not provide sufficient augmentation points for generated PHP classes.
  */
 
+%ignore MgLayerBase::MgLayerBase;
+
 %ignore MgWktReaderWriter::Read;
 %extend MgWktReaderWriter 
 {
-    MgGeometry* Read_1(STRINGPARAM wkt)
+    MgGeometry* _Read_1(STRINGPARAM wkt)
     {
         return $self->Read(wkt, NULL);
     }
 
-    MgGeometry* Read_2(STRINGPARAM wkt, MgTransform* xform)
+    MgGeometry* _Read_2(STRINGPARAM wkt, MgTransform* xform)
     {
         return $self->Read(wkt, xform);
     }
@@ -46,10 +48,11 @@
 trait MgWktReaderWriterPatched {
     public function Read($wkt, $xform = NULL) {
         if ($xform != NULL) {
-            return $this->Read_2($wkt, $xform);
+            return $this->_Read_2($wkt, $xform);
         } else {
-            return $this->Read_1($wkt, $xform);
+            return $this->_Read_1($wkt, $xform);
         }
     }
 }
+
 //======================== End PHP Traits ===========================//"
