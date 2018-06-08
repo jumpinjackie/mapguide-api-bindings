@@ -161,7 +161,7 @@ void ReleaseObject(MgDisposable* obj)
 {
     if (Z_ISREF($input)) 
     {
-        ZVAL_STRING(Z_REFVAL($input), (char*)$1);
+        ZVAL_STRINGL(Z_REFVAL($input), (char*)$1, result);
     }
 
     //$1
@@ -175,7 +175,7 @@ void ReleaseObject(MgDisposable* obj)
 }
 
 ///////////////////////////////////////////////////////////
-// BYTE_ARRAY_OUT "in" typemap
+// BYTE_ARRAY_IN "in" typemap
 // Marshal a byte array supplied and filled in by PHP
 //
 %typemap(in) BYTE_ARRAY_IN
