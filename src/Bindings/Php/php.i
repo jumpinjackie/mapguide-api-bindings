@@ -125,13 +125,15 @@ void ReleaseObject(MgDisposable* obj)
 // Marshal a byte array supplied by PHP
 // and filled in by C++
 //
-%typemap(in) BYTE_ARRAY_OUT buffer (INT32 length)
+%typemap(in, byref=1) BYTE_ARRAY_OUT buffer (INT32 length)
 {
-    if (!SWIG_ConvertPtr(&$input, (void**) &$1, $1_descriptor, 0))
+    bool isNull = (Z_TYPE($input) == IS_NULL);
+    bool isRef = Z_ISREF($input);
+    if (isNull)
     {
-        zend_error(E_ERROR, "Type error in argument %d of $symname. Expected %s or at least something looking vaguely like a string passed by reference", $argnum, $1_descriptor->name);
+        $1 = (BYTE_ARRAY_OUT)0;
     }
-    else if (Z_TYPE($input) == IS_STRING || Z_TYPE($input) == IS_NULL)
+    else if (isRef)
     {
         /* use a stack allocated temp string */
         convert_to_long(&args[1 + 1]);
@@ -139,7 +141,10 @@ void ReleaseObject(MgDisposable* obj)
         $1 = (BYTE_ARRAY_OUT)emalloc(length + 1);
         if ($1 == NULL)
             zend_error(E_ERROR, "Out of memory");
-        Z_STR(($input)) = zend_string_init((char*)$1, length, 0);
+        //Z_STR(($input)) = zend_string_init((char*)$1, length, 0);
+        $1[length] = '\0';
+        //memset($1, 0, length);
+        //ZVAL_STRINGL(&$input, (char*)$1, length);
     }
     else
     {
@@ -154,7 +159,19 @@ void ReleaseObject(MgDisposable* obj)
 //
 %typemap(argout) BYTE_ARRAY_OUT buffer
 {
-    Z_STRLEN((args[1])) = result;
+    if (Z_ISREF($input)) 
+    {
+        ZVAL_STRING(Z_REFVAL($input), (char*)$1);
+    }
+
+    //$1
+    //$2
+    //$result
+    //$input
+    //$symname
+    //$argnum
+    //strncpy(Z_STR(($input)), (char*)$1, 
+    //ZVAL_STRING(&$input, (char*)$1);
 }
 
 ///////////////////////////////////////////////////////////

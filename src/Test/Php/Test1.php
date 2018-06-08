@@ -54,7 +54,16 @@ try {
     $br = $bs->GetReader();
     $buf = "";
     while ($br->Read($buf, 2) > 0) {
-        echo "Buffer: $buf\n";
+        echo "Buffer: '$buf'\n";
+        $content .= $buf;
+    }
+    echo "[php]: Test byte reader2\n";
+    $bs2 = new MgByteSource("abcd1234", 8);
+    $content = "";
+    $br2 = $bs2->GetReader();
+    $buf = "";
+    while ($br2->Read($buf, 3) > 0) {
+        echo "Buffer: '$buf'\n";
         $content .= $buf;
     }
     $agfRw = new MgAgfReaderWriter();
