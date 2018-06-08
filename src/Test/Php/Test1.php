@@ -48,6 +48,15 @@ try {
     echo "[php]: X: ".$coord->GetX().", Y: ".$coord->GetY()."\n";
     $site->DestroySession($sessionID);
     echo "[php]: Destroyed session $sessionID";
+    echo "[php]: Test byte reader\n";
+    $bs = new MgByteSource("abcd1234", 8);
+    $content = "";
+    $br = $bs->GetReader();
+    $buf = "";
+    while ($br->Read($buf, 2) > 0) {
+        echo "Buffer: $buf\n";
+        $content .= $buf;
+    }
     $agfRw = new MgAgfReaderWriter();
     echo "[php]: Trigger an exception\n";
     $agfRw->Read(NULL);
