@@ -142,6 +142,25 @@ class ValidateUtils
         return $newResult;
     }
 
+    public static function StripFdoVersionFromProvider($actualResult)
+    {
+        $start = strpos($actualResult, "<ProviderName>");
+        $end = strpos($actualResult, "</ProviderName>");
+
+        $tagLen = strlen("<ProviderName>");
+
+        $mid = substr($actualResult, $start + $tagLen, $end - $start - $tagLen);
+        $tokens = explode(".", $mid);
+
+        if (count($tokens) >= 2)
+        {
+            $before = substr($actualResult, 0, $start + $tagLen);
+            $after = substr($actualResult, $end);
+            return $before.$tokens[0].".".$tokens[1].$after;
+        }
+        return $actualResult;        
+    }
+
     public static function SpecialDataHandling($operation, $resultData, $contentType)
     {
         if ( $operation == "ENUMERATERESOURCES")
@@ -171,6 +190,10 @@ class ValidateUtils
         elseif ($operation == "WmsGetMap")
         {
             $resultData = self::RemoveStackTraceFromOgcException($resultData);
+        }
+        elseif ($operation == "GETSPATIALCONTEXTS")
+        {
+            $resultData = self::StripFdoVersionFromProvider($resultData);
         }
         
         if (strstr($contentType,"text/xml") != FALSE)
