@@ -141,10 +141,7 @@ void ReleaseObject(MgDisposable* obj)
         $1 = (BYTE_ARRAY_OUT)emalloc(length + 1);
         if ($1 == NULL)
             zend_error(E_ERROR, "Out of memory");
-        //Z_STR(($input)) = zend_string_init((char*)$1, length, 0);
         $1[length] = '\0';
-        //memset($1, 0, length);
-        //ZVAL_STRINGL(&$input, (char*)$1, length);
     }
     else
     {
@@ -162,16 +159,8 @@ void ReleaseObject(MgDisposable* obj)
     if (Z_ISREF($input)) 
     {
         ZVAL_STRINGL(Z_REFVAL($input), (char*)$1, result);
+        efree($1);
     }
-
-    //$1
-    //$2
-    //$result
-    //$input
-    //$symname
-    //$argnum
-    //strncpy(Z_STR(($input)), (char*)$1, 
-    //ZVAL_STRING(&$input, (char*)$1);
 }
 
 ///////////////////////////////////////////////////////////
