@@ -141,7 +141,6 @@ void ReleaseObject(MgDisposable* obj)
         $1 = (BYTE_ARRAY_OUT)emalloc(length + 1);
         if ($1 == NULL)
             zend_error(E_ERROR, "Out of memory");
-        $1[length] = '\0';
     }
     else
     {
