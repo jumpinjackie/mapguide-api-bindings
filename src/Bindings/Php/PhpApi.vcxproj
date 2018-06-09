@@ -113,6 +113,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -150,6 +151,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -186,6 +188,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -225,6 +228,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ShowIncludes>false</ShowIncludes>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;php7ts.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
