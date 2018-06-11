@@ -44,8 +44,23 @@
     }
 }
 
+%extend MgException
+{
+    void _ReleaseMe()
+    {
+        ReleaseObject($self);
+    }
+}
+
 %pragma(php) code="
 //======================= Begin PHP Traits ==========================//
+
+//Trait to augment exception cleanup
+trait MgExceptionPatched {
+    public function __destruct() {
+        $this->_ReleaseMe();
+    }
+}
 
 //Trait that monkey-patches MgWktReaderWriter::Read
 trait MgWktReaderWriterPatched {
