@@ -70,6 +70,8 @@ obj
 /src/TestData/SiteService/SiteServiceTest.db
 /src/TestData/Unicode/UnicodeTest.db
 /src/TestData/WebLayout/WebLayoutTest.db
+/src/TestData/Wfs/WfsTest.db
+/src/TestData/Wms/WmsTest.db
 /swig
 /swig-3.0.12
 swig-3.0.12.tar.gz
