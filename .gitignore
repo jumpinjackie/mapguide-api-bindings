@@ -44,6 +44,15 @@ obj
 /src/Bindings/Php/MgApi_wrap.cpp
 /src/Bindings/Php/MapGuideApi.php
 /src/Bindings/Php/php_MapGuideApi.h
+/src/Bindings/Java/org/osgeo/mapguide/*.Java
+/src/Bindings/Java/org/osgeo/mapguide/*.class
+/src/Bindings/Java/MgApi_wrap.cpp
+/src/Bindings/Java/MapGuideApi.i
+/src/Bindings/Java/MapGuideApi_Doc.i
+/src/Bindings/Java/language.i
+!/src/Bindings/Java/org/osgeo/mapguide/AppThrowable.java
+!/src/Bindings/Java/org/osgeo/mapguide/MgBase64.java
+!/src/Bindings/Java/org/osgeo/mapguide/MgLocalizer.java
 /src/IMake/.vs
 /src/lib
 /src/IMake/Release

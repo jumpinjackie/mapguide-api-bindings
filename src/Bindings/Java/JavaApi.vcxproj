@@ -62,17 +62,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bin\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\obj\$(Configuration)\JavaApiEx\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\packages\Java\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\obj\$(Configuration)\JavaApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\bin\$(Configuration)64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\obj\$(Configuration)64\JavaApiEx\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\packages\Java\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\obj\$(Configuration)64\JavaApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bin\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\obj\$(Configuration)\JavaApiEx\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\packages\Java\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\obj\$(Configuration)\JavaApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\bin\$(Configuration)64\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\obj\$(Configuration)64\JavaApiEx\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\packages\Java\$(Configuration)64\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\obj\$(Configuration)64\JavaApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -86,29 +86,29 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MapGuideJavaApiExd</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MapGuideJavaApiExd</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MapGuideJavaApiEx</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MapGuideJavaApiEx</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MapGuideJavaApid</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MapGuideJavaApid</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MapGuideJavaApi</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MapGuideJavaApi</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\Constants.xml Java .
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l Java -o . -t
 copy .\java.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\MapGuideApiGen.xml Java
-..\..\..\Oem\SwigEx\Win32\swig -c++ -java -mgjavanothrow -mgjavacasing -DJAVA -DWIN32 -dllname MapGuideJavaApiExd -package org.osgeo.mapguide -root Object -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -noconstants -module MapGuideJavaApiEx -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
-move /Y *.java org\osgeo\mapguide
-del org\osgeo\mapguide\*.class
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
+$(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
+move /Y *.java "$(ProjectDir)org\osgeo\mapguide"
+if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
 echo Building java classes...
 "$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
 echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiExd.jar org\osgeo\mapguide\*.class
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid.jar" org\osgeo\mapguide\*.class
 echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiExd-sources.jar org\osgeo\mapguide\*.java</Command>
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid-sources.jar" org\osgeo\mapguide\*.java</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\HttpHandler;..\WebApp;..\WebSupport;..\..\..\Common\MdfModel;..\..\..\Common\Foundation;..\..\..\Common\PlatformBase;..\..\..\Common\Geometry;..\..\..\Common\MapGuideCommon;..\..\..\Oem\ACE\ACE_wrappers;$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;JAVA;SWIG_PUBLIC_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -119,36 +119,36 @@ echo Building -sources JAR file
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)MapGuideJavaApiExd.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)MapGuideJavaApid.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApiExd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApid.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)\MapGuideJavaApiExd.lib</ImportLibrary>
+      <ImportLibrary>..\..\lib\$(Configuration)\MapGuideJavaApid.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\Constants.xml Java .
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l Java -o . -t
 copy .\java.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\MapGuideApiGen.xml Java
-..\..\..\Oem\SwigEx\Win32\swig -c++ -java -mgjavanothrow -mgjavacasing -DJAVA -DWIN32 -dllname MapGuideJavaApiExd -package org.osgeo.mapguide -root Object -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -noconstants -module MapGuideJavaApiEx -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
-move /Y *.java org\osgeo\mapguide
-del org\osgeo\mapguide\*.class
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
+$(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
+move /Y "$(ProjectDir)*.java" "$(ProjectDir)org\osgeo\mapguide"
+if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
 echo Building java classes...
 "$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
 echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiExd.jar org\osgeo\mapguide\*.class
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid.jar" org\osgeo\mapguide\*.class
 echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiExd-sources.jar org\osgeo\mapguide\*.java</Command>
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid-sources.jar" org\osgeo\mapguide\*.java</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\HttpHandler;..\WebApp;..\WebSupport;..\..\..\Common\MdfModel;..\..\..\Common\Foundation;..\..\..\Common\PlatformBase;..\..\..\Common\Geometry;..\..\..\Common\MapGuideCommon;..\..\..\Oem\ACE\ACE_wrappers;$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;JAVA;SWIG_PUBLIC_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -159,37 +159,37 @@ echo Building -sources JAR file
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)MapGuideJavaApiExd.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\Oem\ACE\ACE_wrappers\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)MapGuideJavaApid.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApiExd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApid.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)64\MapGuideJavaApiExd.lib</ImportLibrary>
+      <ImportLibrary>..\..\lib\$(Configuration)64\MapGuideJavaApid.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\Constants.xml Java .
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l Java -o . -t
 copy .\java.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\MapGuideApiGen.xml Java
-..\..\..\Oem\SwigEx\Win32\swig -c++ -java -mgjavanothrow -mgjavacasing -DJAVA -DWIN32 -dllname MapGuideJavaApiEx -package org.osgeo.mapguide -root Object -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -noconstants -module MapGuideJavaApiEx -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
-move /Y *.java org\osgeo\mapguide
-del org\osgeo\mapguide\*.class
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
+$(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
+move /Y *.java "$(ProjectDir)org\osgeo\mapguide"
+if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
 echo Building java classes...
 "$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
 echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiEx.jar org\osgeo\mapguide\*.class
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi.jar" org\osgeo\mapguide\*.class
 echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiEx-sources.jar org\osgeo\mapguide\*.java
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi-sources.jar" org\osgeo\mapguide\*.java
 </Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..\HttpHandler;..\WebApp;..\WebSupport;..\..\..\Common\MdfModel;..\..\..\Common\Foundation;..\..\..\Common\PlatformBase;..\..\..\Common\Geometry;..\..\..\Common\MapGuideCommon;..\..\..\Oem\ACE\ACE_wrappers;$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;JAVA;SWIG_PUBLIC_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -198,39 +198,39 @@ echo Building -sources JAR file
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)MapGuideJavaApiEx.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\Oem\ACE\ACE_wrappers\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)MapGuideJavaApi.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApiEx.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApi.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)\MapGuideJavaApiEx.lib</ImportLibrary>
+      <ImportLibrary>..\..\lib\$(Configuration)\MapGuideJavaApi.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
-      <Command>..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\Constants.xml Java .
+      <Command>"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l Java -o . -t
 copy .\java.i .\language.i
-..\..\..\BuildTools\WebTools\IMake\Win32\IMake.exe ..\MapGuideApi\MapGuideApiGen.xml Java
-..\..\..\Oem\SwigEx\Win32\swig -c++ -java -mgjavanothrow -mgjavacasing -DJAVA -DWIN32 -dllname MapGuideJavaApiEx -package org.osgeo.mapguide -root Object -baseexception MgException -clsidcode getclassid.code -clsiddata m_cls_id -catchallcode catchall.code -dispose "((MgDisposable*)arg1)-&gt;Release()" -rethrow "e-&gt;Raise()%3b" -nodefault -noconstants -module MapGuideJavaApiEx -o MgApi_wrap.cpp -lib ..\..\..\Oem\SWIGEx\Lib MapGuideApi.i
-move /Y *.java org\osgeo\mapguide
-del org\osgeo\mapguide\*.class
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
+$(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
+move /Y *.java "$(ProjectDir)org\osgeo\mapguide"
+if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
 echo Building java classes...
 "$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
 echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiEx.jar org\osgeo\mapguide\*.class
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi.jar" org\osgeo\mapguide\*.class
 echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf ..\WEB-INF\lib\MapGuideApiEx-sources.jar org\osgeo\mapguide\*.java</Command>
+"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi-sources.jar" org\osgeo\mapguide\*.java</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>..\HttpHandler;..\WebApp;..\WebSupport;..\..\..\Common\MdfModel;..\..\..\Common\Foundation;..\..\..\Common\PlatformBase;..\..\..\Common\Geometry;..\..\..\Common\MapGuideCommon;..\..\..\Oem\ACE\ACE_wrappers;$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(JAVA_HOME)\include;$(JAVA_HOME)\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;JAVA;SWIG_PUBLIC_API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -239,18 +239,18 @@ echo Building -sources JAR file
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ACE.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)MapGuideJavaApiEx.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\Oem\ACE\ACE_wrappers\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)MapGuideJavaApi.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApiEx.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(OutDir)MapGuideJavaApi.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\$(Configuration)64\MapGuideJavaApiEx.lib</ImportLibrary>
+      <ImportLibrary>..\..\lib\$(Configuration)64\MapGuideJavaApi.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -260,7 +260,7 @@ echo Building -sources JAR file
     <None Include="java.i" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="JavaApiEx.rc" />
+    <ResourceCompile Include="JavaApi.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MgApi_wrap.cpp" />

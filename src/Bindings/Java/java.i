@@ -15,6 +15,15 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+%include "../Common/Java/monkey_patch.i"
+%include "../Common/Java/extensions.i"
+
+// These methods have to be invoked C-style
+%ignore MgObject::GetClassId;
+%ignore MgObject::GetClassName;
+
+%include "../Common/refcount.i"
+
 %typemap(jni) STRINGPARAM "jstring"
 %typemap(jtype) STRINGPARAM "String"
 %typemap(jstype) STRINGPARAM "String"
@@ -94,8 +103,6 @@
     jenv->ReleaseByteArrayElements($input, bytes$argnum, JNI_COMMIT);
 }
 %typemap(javain) BYTE_ARRAY_OUT "$javainput"
-
-%include "javaextensions.i"
 
 ///////////////////////////////////////////////////////////
 // Global functions
