@@ -25,7 +25,7 @@
  *     it does not provide sufficient augmentation points for generated PHP classes.
  */
 
-%ignore MgConfigurationException::GetExceptionMessage;
+%ignore MgConfigurationLoadFailedException::GetExceptionMessage;
 %ignore MgResource::Save;
 %ignore MgMapBase::Open;
 %ignore MgLayerBase::MgLayerBase;
