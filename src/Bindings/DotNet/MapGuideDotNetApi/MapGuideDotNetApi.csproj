@@ -4,6 +4,7 @@
     <PackageId>MapGuideDotNetApi</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Version>3.1.1.9389</Version>
   </PropertyGroup>
 
