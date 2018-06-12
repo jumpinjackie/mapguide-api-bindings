@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <!-- if ShouldIncludeNativeMapGuideApi == False then don't include the native libraries -->
+        <ShouldIncludeNativeMapGuideApi Condition=" '$(ShouldIncludeNativeMapGuideApi)' == '' ">True</ShouldIncludeNativeMapGuideApi>
+    </PropertyGroup>
+
+    <ItemGroup Condition=" '$(ShouldIncludeNativeMapGuideApi)' != 'False' ">
+        <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x64\native\**\*" Condition="'$(OS)' == 'Windows_NT' And '$(Platform)' == 'x64'">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="$(MSBuildThisFileDirectory)..\..\runtimes\win-x86\native\**\*" Condition="'$(OS)' == 'Windows_NT' And '$(Platform)' == 'x86'">
+            <Link>%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>
