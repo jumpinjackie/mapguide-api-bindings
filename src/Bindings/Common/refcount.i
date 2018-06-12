@@ -33,7 +33,7 @@ void ReleaseObject(MgDisposable* obj)
 #if defined(SWIGPHP)
     zend_printf("[zend]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
 #else
-    printf("[native]: Ref-count for instance of (%s): %p - %d\n", obj->GetMultiByteClassName(), (void*)obj, rc);
+    printf("[native]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
 #endif
     SAFE_RELEASE(obj);
 }
