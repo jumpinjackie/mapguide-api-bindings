@@ -18,12 +18,12 @@
 //---------------------- Java interface decorations ------------------------------//
 
 //NOTE: If we're eventually targeting JDK7, change to AutoCloseable for automatic try-with-resources syntax support
-//%typemap(javainterfaces) MgReader "java.io.Closeable"
-//%typemap(javainterfaces) MgFeatureReader "java.io.Closeable"
-//%typemap(javainterfaces) MgDataReader "java.io.Closeable"
-//%typemap(javainterfaces) MgSqlDataReader "java.io.Closeable"
-//%typemap(javainterfaces) MgLongTransactionReader "java.io.Closeable"
-//%typemap(javainterfaces) MgSpatialContextReader "java.io.Closeable"
+%typemap(javainterfaces) MgReader "java.io.Closeable"
+%typemap(javainterfaces) MgFeatureReader "java.io.Closeable"
+%typemap(javainterfaces) MgDataReader "java.io.Closeable"
+%typemap(javainterfaces) MgSqlDataReader "java.io.Closeable"
+%typemap(javainterfaces) MgLongTransactionReader "java.io.Closeable"
+%typemap(javainterfaces) MgSpatialContextReader "java.io.Closeable"
 
 //This is a helper macro to implement the required APIs for collection items
 //

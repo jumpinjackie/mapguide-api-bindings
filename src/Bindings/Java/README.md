@@ -6,7 +6,7 @@ This document describes the Java language binding for the MapGuide API
 
 This wrapper is based on the `MapGuideJavaApiEx` experimental variant of the official Java binding, and carries most of its changes/differences:
 
-1. `MgException`/`AppThrowable is no longer a checked exception
+1. `MgException`/`AppThrowable` is no longer a checked exception
 
 `AppThrowable` now extends `RuntimeException` making it (and `MgException` and its subclasses) unchecked exceptions, all methods in the MapGuide API no longer have the (`throws MgException`) clause.
 
@@ -27,7 +27,7 @@ All method names in the Java proxy classes are now in lowerCamelCase instead of 
     MgSiteConnection siteConn = new MgSiteConnection();
     MgUserInformation userInfo = new MgUserInfomration(sessionId);
     siteConn.open(userInfo); //Note the lowercase
-    MgFeatureService featureSvc = (MgFeatureService)siteConn.CreateService(MgServiceType.FeatureService);
+    MgFeatureService featureSvc = (MgFeatureService)siteConn.createService(MgServiceType.FeatureService); //Note the lowercase
     MgFeatureSchemaCollection schema = featureSvc.describeSchema(new MgResourceIdentifier("Library://Samples/Sheboygan/Data/Parcels.FeatureSource"), "SHP_Schema"); //Note the lowercase
 ```
 3. The following MapGuide collection classes now implement `java.util.Collection<T>`:
@@ -54,3 +54,12 @@ All method names in the Java proxy classes are now in lowerCamelCase instead of 
  - `MgIntCollection.Add`              is now `MgIntCollection.addItem`
  - `MgPropertyCollection.Add`         is now `MgPropertyCollection.addItem`
  - `MgStringCollection.Add`           is now `MgStringCollection.addItem`
+
+6. The following classes implement `java.lang.AutoCloseable` and can be used with try-with-resources statements:
+
+ - `MgReader`
+ - `MgFeatureReader`
+ - `MgDataReader`
+ - `MgSqlDataReader`
+ - `MgLongTransactionReader`
+ - `MgSpatialContextReader`
