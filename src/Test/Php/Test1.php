@@ -81,11 +81,11 @@ try {
 echo "[php]: Trigger another exception\n";
 try {
     $r2 = new MgResourceIdentifier("");
-} catch (MgException $ex) {
+} catch (MgException $ex2) {
     echo "[php]: MgException caught\n";
-    echo "[php]: MgException - Message: ".$ex->GetExceptionMessage()."\n";
-    echo "[php]: MgException - Details: ".$ex->GetDetails()."\n";
-    echo "[php]: MgException - Stack: ".$ex->GetStackTrace()."\n";
+    echo "[php]: MgException - Message: ".$ex2->GetExceptionMessage()."\n";
+    echo "[php]: MgException - Details: ".$ex2->GetDetails()."\n";
+    echo "[php]: MgException - Stack: ".$ex2->GetStackTrace()."\n";
 } catch (Exception $ex) {
     echo "[php]: Exception: " . $ex->getMessage() . "\n";
 }
