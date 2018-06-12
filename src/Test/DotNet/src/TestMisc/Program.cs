@@ -107,6 +107,9 @@ namespace TestMisc
         static void Main(string[] args)
         {
             TestBody();
+            //If you have built the .net SWIG glue wrapper with REFCOUNTING_DIAGNOSTICS, then
+            //you should be seeing a whole bunch of refcounting chatter, which is verification
+            //that we are actually releasing our unmanaged resources 
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
