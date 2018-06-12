@@ -18,23 +18,30 @@
 #if defined(REFCOUNTING_DIAGNOSTICS)
 INT32 RefCount(MgDisposable* obj)
 {
-    INT32 rc = obj->GetRefCount();
-#if defined(SWIGPHP)
-    zend_printf("[zend]: Ref-count for instance of (%s): %p - %d\n", obj->GetMultiByteClassName(), (void*)obj, rc);
-#else
-    printf("[native]: Ref-count for instance of (%s): %p - %d\n", obj->GetMultiByteClassName(), (void*)obj, rc);
-#endif
-    return rc;
+    if (NULL != obj)
+    {
+        INT32 rc = obj->GetRefCount();
+    #if defined(SWIGPHP)
+        zend_printf("[zend]: Ref-count for instance of (%s): %p - %d\n", obj->GetMultiByteClassName(), (void*)obj, rc);
+    #else
+        printf("[native]: Ref-count for instance of (%s): %p - %d\n", obj->GetMultiByteClassName(), (void*)obj, rc);
+    #endif
+        return rc;
+    }
+    return -1;
 }
 
 void ReleaseObject(MgDisposable* obj)
 {
-    INT32 rc = obj->GetRefCount();
-#if defined(SWIGPHP)
-    zend_printf("[zend]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
-#else
-    printf("[native]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
-#endif
+    if (NULL != obj)
+    {
+        INT32 rc = obj->GetRefCount();
+    #if defined(SWIGPHP)
+        zend_printf("[zend]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
+    #else
+        printf("[native]: Releasing instance of (%s): %p (%d -> %d)\n", obj->GetMultiByteClassName(), (void*)obj, rc, rc - 1);
+    #endif
+    }
     SAFE_RELEASE(obj);
 }
 #else
