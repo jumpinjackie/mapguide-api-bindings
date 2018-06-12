@@ -2,6 +2,7 @@ bin
 obj
 .vs
 /packages/*
+/nuget_packages
 /thirdparty/php7/src/php-7.2.6
 !/thirdparty/php7/src/php-7.2.6/main/config.w32.h
 !/thirdparty/php7/src/php-7.2.6/main/php.h
