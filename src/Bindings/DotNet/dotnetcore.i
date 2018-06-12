@@ -81,7 +81,14 @@ IMPLEMENT_READONLY_LIST(MgReadOnlyLayerCollection, MgLayerBase)
 %typemap(in) STRINGPARAM
 {
     //out typemap - WIN32 (DOTNETCORE)
-    $1 = (STRINGPARAM) $input;
+    if (NULL == $input)
+    {
+        $1 = STRINGPARAM(L"");
+    }
+    else
+    {
+        $1 = (STRINGPARAM)$input;
+    }
 }
 #else
 %typemap(in) STRINGPARAM

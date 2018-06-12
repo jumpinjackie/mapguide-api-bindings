@@ -70,7 +70,7 @@ namespace SwigPrepare
             sbMapGuideApiGen
                 //Add extra STRINGPARAM typedef for .net Core
                 .Replace("#if defined(PHP) || defined(JAVA)",
-                         "#if defined(PHP) || defined(JAVA) || (defined(DOTNETCORE) && !defined(_WIN32))")
+                         "#if defined(PHP) || defined(JAVA) || defined(DOTNETCORE)")
                 //Patch STRINGPARAM typedef for PHP
                 .Replace("typedef char*         STRINGPARAM;",
                          "typedef std::wstring STRINGPARAM;")
