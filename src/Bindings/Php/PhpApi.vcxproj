@@ -221,7 +221,7 @@ sed "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi,
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(MG_SDK_INC);$(MG_HTTPHANDLER_INCLUDE_DIR);$(MG_WEBAPP_INCLUDE_DIR);$(MG_WEBSUPPORT_INCLUDE_DIR);$(MG_MDFMODEL_INCLUDE_DIR);$(MG_FOUNDATION_INCLUDE_DIR);$(MG_GEOMETRY_INCLUDE_DIR);$(MG_PLATFORMBASE_INCLUDE_DIR);$(MG_MAPGUIDECOMMON_INCLUDE_DIR);$(MG_OEM_ACE_INCLUDE_DIR);$(PHP_SRC);$(PHP_SRC)\main;$(PHP_SRC)\TSRM;$(PHP_SRC)\Zend;$(PHP_SRC)\ext\w32api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PHPPROXYAPI_EXPORTS;SWIG_PUBLIC_API;_XKEYCHECK_H;ZEND_WIN32;PHP_WIN32;ZEND_DEBUG=0;ZTS=1;PHP;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>REFCOUNTING_DIAGNOSTICS;WIN32;NDEBUG;_WINDOWS;_USRDLL;PHPPROXYAPI_EXPORTS;SWIG_PUBLIC_API;_XKEYCHECK_H;ZEND_WIN32;PHP_WIN32;ZEND_DEBUG=0;ZTS=1;PHP;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
