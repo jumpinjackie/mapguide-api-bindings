@@ -44,9 +44,6 @@ All method names in the Java proxy classes are now in lowerCamelCase instead of 
 
 5. To avoid naming conflicts with SWIG generated code and methods from inherited java classes or interfaces as a result of the above changes, the following class methods have been renamed in the Java MapGuide API:
 
- - `MgPropertyDefinition.Delete`      is now `MgPropertyDefinition.markAsDeleted`
- - `MgClassDefinition.Delete`         is now `MgClassDefinition.markAsDeleted`
- - `MgFeatureSchema.Delete`           is now `MgFeatureSchema.markAsDeleted`
  - `MgException.GetStackTrace`        is now `MgException.getExceptionStackTrace`
  - `MgBatchPropertyCollection.Add`    is now `MgBatchPropertyCollection.addItem`
  - `MgClassDefinitionCollection.Add`  is now `MgClassDefinitionCollection.addItem`

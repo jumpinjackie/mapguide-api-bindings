@@ -29,7 +29,7 @@
     }
   }
   public final static native int getClassId(long jarg1);
-%}
+%}	
 
 %typemap(javaout) SWIGTYPE *
 {

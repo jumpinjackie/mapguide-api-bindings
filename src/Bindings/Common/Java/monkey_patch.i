@@ -16,18 +16,39 @@
 
 //---------------------- Renames to avoid Java/C++ API clashes ---------------------------//
 
+/**
+ * Rename SWIG's "delete" to "destroy". However the typemaps to do this cannot just rename the thing
+ * we have to repeat the expected implementation verbatim with the new name
+ */
+%typemap(javafinalize) SWIGTYPE %{
+  protected void finalize() {
+    destroy();  // renamed to prevent conflict with existing delete method
+  }
+%}
+%typemap(javadestruct, methodname="destroy", methodmodifiers="public synchronized") SWIGTYPE
+{
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        $jnicall;
+      }
+      swigCPtr = 0;
+    }
+}
+%typemap(javadestruct_derived, methodname="destroy", methodmodifiers="public synchronized") SWIGTYPE
+{
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        $jnicall;
+      }
+      swigCPtr = 0;
+    }
+    super.destroy();
+}
+
 //Already defined in Java Exception so rename our proxy method
 %rename(getExceptionStackTrace) MgException::GetStackTrace;
-
-//delete() is the name of the standard SWIG release method called on finalize(). Unfortunately this conflicts with
-//MgPropertyDefinition::Delete, MgClassDefinition::Delete and MgFeatureSchema::Delete when java proxy clases for these
-//classes are generated
-//
-//So rename the java proxies to these methods. This is the most minimally destructive change of all the available options
-//available to us
-%rename(markAsDeleted) MgPropertyDefinition::Delete;
-%rename(markAsDeleted) MgClassDefinition::Delete;
-%rename(markAsDeleted) MgFeatureSchema::Delete;
 
 //If we want to implement java.util.Collection, we need to rename this incompatible API (as add() is expected to 
 //return boolean in the java.util.Collection API)
