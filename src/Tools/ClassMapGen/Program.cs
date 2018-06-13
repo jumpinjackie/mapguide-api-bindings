@@ -36,9 +36,11 @@ namespace ClassMapGen
 
             string phpOut = Path.Combine(srcBase, "Bindings/Php/PhpClassMap.cpp");
             string dotNetOut = Path.Combine(srcBase, "Bindings/DotNet/MapGuideDotNetApi/custom/MgClassMap.cs");
+            string javaOut = Path.Combine(srcBase, "Bindings/Java/org/osgeo/mapguide/ObjectFactory.java");
 
             var phpTpl = new StringBuilder(File.ReadAllText("Data/Templates/php.txt"));
             var dotNetTpl = new StringBuilder(File.ReadAllText("Data/Templates/dotnet.txt"));
+            var javaTpl = new StringBuilder(File.ReadAllText("Data/Templates/java.txt"));
 
             MasterClassMap clsMap = JsonConvert.DeserializeObject<MasterClassMap>(File.ReadAllText("Data/classmap_master.json"));
 
@@ -100,7 +102,9 @@ namespace ClassMapGen
             var phpClassMaps = new StringBuilder();
             string PHP_INDENT = "    ";
             string DOTNET_INDENT = "            ";
+            string JAVA_INDENT = "            ";
 
+            //PHP
             foreach (var kvp in classMapMasterReverse)
             {
                 phpClassMaps.AppendLine($"{PHP_INDENT}classNameMap[{kvp.Value}] = \"_p_{kvp.Key}\";");
@@ -109,7 +113,8 @@ namespace ClassMapGen
             phpTpl.Replace("$CLASS_NAME_MAP_BODY$", phpClassMaps.ToString());
 
             var dotNetClassMaps = new StringBuilder();
-
+            
+            //.net
             foreach (var kvp in classMapMasterReverse)
             {
                 dotNetClassMaps.AppendLine($"{DOTNET_INDENT}classNameMap[{kvp.Value}] = \"OSGeo.MapGuide.{kvp.Key}\";");
@@ -117,10 +122,22 @@ namespace ClassMapGen
 
             dotNetTpl.Replace("$CLASS_NAME_MAP_BODY$", dotNetClassMaps.ToString());
 
+            var javaClassMaps = new StringBuilder(); 
+
+            //Java
+            foreach (var kvp in classMapMasterReverse)
+            {
+                javaClassMaps.AppendLine($"{JAVA_INDENT}classMap.put(new Integer({kvp.Value}), Class.forName(\"org.osgeo.mapguide.{kvp.Key}\").getConstructor(new Class[] {{ Long.TYPE, Boolean.TYPE }}));");
+            }
+
+            javaTpl.Replace("$CLASS_NAME_MAP_BODY$", javaClassMaps.ToString());
+
             File.WriteAllText(phpOut, phpTpl.ToString());
             Console.WriteLine($"Written: {phpOut}");
             File.WriteAllText(dotNetOut, dotNetTpl.ToString());
             Console.WriteLine($"Written: {dotNetOut}");
+            File.WriteAllText(javaOut, javaTpl.ToString());
+            Console.WriteLine($"Written: {javaOut}");
 
             return 0;
         }

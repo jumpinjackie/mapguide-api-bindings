@@ -55,6 +55,7 @@ obj
 !/src/Bindings/Java/org/osgeo/mapguide/AppThrowable.java
 !/src/Bindings/Java/org/osgeo/mapguide/MgBase64.java
 !/src/Bindings/Java/org/osgeo/mapguide/MgLocalizer.java
+!/src/Bindings/Java/org/osgeo/mapguide/ObjectFactory.java
 /src/IMake/.vs
 /src/lib
 /src/IMake/Release
