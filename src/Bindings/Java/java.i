@@ -15,6 +15,7 @@
 //  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+%include "../Common/Java/exception.i"
 %include "../Common/Java/monkey_patch.i"
 %include "../Common/Java/extensions.i"
 
@@ -37,21 +38,19 @@
     return (cPtr == 0) ? null : ($javaclassname)ObjectFactory.createObject($imclassname.getClassId(cPtr), cPtr, true);
 }
 
-%runtime %{
-#include "Foundation.h"
+// These methods have to be invoked C-style
+%ignore MgObject::GetClassId;
+%ignore MgObject::GetClassName;
 
+%include "../Common/refcount.i"
+
+%runtime %{
 /* Get a class identifier from an Object instance */
 JNIEXPORT jint JNICALL Java_org_osgeo_mapguide_MapGuideJavaApiJNI_getClassId(JNIEnv* jenv, jclass jcls, jlong jarg1)
 {
     return ((MgObject*)(void*)jarg1)->GetClassId();
 }
 %}
-
-// These methods have to be invoked C-style
-%ignore MgObject::GetClassId;
-%ignore MgObject::GetClassName;
-
-%include "../Common/refcount.i"
 
 %typemap(jni) STRINGPARAM "jstring"
 %typemap(jtype) STRINGPARAM "String"

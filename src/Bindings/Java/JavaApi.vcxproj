@@ -116,6 +116,7 @@ echo Building -sources JAR file
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -156,6 +157,7 @@ echo Building -sources JAR file
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -196,6 +198,7 @@ echo Building -sources JAR file
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -237,6 +240,7 @@ echo Building -sources JAR file
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>

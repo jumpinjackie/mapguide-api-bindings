@@ -3,17 +3,6 @@
  */
 %rename("%(firstlowercase)s",%$isfunction) "";
 
-/**
- * Java Exception hierarchy
- *
- * By default MgException inherits from MgSerializable. For it to be throwable in Java, we have to break
- * the inheritance chain and have MgException derive from our AppThrowable base exception class instead
- *
- * Breaking the MgSerializable inheritance chain is inconsequential as the methods provided by MgSerializable
- * are not available for managed code consumption
- */
-%typemap(javabase, replace="1") MgException "AppThrowable"
-
 //---------------------- Renames to avoid Java/C++ API clashes ---------------------------//
 
 /**
