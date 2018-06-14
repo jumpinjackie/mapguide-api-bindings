@@ -1,13 +1,13 @@
 @echo off
-SET MG_INSTALL_DIR=%1
-IF "%MG_INSTALL_DIR%" == "" (
-    SET MG_INSTALL_DIR=C:\Program Files\OSGeo\MapGuide
-)
 set BINPREFIX=Bin64
 set CONFIG=Release64
-if "%2" == "Release" (
+if "%1" == "Release" (
     set CONFIG=%1
     set BINPREFIX=Bin
+)
+SET MG_INSTALL_DIR=%2
+IF "%MG_INSTALL_DIR%" == "" (
+    SET MG_INSTALL_DIR=C:\Program Files\OSGeo\MapGuide
 )
 echo Preparing native binaries for java test
 SET MG_JAVA_BIN_DIR=%CD%\src\Test\Java\lib
