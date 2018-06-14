@@ -40,7 +40,7 @@
     <!-- Copy required jars and dlls -->
     <copy todir="${classpath}">
       <fileset dir="${jarsrc.web}">
-        <include name="**/MapGuideApiEx.jar" />
+        <include name="**/MapGuideApi.jar" />
       </fileset>
     </copy>
     <copy todir="${classpath}">
@@ -75,7 +75,7 @@
     <!-- Copy required jars and dlls -->
     <copy todir="${classpath}">
       <fileset dir="${jarsrc.web}">
-        <include name="**/MapGuideApiEx.jar" />
+        <include name="**/MapGuideApi.jar" />
       </fileset>
     </copy>
     <copy todir="${classpath}">
@@ -91,7 +91,7 @@
       <classpath>
         <pathelement path="${classpath}" />
         <fileset dir="${classpath}">
-          <include name="**/MapGuideApiEx.jar" />
+          <include name="**/MapGuideApi.jar" />
           <include name="**/sqlite4java.jar" />
         </fileset>
       </classpath>
@@ -106,7 +106,7 @@
       <fileset dir="${build}" />
       <manifest>
         <attribute name="Main-Class" value="org.osgeo.mapguide.test.Program" />
-        <attribute name="Class-Path" value="MapGuideApiEx.jar sqlite4java.jar" />
+        <attribute name="Class-Path" value="MapGuideApi.jar sqlite4java.jar" />
       </manifest>
     </jar>
     <copy todir="${dist}" verbose="true">
