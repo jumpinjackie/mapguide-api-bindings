@@ -29,28 +29,18 @@
       System.exit(1);
     }
   }
-  public final static native int getClassId(long jarg1);
 %}	
 
 %typemap(javaout) SWIGTYPE *
 {
     long cPtr = $jnicall;
-    return (cPtr == 0) ? null : ($javaclassname)ObjectFactory.createObject($imclassname.getClassId(cPtr), cPtr, true);
+    return (cPtr == 0) ? null : ($javaclassname)ObjectFactory.createObject($imclassname.MgObject_getClassId(cPtr, this), cPtr, true);
 }
 
 // These methods have to be invoked C-style
-%ignore MgObject::GetClassId;
 %ignore MgObject::GetClassName;
 
 %include "../Common/refcount.i"
-
-%runtime %{
-/* Get a class identifier from an Object instance */
-JNIEXPORT jint JNICALL Java_org_osgeo_mapguide_MapGuideJavaApiJNI_getClassId(JNIEnv* jenv, jclass jcls, jlong jarg1)
-{
-    return ((MgObject*)(void*)jarg1)->GetClassId();
-}
-%}
 
 %typemap(jni) STRINGPARAM "jstring"
 %typemap(jtype) STRINGPARAM "String"
