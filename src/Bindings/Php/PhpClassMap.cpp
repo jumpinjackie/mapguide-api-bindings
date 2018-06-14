@@ -54,7 +54,6 @@ static std::map<int, const char*> InitClassMap()
     classNameMap[20533] = "_p_MgCoordinateSystemGeodeticPath";
     classNameMap[20535] = "_p_MgCoordinateSystemGeodeticPathDictionary";
     classNameMap[20534] = "_p_MgCoordinateSystemGeodeticPathElement";
-    classNameMap[20546] = "_p_MgCoordinateSystemGeodeticStandaloneTransformDefParams";
     classNameMap[20508] = "_p_MgCoordinateSystemGeodeticTransformation";
     classNameMap[20536] = "_p_MgCoordinateSystemGeodeticTransformDef";
     classNameMap[20540] = "_p_MgCoordinateSystemGeodeticTransformDefDictionary";

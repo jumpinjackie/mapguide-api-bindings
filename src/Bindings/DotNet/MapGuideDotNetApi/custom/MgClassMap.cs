@@ -63,7 +63,6 @@ namespace OSGeo.MapGuide
             classNameMap[20533] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticPath";
             classNameMap[20535] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticPathDictionary";
             classNameMap[20534] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticPathElement";
-            classNameMap[20546] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticStandaloneTransformDefParams";
             classNameMap[20508] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticTransformation";
             classNameMap[20536] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticTransformDef";
             classNameMap[20540] = "OSGeo.MapGuide.MgCoordinateSystemGeodeticTransformDefDictionary";

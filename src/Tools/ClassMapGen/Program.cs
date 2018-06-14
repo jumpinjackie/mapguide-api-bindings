@@ -127,7 +127,7 @@ namespace ClassMapGen
             //Java
             foreach (var kvp in classMapMasterReverse)
             {
-                javaClassMaps.AppendLine($"{JAVA_INDENT}classMap.put(new Integer({kvp.Value}), Class.forName(\"org.osgeo.mapguide.{kvp.Key}\").getConstructor(new Class[] {{ Long.TYPE, Boolean.TYPE }}));");
+                javaClassMaps.AppendLine($"{JAVA_INDENT}classMap.put(new Integer({kvp.Value}), getSWIGCtor(\"{kvp.Key}\"));");
             }
 
             javaTpl.Replace("$CLASS_NAME_MAP_BODY$", javaClassMaps.ToString());
