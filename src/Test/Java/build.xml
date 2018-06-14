@@ -61,7 +61,7 @@
         <include name="**/ACE.dll" />
         <include name="**/GEOS.dll" />
         <include name="**/lib_json.dll" />
-        <include name="**/MapGuideJavaApiEx.dll" />
+        <include name="**/MapGuideJavaApi.dll" />
         <include name="**/xerces-c_3_1mg.dll" />
       </fileset>
     </copy>
