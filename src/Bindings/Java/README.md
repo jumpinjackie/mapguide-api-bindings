@@ -10,7 +10,7 @@ This wrapper is based on the `MapGuideJavaApiEx` experimental variant of the off
 
 `AppThrowable` now extends `RuntimeException` making it (and `MgException` and its subclasses) unchecked exceptions, all methods in the MapGuide API no longer have the (`throws MgException`) clause.
 
-2. Method names follow Java conventions
+2. Method names follow Java naming conventions
 
 All method names in the Java proxy classes are now in lowerCamelCase instead of the MapGuide-default UpperCamelCase
 
@@ -30,6 +30,9 @@ All method names in the Java proxy classes are now in lowerCamelCase instead of 
     MgFeatureService featureSvc = (MgFeatureService)siteConn.createService(MgServiceType.FeatureService); //Note the lowercase
     MgFeatureSchemaCollection schema = featureSvc.describeSchema(new MgResourceIdentifier("Library://Samples/Sheboygan/Data/Parcels.FeatureSource"), "SHP_Schema"); //Note the lowercase
 ```
+
+The `MgInitializeWebTier` entry point also obeys this convention (now named `mgInitializeWebTier`)
+
 3. The following MapGuide collection classes now implement `java.util.Collection<T>`:
 
  - `MgBatchPropertyCollection` (T is `MgPropertyCollection`)
@@ -60,3 +63,7 @@ All method names in the Java proxy classes are now in lowerCamelCase instead of 
  - `MgSqlDataReader`
  - `MgLongTransactionReader`
  - `MgSpatialContextReader`
+
+7. Tightened encapsulation
+
+The SWIG-generated constructor for every proxy class is no longer `public`. This constructor was always reserved for use by SWIG.
