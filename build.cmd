@@ -23,6 +23,10 @@ echo Running PHP post-processor
 call dotnet run "%PACKAGE_DIR%\php\Release"
 call dotnet run "%PACKAGE_DIR%\php\Release64"
 popd
+echo Building Sample dataset
+pushd src\TestData\Samples\Sheboygan
+call build.bat
+popd
 goto end
 :error
 echo An error occurred while building a component
