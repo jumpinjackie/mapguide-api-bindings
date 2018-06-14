@@ -7,11 +7,22 @@ endif(COMMAND cmake_policy)
 
 set(EXE ".exe")
 
+# Set common commands.
+if (UNIX)
+    set(MOVE_COMMAND "mv")
+    set(MOVE_ARGS "")
+else (UNIX)
+    set(MOVE_COMMAND "move")
+    set(MOVE_ARGS "/Y")
+endif (UNIX)
+
 set(MG_VERSION_MAJOR 3)
 set(MG_VERSION_MINOR 1)
 set(MG_VERSION_PATCH 1)
 set(MG_VERSION "${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}.${MG_VERSION_PATCH}")
 set(CMAKE_DEBUG_POSTFIX "d")
+
+set(MG_PACKAGE_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/packages")
 
 set(LIB_SUFFIX "lib")
 set(LIB_SUFFIX "lib64")
@@ -205,6 +216,10 @@ if (MSVC)
         message(STATUS "Found MgMdfParser library path: ${MG_MDFPARSER_LIBRARY}")
     endif()
 endif (MSVC)
+
+# Java SDK
+find_package(Java REQUIRED)
+find_package(JNI REQUIRED)
 
 # tclap
 find_path(TCLAP_INCLUDE NAMES "tclap/CmdLine.h"
