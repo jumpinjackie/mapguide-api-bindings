@@ -22,6 +22,10 @@ obj
 /src/Test/DotNet/src/TestRunner/UnitTests.log
 /src/Test/DotNet/src/TestRunner/metadata.txt
 /src/Test/DotNet/src/TestRunner/metadata2.txt
+/src/Test/java_dist
+/src/Test/Java/build
+/src/Test/Java/lib
+/src/TestData/Samples/Sheboygan/Sheboygan.mgp
 /src/IMake/Debug
 /src/IMake/ipch
 /src/IMake/Win32
@@ -109,3 +113,10 @@ swig-3.0.12.tar.gz
 constants.php
 /src/Bindings/Php/MgApi_wrap_orig.cpp
 launchSettings.json
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/VotingDistricts.FeatureSource_DATA_VotingDistricts.sdf
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/BuildingOutlines.FeatureSource_DATA_BuildingOutlines.sdf
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/CityLimits.FeatureSource_DATA_CityLimits.sdf
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/HydrographicPolygons.FeatureSource_DATA_HydrographicPolygons.sdf
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/Parcels.FeatureSource_DATA_Parcels.sdf
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/Rail.FeatureSource_DATA_Rail.sdf
+src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/RoadCenterLines.FeatureSource_DATA_RoadCenterLines.sdf

@@ -43,7 +43,7 @@ public class PropertyCollectionTest implements IExternalTest
         MgProperty item1 = new MgStringProperty("Item1", "Hello World");
         MgProperty item2 = new MgInt32Property("Item2", 42);
         MgProperty item3 = new MgBooleanProperty("Item3", false);
-        MgProperty item4 = new MgByteProperty("Item4", (short)4);
+        MgProperty item4 = new MgByteProperty("Item4", (byte)4);
 
         //Items inserted the MapGuide API way
         items.addItem(item1);

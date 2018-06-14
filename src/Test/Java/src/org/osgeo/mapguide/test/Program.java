@@ -27,7 +27,7 @@ public class Program
                 int failures = 0;
                 try (ITestLogger logger = new TestLoggerFile(logFile)) {
                     logger.WriteLine(String.format("Run started: %s", new Date().toString()));
-                    MapGuideJavaApiEx.MgInitializeWebTier(webConfigPath);
+                    MapGuideJavaApi.mgInitializeWebTier(webConfigPath);
 
                     userInfo = new MgUserInformation("Administrator", "admin");
                     siteConn = new MgSiteConnection();
