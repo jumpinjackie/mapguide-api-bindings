@@ -21,12 +21,12 @@ SET USE_CMAKE_VSTOOLSET=v140
 echo CMake Generator (32-bit): %USE_CMAKE_GENERATOR_X86%
 echo CMake Generator (64-bit): %USE_CMAKE_GENERATOR_X64%
 
-REM pushd "%WORKING_DIR%\x86_release"
-REM cmake -G "%USE_CMAKE_GENERATOR_X86%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=32 -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
-REM if %errorlevel% neq 0 goto error
-REM cmake --build . --config Release
-REM if %errorlevel% neq 0 goto error
-REM popd
+pushd "%WORKING_DIR%\x86_release"
+cmake -G "%USE_CMAKE_GENERATOR_X86%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=32 -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
+if %errorlevel% neq 0 goto error
+cmake --build . --config Release
+if %errorlevel% neq 0 goto error
+popd
 pushd "%WORKING_DIR%\x64_release"
 cmake -G "%USE_CMAKE_GENERATOR_X64%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=64 -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
 if %errorlevel% neq 0 goto error
@@ -42,9 +42,9 @@ if %errorlevel% neq 0 goto error
 popd
 pushd src\Tools\PhpPostProcess
 echo Running PHP post-processor
-call dotnet run "%PACKAGE_DIR%\php\Release"
+call dotnet run "%PACKAGE_DIR%\php\lib"
 if %errorlevel% neq 0 goto error
-call dotnet run "%PACKAGE_DIR%\php\Release64"
+call dotnet run "%PACKAGE_DIR%\php\lib64"
 if %errorlevel% neq 0 goto error
 popd
 echo Building Sample dataset
