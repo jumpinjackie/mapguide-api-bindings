@@ -36,9 +36,16 @@ if ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
     message (STATUS "MG_CPU is ${MG_CPU}")
 endif ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
 
+# Check VS toolset
+if (MSVC)
+    message(STATUS "Using VS toolset: ${CMAKE_VS_PLATFORM_TOOLSET}")
+endif (MSVC)
+
 set(LIB_SUFFIX "lib")
+set(BIN_SUFFIX "bin")
 if (MG_CPU EQUAL 64)
     set(LIB_SUFFIX "lib64")
+    set(BIN_SUFFIX "bin64")
 endif (MG_CPU EQUAL 64)
 
 if(WIN32)
@@ -54,10 +61,12 @@ if(WIN32)
     endif(MSVC)
 endif(WIN32)
 
+set(MG_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}")
+
 if (MSVC)
     # Prepared MapGuide buildpack headers
     find_path(MG_COMMON_DIR NAMES "Foundation/Foundation.h"
-        HINTS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/Inc/Common"
+        HINTS "${MG_SDK_DIR}/Inc/Common"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -71,7 +80,7 @@ if (MSVC)
         message(STATUS "Found MapGuide common include path: ${MG_COMMON_DIR}")
     endif()
     find_path(ACE_INCLUDE_DIR NAMES "ace/ace_wchar.h"
-        HINTS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/Inc/ACE_Wrappers"
+        HINTS "${MG_SDK_DIR}/Inc/ACE_Wrappers"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -85,7 +94,7 @@ if (MSVC)
         message(STATUS "Found ACE include path: ${ACE_INCLUDE_DIR}")
     endif()
     find_path(MG_WEB_DIR NAMES "HttpHandler/HttpHandler.h"
-        HINTS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/Inc/Web"
+        HINTS "${MG_SDK_DIR}/Inc/Web"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -100,7 +109,7 @@ if (MSVC)
     endif()
     # Prepared MapGuide buildpack libs
     find_library(ACE_LIBRARIES NAMES ACE
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -113,7 +122,7 @@ if (MSVC)
         message(STATUS "Found ACE library path: ${ACE_LIBRARIES}")
     endif()
     find_library(MG_FOUNDATION_LIBRARY NAMES MgFoundation
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -126,7 +135,7 @@ if (MSVC)
         message(STATUS "Found MgFoundation library path: ${MG_FOUNDATION_LIBRARY}")
     endif()
     find_library(MG_GEOMETRY_LIBRARY NAMES MgGeometry
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -139,7 +148,7 @@ if (MSVC)
         message(STATUS "Found MgGeometry library path: ${MG_GEOMETRY_LIBRARY}")
     endif()
     find_library(MG_PLATFORMBASE_LIBRARY NAMES MgPlatformBase
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -152,7 +161,7 @@ if (MSVC)
         message(STATUS "Found MgPlatformBase library path: ${MG_PLATFORMBASE_LIBRARY}")
     endif()
     find_library(MG_COMMON_LIBRARY NAMES MgMapGuideCommon
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -165,7 +174,7 @@ if (MSVC)
         message(STATUS "Found MgMapGuideCommon library path: ${MG_COMMON_LIBRARY}")
     endif()
     find_library(MG_HTTPHANDLER_LIBRARY NAMES HttpHandler
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -178,7 +187,7 @@ if (MSVC)
         message(STATUS "Found HttpHandler library path: ${MG_HTTPHANDLER_LIBRARY}")
     endif()
     find_library(MG_WEBAPP_LIBRARY NAMES WebApp
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -191,7 +200,7 @@ if (MSVC)
         message(STATUS "Found WebApp library path: ${MG_WEBAPP_LIBRARY}")
     endif()
     find_library(MG_WEBSUPPORT_LIBRARY NAMES WebSupport
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -204,7 +213,7 @@ if (MSVC)
         message(STATUS "Found WebSupport library path: ${MG_WEBSUPPORT_LIBRARY}")
     endif()
     find_library(MG_MDFMODEL_LIBRARY NAMES MgMdfModel
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -217,7 +226,7 @@ if (MSVC)
         message(STATUS "Found MgMdfModel library path: ${MG_MDFMODEL_LIBRARY}")
     endif()
     find_library(MG_MDFPARSER_LIBRARY NAMES MgMdfParser
-        PATHS "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}/${LIB_SUFFIX}"
+        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH

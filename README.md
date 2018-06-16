@@ -69,10 +69,8 @@ For example, if you are installing the 3.1 buildpack, extract the buildpack cont
 
 ## Build Steps (CMake)
 
- 1. Start Visual Studio Command Prompt
- 2. Ensure CMake executable is in your PATH
- 3. Enter a clean directory and run ```cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release <path to this git clone>``
- 4. Run ```cmake --build . --config Release```
+ 1. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.1.1, you would run ```envsetup.cmd 3 1 1 9378```
+ 2. Run ```cmake_build.cmd``` to build the SWIG bindings and associated wrappers
 
 ## Build Steps
 

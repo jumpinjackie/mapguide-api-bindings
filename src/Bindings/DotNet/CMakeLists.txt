@@ -24,11 +24,11 @@ set(DotNetUnmanagedApi_SRCS
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E remove -f 
-            ${CMAKE_CURRENT_BINARY_DIR}/MapGuideDotNetApi/*.cs
+            ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/*.cs
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l "C#"
             -r ${CMAKE_CURRENT_SOURCE_DIR}
-            -o ${CMAKE_CURRENT_BINARY_DIR}/MapGuideDotNetApi/Constants.cs
+            -o ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/Constants.cs
             -t
     COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_CURRENT_BINARY_DIR}/dotnetcore.i
@@ -44,10 +44,10 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -nodefaultctor -nodefaultdtor
             -module MapGuideDotNetUnmanagedApi
             -o "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp"
-            -outdir "${CMAKE_CURRENT_BINARY_DIR}/MapGuideDotNetApi" 
+            -outdir "${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi" 
             "${CMAKE_CURRENT_BINARY_DIR}/MapGuideApi.i"
     COMMAND ${CMAKE_COMMAND} -E remove -f 
-            ${CMAKE_CURRENT_BINARY_DIR}/MapGuideDotNetApi/MapGuideDotNetUnmanagedApi.cs
+            ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/MapGuideDotNetUnmanagedApi.cs
 )
 
 file(COPY "dotnetcore.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
