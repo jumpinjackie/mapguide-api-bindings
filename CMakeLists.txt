@@ -43,9 +43,11 @@ endif (MSVC)
 
 set(LIB_SUFFIX "lib")
 set(BIN_SUFFIX "bin")
+set(MG_ARCH "x86")
 if (MG_CPU EQUAL 64)
     set(LIB_SUFFIX "lib64")
     set(BIN_SUFFIX "bin64")
+    set(MG_ARCH "x64")
 endif (MG_CPU EQUAL 64)
 
 if(WIN32)

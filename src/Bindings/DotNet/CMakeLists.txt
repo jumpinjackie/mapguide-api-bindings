@@ -13,14 +13,22 @@ include_directories(
     ${XERCESC_INCLUDE_DIR}
 )
 
-if (MSVC)
-    add_definitions(-DSWIG_PUBLIC_API)
-    add_definitions(-bigobj)
-endif (MSVC)
+set(MG_DOTNET_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/runtimes/win-${MG_ARCH}/native")
 
 set(DotNetUnmanagedApi_SRCS
     ${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp
 )
+
+add_library(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} SHARED ${DotNetUnmanagedApi_SRCS})
+add_dependencies(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} IMake)
+if (MSVC)
+    add_definitions(-DSWIG_PUBLIC_API)
+    add_definitions(-bigobj)
+    set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${MG_DOTNET_OUTPUT_DIR} )
+    set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${MG_DOTNET_OUTPUT_DIR} )
+    set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${MG_DOTNET_OUTPUT_DIR} )
+endif (MSVC)
+
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E remove -f 
@@ -53,8 +61,6 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
 file(COPY "dotnetcore.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY "MapGuideDotNetApi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} SHARED ${DotNetUnmanagedApi_SRCS})
-add_dependencies(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} IMake)
 target_link_libraries(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX}
     ${ACE_LIBRARY}
     ${MG_FOUNDATION_LIBRARY}
