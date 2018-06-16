@@ -40,9 +40,9 @@ if (MSVC)
         add_definitions(-D_USE_32BIT_TIME_T)
     endif (MG_CPU EQUAL 32)
     add_definitions(-bigobj)
-    set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${MG_PHP_OUTPUT_DIR} )
-    set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG ${MG_PHP_OUTPUT_DIR} )
-    set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE ${MG_PHP_OUTPUT_DIR} )
+    set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${MG_PHP_OUTPUT_DIR} )
+    set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${MG_PHP_OUTPUT_DIR} )
+    set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${MG_PHP_OUTPUT_DIR} )
 endif (MSVC)
 
 add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
