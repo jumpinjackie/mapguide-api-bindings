@@ -72,7 +72,7 @@ For example, if you are installing the 3.1 buildpack, extract the buildpack cont
  1. Start Visual Studio Command Prompt
  2. Ensure CMake executable is in your PATH
  3. Enter a clean directory and run ```cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release <path to this git clone>``
- 4. Run ```cmake --build .```
+ 4. Run ```cmake --build . --config Release```
 
 ## Build Steps
 

@@ -1,3 +1,5 @@
+project(MapGuideJavaApi)
+
 include_directories(${JNI_INCLUDE_DIRS}
     ${MG_COMMON_DIR}/MdfModel
     ${MG_COMMON_DIR}/Foundation
@@ -10,7 +12,6 @@ include_directories(${JNI_INCLUDE_DIRS}
     ${MG_WEB_DIR}/WebApp
     ${XERCESC_INCLUDE_DIR}
 )
-
 
 set(MG_JAVA_OUTPUT_DIR "${MG_PACKAGE_OUTPUT_DIR}/Java/${LIB_SUFFIX}")
 
@@ -55,14 +56,15 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
 
 add_library(MapGuideJavaApi${MG_VERSION_SUFFIX} SHARED ${MapGuideJavaApi_SRCS})
 add_definitions(-DJAVA)
+if (UNIX)
+    add_definitions(-fno-strict-aliasing -fno-var-tracking-assignments)
+endif (UNIX)
 if (MSVC)
     add_definitions(-DSWIG_PUBLIC_API)
     add_definitions(-bigobj)
     set_target_properties(MapGuideJavaApi${MG_VERSION_SUFFIX} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${MG_JAVA_OUTPUT_DIR} )
     set_target_properties(MapGuideJavaApi${MG_VERSION_SUFFIX} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG ${MG_JAVA_OUTPUT_DIR} )
     set_target_properties(MapGuideJavaApi${MG_VERSION_SUFFIX} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE ${MG_JAVA_OUTPUT_DIR} )
-else (MSVC)
-    add_definitions(-fno-strict-aliasing -fno-var-tracking-assignments)
 endif (MSVC)
 add_dependencies(MapGuideJavaApi${MG_VERSION_SUFFIX} IMake)
 

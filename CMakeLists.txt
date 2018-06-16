@@ -6,6 +6,7 @@ if(COMMAND cmake_policy)
 endif(COMMAND cmake_policy)
 
 set(EXE ".exe")
+set(SED_COMMAND "sed")
 
 # Set common commands.
 if (UNIX)
@@ -24,8 +25,21 @@ set(CMAKE_DEBUG_POSTFIX "d")
 
 set(MG_PACKAGE_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/packages")
 
+# Determine bitness
+if ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
+    message(STATUS "MG_CPU not defined, determining what we're building for based on system bitness")
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(MG_CPU 64)
+    else(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(MG_CPU 32)
+    endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    message (STATUS "MG_CPU is ${MG_CPU}")
+endif ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
+
 set(LIB_SUFFIX "lib")
-set(LIB_SUFFIX "lib64")
+if (MG_CPU EQUAL 64)
+    set(LIB_SUFFIX "lib64")
+endif (MG_CPU EQUAL 64)
 
 if(WIN32)
     add_definitions(-D_WIN32_WINNT=0x600)
@@ -221,6 +235,33 @@ endif (MSVC)
 find_package(Java REQUIRED)
 find_package(JNI REQUIRED)
 
+# PHP
+if (MSVC)
+    set(EXPECTED_PHP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/runtimes/php/Release")
+    if (MG_CPU EQUAL 64)
+        set(EXPECTED_PHP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/runtimes/php/Release64")
+    endif (MG_CPU EQUAL 64)
+
+    find_path(PHP_INCLUDE_DIR NAMES "Zend/Zend_API.h"
+        HINTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/php7/src/php-7.1.18"
+        NO_DEFAULT_PATH
+        NO_CMAKE_ENVIRONMENT_PATH
+        NO_CMAKE_PATH
+        NO_SYSTEM_ENVIRONMENT_PATH
+        NO_CMAKE_SYSTEM_PATH
+        NO_CMAKE_FIND_ROOT_PATH
+    )
+    find_library(PHP_LIBRARY NAMES php7ts
+        PATHS "${EXPECTED_PHP_PATH}/dev"
+        NO_DEFAULT_PATH
+        NO_CMAKE_ENVIRONMENT_PATH
+        NO_CMAKE_PATH
+        NO_SYSTEM_ENVIRONMENT_PATH
+        NO_CMAKE_SYSTEM_PATH
+        NO_CMAKE_FIND_ROOT_PATH
+    )
+endif (MSVC)
+
 # tclap
 find_path(TCLAP_INCLUDE NAMES "tclap/CmdLine.h"
     HINTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/tclap-1.2.2/include"
@@ -256,6 +297,6 @@ endif()
 
 # IMake
 set(IMAKE_TOOL ${CMAKE_CURRENT_BINARY_DIR}/src/IMake/IMake${EXE})
-message(STATUS "Using IMake tool path: ${IMAKE_TOOL}")
+message(STATUS "Using IMake tool path (we expect IMake to be built here): ${IMAKE_TOOL}")
 
 add_subdirectory(src)
