@@ -47,7 +47,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -l "C#"
             -r ${CMAKE_CURRENT_SOURCE_DIR}
             -o ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG. Output Dir: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [DotNet]. Output Dir: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi
     COMMAND ${SWIG_TOOL} -c++ -csharp 
             -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER
             -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER

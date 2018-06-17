@@ -40,7 +40,7 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
             -l Java
             -r ${CMAKE_CURRENT_SOURCE_DIR}
             -o ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG (Java)
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [Java]
     COMMAND ${SWIG_TOOL} -c++ -java
             -DJAVA ${SWIG_JAVA_DEFS} 
             -package org.osgeo.mapguide 

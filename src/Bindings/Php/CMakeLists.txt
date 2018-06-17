@@ -61,7 +61,7 @@ add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
         -l PHP
         -r ${CMAKE_CURRENT_SOURCE_DIR}
         -o ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG (PHP7)
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [PHP7]
     COMMAND ${SWIG_TOOL} -c++ -php7 
         -DWIN32 -DPHPSWIG
         -nodefaultctor -nodefaultdtor 
