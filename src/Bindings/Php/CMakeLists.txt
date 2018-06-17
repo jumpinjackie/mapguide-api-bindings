@@ -74,12 +74,12 @@ add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
         "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap_orig.cpp" > "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp"
 )
 
-if (UNIX)
-    install(TARGETS php_MapGuideApi${MG_VERSION_SUFFIX} DESTINATION ${LIB_INSTALL_DIR} COMPONENT ${MG_COMPONENT})
-    install_symlink(${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/libphp_MapGuideApi${MG_VERSION_SUFFIX}.so libphp_MapGuideApi.so ${MG_COMPONENT})
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/constants.php DESTINATION ${MG_WWWROOT}/mapadmin COMPONENT ${MG_COMPONENT})
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/constants.php DESTINATION ${MG_WWWROOT}/mapviewerphp COMPONENT ${MG_COMPONENT})
-endif (UNIX)
+# if (UNIX)
+#     install(TARGETS php_MapGuideApi${MG_VERSION_SUFFIX} DESTINATION ${LIB_INSTALL_DIR} COMPONENT ${MG_COMPONENT})
+#     install_symlink(${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/libphp_MapGuideApi${MG_VERSION_SUFFIX}.so libphp_MapGuideApi.so ${MG_COMPONENT})
+#     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/constants.php DESTINATION ${MG_WWWROOT}/mapadmin COMPONENT ${MG_COMPONENT})
+#     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/constants.php DESTINATION ${MG_WWWROOT}/mapviewerphp COMPONENT ${MG_COMPONENT})
+# endif (UNIX)
 target_link_libraries(php_MapGuideApi${MG_VERSION_SUFFIX}
     ${ACE_LIBRARY}
     ${PHP_LIBRARY}

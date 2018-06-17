@@ -1,7 +1,12 @@
-add_subdirectory(DotNet)
-add_subdirectory(Java)
-add_subdirectory(Php)
-
+if (WITH_DOTNET)
+    add_subdirectory(DotNet)
+endif (WITH_DOTNET)
+if (WITH_JAVA)
+    add_subdirectory(Java)
+endif (WITH_JAVA)
+if (WITH_PHP)
+    add_subdirectory(Php)
+endif (WITH_PHP)
 # Needed for api binding generation
 file(COPY "Common" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY "MapGuideApi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

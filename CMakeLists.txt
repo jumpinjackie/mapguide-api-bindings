@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 2.8)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 NEW)
@@ -244,35 +244,39 @@ if (MSVC)
 endif (MSVC)
 
 # Java SDK
-find_package(Java REQUIRED)
-find_package(JNI REQUIRED)
+if (WITH_JAVA)
+    find_package(Java REQUIRED)
+    find_package(JNI REQUIRED)
+endif (WITH_JAVA)
 
 # PHP
-if (MSVC)
-    set(EXPECTED_PHP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/runtimes/php/Release")
-    if (MG_CPU EQUAL 64)
-        set(EXPECTED_PHP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/runtimes/php/Release64")
-    endif (MG_CPU EQUAL 64)
+if (WITH_PHP)
+    if (MSVC)
+        set(EXPECTED_PHP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/runtimes/php/Release")
+        if (MG_CPU EQUAL 64)
+            set(EXPECTED_PHP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/runtimes/php/Release64")
+        endif (MG_CPU EQUAL 64)
 
-    find_path(PHP_INCLUDE_DIR NAMES "Zend/Zend_API.h"
-        HINTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/php7/src/php-7.1.18"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH
-    )
-    find_library(PHP_LIBRARY NAMES php7ts
-        PATHS "${EXPECTED_PHP_PATH}/dev"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH
-    )
-endif (MSVC)
+        find_path(PHP_INCLUDE_DIR NAMES "Zend/Zend_API.h"
+            HINTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/php7/src/php-7.1.18"
+            NO_DEFAULT_PATH
+            NO_CMAKE_ENVIRONMENT_PATH
+            NO_CMAKE_PATH
+            NO_SYSTEM_ENVIRONMENT_PATH
+            NO_CMAKE_SYSTEM_PATH
+            NO_CMAKE_FIND_ROOT_PATH
+        )
+        find_library(PHP_LIBRARY NAMES php7ts
+            PATHS "${EXPECTED_PHP_PATH}/dev"
+            NO_DEFAULT_PATH
+            NO_CMAKE_ENVIRONMENT_PATH
+            NO_CMAKE_PATH
+            NO_SYSTEM_ENVIRONMENT_PATH
+            NO_CMAKE_SYSTEM_PATH
+            NO_CMAKE_FIND_ROOT_PATH
+        )
+    endif (MSVC)
+endif (WITH_PHP)
 
 # tclap
 find_path(TCLAP_INCLUDE NAMES "tclap/CmdLine.h"

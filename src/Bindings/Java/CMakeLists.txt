@@ -68,15 +68,15 @@ if (MSVC)
 endif (MSVC)
 add_dependencies(MapGuideJavaApi${MG_VERSION_SUFFIX} IMake)
 
-if (UNIX)
-    install(TARGETS MapGuideJavaApi${MG_VERSION_SUFFIX} DESTINATION ${LIB_INSTALL_DIR} COMPONENT ${MG_COMPONENT})
-    install_symlink(${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/libMapGuideJavaApi${MG_VERSION_SUFFIX}.so libMapGuideJavaApi.so ${MG_COMPONENT})
-    set(MG_JARS
-        "${MG_JAVA_OUTPUT_DIR}/MapGuideApi.jar"
-        "${MG_JAVA_OUTPUT_DIR}/MapGuideApi-sources.jar"
-    )
-    install(FILES ${MG_JARS} DESTINATION ${MG_WWWROOT}/WEB-INF/lib)
-endif (UNIX)
+# if (UNIX)
+#     install(TARGETS MapGuideJavaApi${MG_VERSION_SUFFIX} DESTINATION ${LIB_INSTALL_DIR} COMPONENT ${MG_COMPONENT})
+#     install_symlink(${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/libMapGuideJavaApi${MG_VERSION_SUFFIX}.so libMapGuideJavaApi.so ${MG_COMPONENT})
+#     set(MG_JARS
+#         "${MG_JAVA_OUTPUT_DIR}/MapGuideApi.jar"
+#         "${MG_JAVA_OUTPUT_DIR}/MapGuideApi-sources.jar"
+#     )
+#     install(FILES ${MG_JARS} DESTINATION ${MG_WWWROOT}/WEB-INF/lib)
+# endif (UNIX)
 target_link_libraries(MapGuideJavaApi${MG_VERSION_SUFFIX}
     ${ACE_LIBRARY}
     ${JNI_LIBRARIES}
