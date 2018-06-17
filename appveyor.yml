@@ -23,17 +23,17 @@ before_build:
     - echo APPVEYOR_REPO_COMMIT_TIMESTAMP %APPVEYOR_REPO_COMMIT_TIMESTAMP%
 
 install:
-    - if not exist "%LOCALAPPDATA%\mapguide-3.1-buildpack.7z" appveyor DownloadFile "https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3/mapguide-3.1-buildpack.7z" -FileName %LOCALAPPDATA%\mapguide-3.1-buildpack.7z
-    - if not exist "%LOCALAPPDATA%\swigwin-3.0.12.zip" appveyor DownloadFile "http://prdownloads.sourceforge.net/swig/swigwin-3.0.12.zip" -FileName %LOCALAPPDATA%\swigwin-3.0.12.zip
-    - if not exist "%LOCALAPPDATA%\php-7.1.18-Win32-VC14-x64.zip" curl -fsSL -o %LOCALAPPDATA%\php-7.1.18-Win32-VC14-x64.zip https://windows.php.net/downloads/releases/php-7.1.18-Win32-VC14-x64.zip
-    - if not exist "%LOCALAPPDATA%\php-7.1.18-Win32-VC14-x86.zip" curl -fsSL -o %LOCALAPPDATA%\php-7.1.18-Win32-VC14-x86.zip https://windows.php.net/downloads/releases/php-7.1.18-Win32-VC14-x86.zip
-    - if not exist "%LOCALAPPDATA%\php-7.1.18.tar.gz" curl -fsSL -o %LOCALAPPDATA%\php-7.1.18.tar.gz http://php.net/get/php-7.1.18.tar.gz/from/this/mirror
-    - if not exist "%LOCALAPPDATA%\php-7.1.18.tar" 7z x %LOCALAPPDATA%\php-7.1.18.tar.gz
-    - 7z x %LOCALAPPDATA%\php-7.1.18.tar -aos -oc:\projects\mapguide-api-bindings\thirdparty\php7\src\php-7.1.18
-    - 7z x %LOCALAPPDATA%\php-7.1.18-Win32-VC14-x64.zip -oc:\projects\mapguide-api-bindings\runtimes\php\Release64
-    - 7z x %LOCALAPPDATA%\php-7.1.18-Win32-VC14-x86.zip -oc:\projects\mapguide-api-bindings\runtimes\php\Release
-    - 7z x %LOCALAPPDATA%\mapguide-3.1-buildpack.7z -oc:\projects\mapguide-api-bindings\sdk\3.1
-    - 7z x %LOCALAPPDATA%\swigwin-3.0.12.zip -oc:\
+    - if not exist "%LOCALAPPDATA%\downloads\mapguide-3.1-buildpack.7z" appveyor DownloadFile "https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3/mapguide-3.1-buildpack.7z" -FileName %LOCALAPPDATA%\downloads\mapguide-3.1-buildpack.7z
+    - if not exist "%LOCALAPPDATA%\downloads\swigwin-3.0.12.zip" appveyor DownloadFile "http://prdownloads.sourceforge.net/swig/swigwin-3.0.12.zip" -FileName %LOCALAPPDATA%\downloads\swigwin-3.0.12.zip
+    - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x64.zip" curl -fsSL -o %LOCALAPPDATA%\php-7.1.18-Win32-VC14-x64.zip https://windows.php.net/downloads/releases/php-7.1.18-Win32-VC14-x64.zip
+    - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x86.zip" curl -fsSL -o %LOCALAPPDATA%\php-7.1.18-Win32-VC14-x86.zip https://windows.php.net/downloads/releases/php-7.1.18-Win32-VC14-x86.zip
+    - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18.tar.gz" curl -fsSL -o %LOCALAPPDATA%\php-7.1.18.tar.gz http://php.net/get/php-7.1.18.tar.gz/from/this/mirror
+    - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18.tar" 7z x %LOCALAPPDATA%\php-7.1.18.tar.gz
+    - 7z x %LOCALAPPDATA%\downloads\php-7.1.18.tar -aos -oc:\projects\mapguide-api-bindings\thirdparty\php7\src\php-7.1.18
+    - 7z x %LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x64.zip -oc:\projects\mapguide-api-bindings\runtimes\php\Release64
+    - 7z x %LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x86.zip -oc:\projects\mapguide-api-bindings\runtimes\php\Release
+    - 7z x %LOCALAPPDATA%\downloads\mapguide-3.1-buildpack.7z -oc:\projects\mapguide-api-bindings\sdk\3.1
+    - 7z x %LOCALAPPDATA%\downloads\swigwin-3.0.12.zip -oc:\
 
 test_script:
     - envsetupsdk.cmd 3 1 1 9389
