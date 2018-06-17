@@ -1,5 +1,7 @@
 # mapguide-api-bindings
 
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/rf40wvqdsedmk6lm?svg=true)](https://ci.appveyor.com/project/jumpinjackie/mapguide-api-bindings)
+
 Language bindings for the MapGuide API
 
 # Motivation
