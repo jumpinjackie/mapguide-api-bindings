@@ -120,3 +120,5 @@ src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/HydrographicPolygo
 src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/Parcels.FeatureSource_DATA_Parcels.sdf
 src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/Rail.FeatureSource_DATA_Rail.sdf
 src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/RoadCenterLines.FeatureSource_DATA_RoadCenterLines.sdf
+src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win-x64/MapGuideDotNetUnmanagedApi.pdb
+src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win-x86/MapGuideDotNetUnmanagedApi.pdb

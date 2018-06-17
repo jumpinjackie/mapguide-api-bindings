@@ -20,8 +20,8 @@ if errorlevel 1 goto error
 popd
 pushd src\Tools\PhpPostProcess
 echo Running PHP post-processor
-call dotnet run "%PACKAGE_DIR%\php\Release"
-call dotnet run "%PACKAGE_DIR%\php\Release64"
+call dotnet run "%PACKAGE_DIR%\php\Release\x86"
+call dotnet run "%PACKAGE_DIR%\php\Release\x64"
 popd
 echo Building Sample dataset
 pushd src\TestData\Samples\Sheboygan

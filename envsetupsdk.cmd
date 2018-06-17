@@ -5,7 +5,8 @@ SET MG_VER_REV=%3
 SET MG_VER_BUILD=%4
 SET MG_VERSION=%1.%2
 SET MG_VER_TRIPLET=%1.%2.%3
-SET SWIG_TOOL_PATH=D:\swigwin-3.0.12
+SET SWIG_TOOL_PATH=%5
+if not exist "%SWIG_TOOL_PATH%\swig.exe" goto no_swig
 
 SET MG_SDK_DIR=sdk/%MG_VERSION%
 IF NOT EXIST %MG_SDK_DIR% (
@@ -95,6 +96,11 @@ SET PARAM2=-vcvars_ver=14.0
 call "%ACTIVEPATHCHECK%/vcvarsall.bat" %PARAM1% %PARAM2%
 set CALLED_VCVARS=1
 goto done
+
+:no_swig
+echo Cannot find swig
+echo Usage: envsetupsdk.cmd [version:major] [version:minor] [version:rev] [version:build] [path to swig directory]
+goto error
 
 :error
 echo Unable to find Visual Studio or your version of MapGuide is not supported by this script

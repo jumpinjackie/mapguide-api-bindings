@@ -123,14 +123,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">bin\$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">bin\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">MapGuideDotNetApi\runtimes\win-x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">MapGuideDotNetApi\runtimes\win-x86\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">bin\$(Configuration)64\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">bin\$(Configuration)64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">MapGuideDotNetApi\runtimes\win-x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">MapGuideDotNetApi\runtimes\win-x64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">false</LinkIncremental>
