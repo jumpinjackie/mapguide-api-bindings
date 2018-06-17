@@ -38,7 +38,6 @@
     <ProjectGuid>{FDC09E9D-72BB-4C74-B88B-727D9D1D6C4E}</ProjectGuid>
     <RootNamespace>DotNetUnmanagedApi</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'" Label="Configuration">
