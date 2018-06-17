@@ -25,7 +25,7 @@ before_build:
 install:
     - if not exist "%LOCALAPPDATA%\downloads" mkdir "%LOCALAPPDATA%\downloads"
     - if not exist "%LOCALAPPDATA%\downloads\mapguide-3.1-buildpack.7z" appveyor DownloadFile "https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3/mapguide-3.1-buildpack.7z" -FileName %LOCALAPPDATA%\downloads\mapguide-3.1-buildpack.7z
-    - if not exist "%LOCALAPPDATA%\downloads\swigwin-3.0.12.zip" appveyor DownloadFile "http://prdownloads.sourceforge.net/swig/swigwin-3.0.12.zip" -FileName %LOCALAPPDATA%\downloads\swigwin-3.0.12.zip
+    - if not exist "%LOCALAPPDATA%\downloads\swigwin-3.0.12.zip" appveyor DownloadFile "https://prdownloads.sourceforge.net/swig/swigwin-3.0.12.zip" -FileName %LOCALAPPDATA%\downloads\swigwin-3.0.12.zip
     - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x64.zip" curl -fsSL -o "%LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x64.zip" https://windows.php.net/downloads/releases/php-7.1.18-Win32-VC14-x64.zip
     - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x86.zip" curl -fsSL -o "%LOCALAPPDATA%\downloads\php-7.1.18-Win32-VC14-x86.zip" https://windows.php.net/downloads/releases/php-7.1.18-Win32-VC14-x86.zip
     - if not exist "%LOCALAPPDATA%\downloads\php-7.1.18.tar.gz" curl -fsSL -o "%LOCALAPPDATA%\downloads\php-7.1.18.tar.gz" http://php.net/get/php-7.1.18.tar.gz/from/this/mirror
