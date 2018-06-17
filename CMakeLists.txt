@@ -10,6 +10,7 @@ set(SED_COMMAND "sed")
 
 # Set common commands.
 if (UNIX)
+    set(EXE "")
     set(MOVE_COMMAND "mv")
     set(MOVE_ARGS "")
 else (UNIX)
@@ -290,8 +291,15 @@ else(NOT TCLAP_INCLUDE)
 endif()
 
 # swig
+if (WIN32)
+    set(SWIG_HINT_PATH "D:/swigwin-3.0.12")
+else (WIN32)
+    # Assuming swig was installed via swigsetup.sh
+    set(SWIG_HINT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/swig/bin")
+endif (WIN32)
+
 find_path(SWIG_PATH NAMES "swig${EXE}"
-    HINTS "D:/swigwin-3.0.12"
+    HINTS "${SWIG_HINT_PATH}"
     NO_DEFAULT_PATH
     NO_CMAKE_ENVIRONMENT_PATH
     NO_CMAKE_PATH

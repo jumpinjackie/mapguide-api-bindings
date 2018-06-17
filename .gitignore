@@ -1,6 +1,7 @@
 bin
 obj
 .vs
+/downloads
 /packages/*
 /nuget_packages
 /thirdparty/php7/src/php-7.2.6
@@ -90,7 +91,6 @@ obj
 /src/TestData/Wms/WmsTest.db
 /swig
 /swig-3.0.12
-swig-3.0.12.tar.gz
 /src/IMake/Linux
 /src/Bindings/DotNet/libMapGuideDotNetCoreUnmanagedApi.so
 /src/Bindings/DotNet/MgApi_wrap.cpp
