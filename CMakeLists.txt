@@ -276,6 +276,17 @@ if (WITH_PHP)
             NO_CMAKE_SYSTEM_PATH
             NO_CMAKE_FIND_ROOT_PATH
         )
+        if (NOT PHP_INCLUDE_DIR)
+            message(FATAL_ERROR "PHP include path not found")
+        else (NOT PHP_INCLUDE_DIR)
+            message(STATUS "Found PHP include path: ${PHP_INCLUDE_DIR}")
+        endif (NOT PHP_INCLUDE_DIR)
+
+        if (NOT PHP_LIBRARY)
+            message(FATAL_ERROR "PHP library not found")
+        else (NOT PHP_LIBRARY)
+            message(STATUS "Found PHP library: ${PHP_LIBRARY}")
+        endif (NOT PHP_LIBRARY)
     endif (MSVC)
 endif (WITH_PHP)
 
