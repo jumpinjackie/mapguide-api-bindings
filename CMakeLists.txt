@@ -297,7 +297,7 @@ endif()
 
 # swig
 if (WIN32)
-    set(SWIG_HINT_PATH "D:/swigwin-3.0.12")
+    set(SWIG_HINT_PATH "${SWIG_WIN_PATH}")
 else (WIN32)
     # Assuming swig was installed via swigsetup.sh
     set(SWIG_HINT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/swig/bin")
