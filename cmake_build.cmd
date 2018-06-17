@@ -5,6 +5,9 @@ if %errorlevel% neq 0 (
     echo CMake not found
     goto error
 )
+SET WITH_JAVA=1
+SET WITH_PHP=1
+SET WITH_DOTNET=1
 SET THIS_DIR=%CD%
 SET WORKING_DIR=%1
 if "%WORKING_DIR%" == "" goto no_working_dir
@@ -22,31 +25,34 @@ echo CMake Generator (32-bit): %USE_CMAKE_GENERATOR_X86%
 echo CMake Generator (64-bit): %USE_CMAKE_GENERATOR_X64%
 
 pushd "%WORKING_DIR%\x86_release"
-cmake -G "%USE_CMAKE_GENERATOR_X86%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=32 -DWITH_JAVA=1 -DWITH_DOTNET=1 -DWITH_PHP=1 -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
+cmake -G "%USE_CMAKE_GENERATOR_X86%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=32 -DWITH_JAVA=%WITH_JAVA% -DWITH_DOTNET=%WITH_DOTNET% -DWITH_PHP=%WITH_PHP% -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
 if %errorlevel% neq 0 goto error
 cmake --build . --config Release
 if %errorlevel% neq 0 goto error
 popd
 pushd "%WORKING_DIR%\x64_release"
-cmake -G "%USE_CMAKE_GENERATOR_X64%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=64 -DWITH_JAVA=1 -DWITH_DOTNET=1 -DWITH_PHP=1 -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
+cmake -G "%USE_CMAKE_GENERATOR_X64%" -DCMAKE_BUILD_TYPE=Release -DMG_CPU=64 -DWITH_JAVA=%WITH_JAVA% -DWITH_DOTNET=%WITH_DOTNET% -DWITH_PHP=%WITH_PHP% -DMG_PACKAGE_DIR="%PACKAGE_DIR%" %THIS_DIR%
 if %errorlevel% neq 0 goto error
 cmake --build . --config Release
 if %errorlevel% neq 0 goto error
 popd
-
-pushd src\Bindings\DotNet\MapGuideDotNetApi
-call dotnet restore
-if %errorlevel% neq 0 goto error
-call dotnet pack --configuration Release --output "%PACKAGE_DIR%"
-if %errorlevel% neq 0 goto error
-popd
-pushd src\Tools\PhpPostProcess
-echo Running PHP post-processor
-call dotnet run "%PACKAGE_DIR%\php\lib"
-if %errorlevel% neq 0 goto error
-call dotnet run "%PACKAGE_DIR%\php\lib64"
-if %errorlevel% neq 0 goto error
-popd
+if "%WITH_DOTNET%" == "1" (
+    pushd src\Bindings\DotNet\MapGuideDotNetApi
+    call dotnet restore
+    if %errorlevel% neq 0 goto error
+    call dotnet pack --configuration Release --output "%PACKAGE_DIR%"
+    if %errorlevel% neq 0 goto error
+    popd
+)
+if "%WITH_PHP%" == "1" (
+    pushd src\Tools\PhpPostProcess
+    echo Running PHP post-processor
+    call dotnet run "%PACKAGE_DIR%\php\Release\x86"
+    if %errorlevel% neq 0 goto error
+    call dotnet run "%PACKAGE_DIR%\php\Release\x64"
+    if %errorlevel% neq 0 goto error
+    popd
+)
 echo Building Sample dataset
 pushd src\TestData\Samples\Sheboygan
 call build.bat

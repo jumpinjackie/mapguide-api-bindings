@@ -13,13 +13,21 @@ include_directories(${JNI_INCLUDE_DIRS}
     ${XERCESC_INCLUDE_DIR}
 )
 
+set(SWIG_JAVA_DEFS "")
+if (WIN32)
+    set(SWIG_JAVA_DEFS "-DWIN32")
+endif (WIN32)
+
 set(MG_JAVA_OUTPUT_DIR "${MG_PACKAGE_OUTPUT_DIR}/Java/${CMAKE_BUILD_TYPE}/${MG_ARCH}")
 
 set(MapGuideJavaApi_SRCS
     ${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp
 )
 
+message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${MG_JAVA_OUTPUT_DIR}
+    COMMAND ${CMAKE_COMMAND} -E echo Regenerating constant classes
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l Java 
             -r ${CMAKE_CURRENT_SOURCE_DIR}
@@ -32,8 +40,9 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
             -l Java
             -r ${CMAKE_CURRENT_SOURCE_DIR}
             -o ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG (Java)
     COMMAND ${SWIG_TOOL} -c++ -java
-            -DJAVA -DWIN32 
+            -DJAVA ${SWIG_JAVA_DEFS} 
             -package org.osgeo.mapguide 
             -nodefaultctor -nodefaultdtor 
             -module MapGuideJavaApi 
@@ -45,7 +54,6 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
             *.java
             ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide
     COMMAND ${Java_JAVAC_EXECUTABLE} -classpath ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide/*.java
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${MG_JAVA_OUTPUT_DIR}
     COMMAND ${Java_JAR_EXECUTABLE} -cf 
             ${MG_JAVA_OUTPUT_DIR}/MapGuideApi.jar
             org/osgeo/mapguide/*.class

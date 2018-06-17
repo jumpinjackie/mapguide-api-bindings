@@ -31,8 +31,10 @@ endif (MSVC)
 
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
+    COMMAND ${CMAKE_COMMAND} -E echo Removing: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/*.cs
     COMMAND ${CMAKE_COMMAND} -E remove -f 
             ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/*.cs
+    COMMAND ${CMAKE_COMMAND} -E echo Regenerating: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/Constants.cs
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l "C#"
             -r ${CMAKE_CURRENT_SOURCE_DIR}
@@ -45,6 +47,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -l "C#"
             -r ${CMAKE_CURRENT_SOURCE_DIR}
             -o ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG. Output Dir: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi
     COMMAND ${SWIG_TOOL} -c++ -csharp 
             -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER
             -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER

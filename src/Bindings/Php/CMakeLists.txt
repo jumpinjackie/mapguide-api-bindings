@@ -45,11 +45,14 @@ if (MSVC)
     set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${MG_PHP_OUTPUT_DIR} )
 endif (MSVC)
 
+message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${MG_PHP_OUTPUT_DIR}
+    COMMAND ${CMAKE_COMMAND} -E echo Regenerating: ${CMAKE_CURRENT_BINARY_DIR}/constants.php
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
         -l PHP 
         -r ${CMAKE_CURRENT_SOURCE_DIR}
-        -o ${CMAKE_CURRENT_BINARY_DIR}/constants.php
+        -o ${MG_PHP_OUTPUT_DIR}/constants.php
         -t
     COMMAND ${CMAKE_COMMAND} -E copy
         ${CMAKE_CURRENT_BINARY_DIR}/php.i
@@ -58,20 +61,18 @@ add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
         -l PHP
         -r ${CMAKE_CURRENT_SOURCE_DIR}
         -o ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG (PHP7)
     COMMAND ${SWIG_TOOL} -c++ -php7 
         -DWIN32 -DPHPSWIG
         -nodefaultctor -nodefaultdtor 
-        -o "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap_orig.cpp" 
+        -o "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp"
         ${CMAKE_CURRENT_BINARY_DIR}/MapGuideApi.i
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${MG_PHP_OUTPUT_DIR}
+    COMMAND ${CMAKE_COMMAND} -E echo Applying PHP7 swig workaround patch
+    COMMAND ${SED_COMMAND} ${SED_ARGS} "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g"
+        "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp"
     COMMAND ${MOVE_COMMAND} ${MOVE_ARGS}
         MapGuideApi.php
         ${MG_PHP_OUTPUT_DIR}
-    COMMAND ${MOVE_COMMAND} ${MOVE_ARGS}
-        constants.php
-        ${MG_PHP_OUTPUT_DIR}
-    COMMAND ${SED_COMMAND} "s#(MapGuideApi_globals.error_msg)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_msg)#g; s#(MapGuideApi_globals.error_code)#ZEND_MODULE_GLOBALS_ACCESSOR(MapGuideApi, error_code)#g"
-        "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap_orig.cpp" > "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp"
 )
 
 # if (UNIX)
