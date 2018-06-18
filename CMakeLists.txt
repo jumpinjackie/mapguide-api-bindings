@@ -53,8 +53,6 @@ if (MG_CPU EQUAL 64)
 endif (MG_CPU EQUAL 64)
 
 if(WIN32)
-    add_definitions(-D_WIN32_WINNT=0x600)
-    add_definitions(-DUNICODE -D_UNICODE)
     add_definitions(/MP)
     if(MSVC)
         if(NOT (MSVC14))

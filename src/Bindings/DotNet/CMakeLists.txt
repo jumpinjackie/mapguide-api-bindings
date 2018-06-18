@@ -23,7 +23,7 @@ add_library(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} SHARED ${DotNetUnmana
 add_dependencies(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} IMake)
 if (MSVC)
     add_definitions(-DSWIG_PUBLIC_API)
-    add_definitions(-bigobj)
+    add_definitions(/bigobj)
     set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${MG_DOTNET_OUTPUT_DIR} )
     set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${MG_DOTNET_OUTPUT_DIR} )
     set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${MG_DOTNET_OUTPUT_DIR} )
