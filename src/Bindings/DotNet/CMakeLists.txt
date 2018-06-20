@@ -29,6 +29,11 @@ if (MSVC)
     set_target_properties(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${MG_DOTNET_OUTPUT_DIR} )
 endif (MSVC)
 
+set(IMAKE_RELATIVE_RESOLUTION "-r ${CMAKE_CURRENT_SOURCE_DIR}")
+if (UNIX)
+    set(IMAKE_RELATIVE_RESOLUTION "-r ${CMAKE_CURRENT_SOURCE_DIR}")
+endif (UNIX)
+
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E echo Removing: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/*.cs
@@ -37,7 +42,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E echo Regenerating: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/Constants.cs
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l "C#"
-            -r ${CMAKE_CURRENT_SOURCE_DIR}
+            ${IMAKE_RELATIVE_RESOLUTION}
             -o ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/Constants.cs
             -t
     COMMAND ${CMAKE_COMMAND} -E copy
@@ -45,7 +50,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             ${CMAKE_CURRENT_BINARY_DIR}/language.i
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/MapGuideApiGen.xml
             -l "C#"
-            -r ${CMAKE_CURRENT_SOURCE_DIR}
+            ${IMAKE_RELATIVE_RESOLUTION}
             -o ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [DotNet]. Output Dir: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi
     COMMAND ${SWIG_TOOL} -c++ -csharp 
