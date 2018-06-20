@@ -1,6 +1,7 @@
 bin
 obj
 .vs
+.vagrant
 /downloads
 /packages/*
 /nuget_packages

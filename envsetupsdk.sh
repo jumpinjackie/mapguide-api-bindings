@@ -147,12 +147,12 @@ if [ `uname -m` = "x86_64" ] && [ "$USE_DOTNET" = "1" ]; then
         exit 1
     fi
     cd $ROOT/src/Tools/SwigPrepare
-    dotnet run $ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR $ROOT/src/Bindings/MapGuideApi
+    dotnet run ../../../sdk/$MG_VER_MAJOR.$MG_VER_MINOR ../../Bindings/MapGuideApi
     if test "$?" -ne 0; then
         exit 1
     fi
     cd $ROOT/src/Tools/StampVer
-    dotnet run $ROOT/src $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD
+    dotnet run ../.. $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD
     if test "$?" -ne 0; then
         exit 1
     fi
