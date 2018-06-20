@@ -10,7 +10,7 @@ SRC_AREA=~/mapguide_build
 CMAKE_BUILD_AREA=~/mapguide_build_cmake
 
 sudo apt-get update && sudo apt-get install -y build-essential git wget cmake dos2unix p7zip-full libpcre3-dev
-git clone https://github.com/jumpinjackie/mapguide-api-bindings $SRC_AREA
+git clone --depth 1 https://github.com/jumpinjackie/mapguide-api-bindings $SRC_AREA
 
 # Install .net Core SDK
 wget -q https://packages.microsoft.com/config/ubuntu/14.04/packages-microsoft-prod.deb
