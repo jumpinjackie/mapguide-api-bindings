@@ -3,11 +3,44 @@ MG_VERSION=3.1
 SWIG_VER=3.0.12
 ROOT=$PWD
 
+USE_JAVA=0
+USE_DOTNET=0
+USE_PHP=0
+
+while [ $# -gt 0 ]; do    # Until you run out of parameters...
+    case "$1" in
+        --with-java)
+            USE_JAVA=1
+            ;;
+        --with-dotnet)
+            USE_DOTNET=1
+            ;;
+        --with-php)
+            USE_PHP=1
+            ;;
+        --help)
+            echo "Usage: $0 (options)"
+            echo "Options:"
+            echo "  --with-java [build with java support]"
+            echo "  --with-dotnet [build with .net Core support]"
+            echo "  --with-php [build with PHP support]"
+            echo "  --help [Display usage]"
+            exit
+            ;;
+    esac
+    shift   # Check next set of parameters.
+done
+
 install_swig()
 {
+    if [ ! -d downloads ]; then
+        echo "Creating download directory"
+        mkdir downloads
+    fi
     if [ ! -f downloads/swig-${SWIG_VER}.tar.gz ];
     then
-        wget http://prdownloads.sourceforge.net/swig/swig-${SWIG_VER}.tar.gz -O downloads/swig-${SWIG_VER}.tar.gz
+        echo "Downloading SWIG tarball"
+        wget https://prdownloads.sourceforge.net/swig/swig-${SWIG_VER}.tar.gz -O downloads/swig-${SWIG_VER}.tar.gz
     fi
     if [ -d swig-${SWIG_VER} ]; 
     then
@@ -63,15 +96,16 @@ echo "Extracting buildpack"
 echo "Fixing line endings in buildpack headers"
 find ./sdk/3.1/Inc -type f -print0 | xargs -0 dos2unix
 
-echo "Checking for: javac"
-which javac
-if test "$?" -ne 0; then
-    echo "[error]: Not found: javac"
-    echo "[error]: Please install the Java SDK"
-    exit 1
+if [ "$USE_JAVA" = "1" ]; then
+    echo "Checking for: javac"
+    which javac
+    if test "$?" -ne 0; then
+        echo "[error]: Not found: javac"
+        echo "[error]: Please install the Java SDK"
+        exit 1
+    fi
 fi
-
-if [ `uname -m` = "x86_64" ]; then
+if [ `uname -m` = "x86_64" ] && [ "$USE_DOTNET" = "1" ]; then
     echo "Checking for: dotnet"
     which dotnet
     if test "$?" -ne 0; then
