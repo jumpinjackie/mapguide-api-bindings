@@ -1,11 +1,16 @@
 #!/bin/sh
-MG_VERSION=3.1
 SWIG_VER=3.0.12
 ROOT=$PWD
 
 USE_JAVA=0
 USE_DOTNET=0
 USE_PHP=0
+MG_VER_MAJOR=1
+MG_VER_MINOR=0
+MG_VER_REV=0
+MG_VER_BUILD=0
+MG_VERSION=$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD
+MG_BUILDPACK_URL=
 
 while [ $# -gt 0 ]; do    # Until you run out of parameters...
     case "$1" in
@@ -18,9 +23,18 @@ while [ $# -gt 0 ]; do    # Until you run out of parameters...
         --with-php)
             USE_PHP=1
             ;;
+        --version)
+            MG_VERSION=$2
+            MG_VER_MAJOR=`echo "$2" | cut -d "." -f 1`
+            MG_VER_MINOR=`echo "$2" | cut -d "." -f 2`
+            MG_VER_REV=`echo "$2" | cut -d "." -f 3`
+            MG_VER_BUILD=`echo "$2" | cut -d "." -f 4`
+            shift
+            ;;
         --help)
             echo "Usage: $0 (options)"
             echo "Options:"
+            echo "  --version [major.minor.rev.build]"
             echo "  --with-java [build with java support]"
             echo "  --with-dotnet [build with .net Core support]"
             echo "  --with-php [build with PHP support]"
@@ -31,30 +45,44 @@ while [ $# -gt 0 ]; do    # Until you run out of parameters...
     shift   # Check next set of parameters.
 done
 
+echo "MapGuide API: [$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD]"
+MG_VER_MAJOR_MINOR=$MG_VER_MAJOR.$MG_VER_MINOR
+case $MG_VER_MAJOR_MINOR in
+3.1)
+    MG_BUILDPACK_URL=https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3/mapguide-3.1-buildpack.7z
+    ;;
+*)
+    echo "[error]: Don't know the buildpack URL for this version of MapGuide ($MG_VER_MAJOR_MINOR)"
+    exit 1
+esac
+
+echo "Using buildpack URL: $MG_BUILDPACK_URL"
+
 install_swig()
 {
-    if [ ! -d downloads ]; then
-        echo "Creating download directory"
-        mkdir downloads
-    fi
-    if [ ! -f downloads/swig-${SWIG_VER}.tar.gz ];
+    if [ ! -f $ROOT/downloads/swig-${SWIG_VER}.tar.gz ];
     then
         echo "Downloading SWIG tarball"
-        wget https://prdownloads.sourceforge.net/swig/swig-${SWIG_VER}.tar.gz -O downloads/swig-${SWIG_VER}.tar.gz
+        wget https://prdownloads.sourceforge.net/swig/swig-${SWIG_VER}.tar.gz -O $ROOT/downloads/swig-${SWIG_VER}.tar.gz
     fi
-    if [ -d swig-${SWIG_VER} ]; 
+    if [ -d $ROOT/swig-${SWIG_VER} ]; 
     then
-        rm -rf swig-${SWIG_VER}
+        rm -rf $ROOT/swig-${SWIG_VER}
     fi
-    if [ -d swig ]; 
+    if [ -d $ROOT/swig ]; 
     then
-        rm -rf swig
+        rm -rf $ROOT/swig
     fi
-    mkdir swig
-    tar -zxf downloads/swig-${SWIG_VER}.tar.gz
-    cd swig-${SWIG_VER}
+    mkdir -p $ROOT/swig
+    tar -zxf $ROOT/downloads/swig-${SWIG_VER}.tar.gz
+    cd $ROOT/swig-${SWIG_VER}
     ./configure --prefix=${ROOT}/swig && make && make install
 }
+
+if [ ! -d $ROOT/downloads ]; then
+    echo "Creating download directory"
+    mkdir -p $ROOT/downloads
+fi
 
 echo "Checking for swig"
 which swig
@@ -86,15 +114,14 @@ if test "$?" -ne 0; then
 fi
 
 echo "Checking for MapGuide buildpack"
-mkdir -p downloads
-if [ ! -f downloads/mapguide-3.1-buildpack.7z ]; then
-    wget https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3/mapguide-3.1-buildpack.7z -O downloads/mapguide-3.1-buildpack.7z
+if [ ! -f $ROOT/downloads/mapguide-$MG_VER_MAJOR.$MG_VER_MINOR-buildpack.7z ]; then
+    wget $MG_BUILDPACK_URL -O $ROOT/downloads/mapguide-$MG_VER_MAJOR.$MG_VER_MINOR-buildpack.7z
 fi
 
 echo "Extracting buildpack"
-7z x downloads/mapguide-3.1-buildpack.7z -osdk/$MG_VERSION
+7z x $ROOT/downloads/mapguide-3.1-buildpack.7z -o$ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR
 echo "Fixing line endings in buildpack headers"
-find ./sdk/3.1/Inc -type f -print0 | xargs -0 dos2unix
+find $ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR/Inc -type f -print0 | xargs -0 dos2unix
 
 if [ "$USE_JAVA" = "1" ]; then
     echo "Checking for: javac"
@@ -111,6 +138,22 @@ if [ `uname -m` = "x86_64" ] && [ "$USE_DOTNET" = "1" ]; then
     if test "$?" -ne 0; then
         echo "[error]: Not found: dotnet"
         echo "[error]: Please install the .net Core SDK"
+        exit 1
+    fi
+
+    cd $ROOT/src/Tools
+    dotnet restore
+    if test "$?" -ne 0; then
+        exit 1
+    fi
+    cd $ROOT/src/Tools/SwigPrepare
+    dotnet run $ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR $ROOT/src/Bindings/MapGuideApi
+    if test "$?" -ne 0; then
+        exit 1
+    fi
+    cd $ROOT/src/Tools/StampVer
+    dotnet run $ROOT/src $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD
+    if test "$?" -ne 0; then
         exit 1
     fi
 else
