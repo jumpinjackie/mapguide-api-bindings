@@ -7,9 +7,9 @@ IF "%MG_VERSION%"=="2.6" SET MG_CONFIG=Release_VC11
 SET PACKAGE_DIR=%CD%\packages
 echo Using configuration [%MG_CONFIG%]
 pushd src\Bindings
-msbuild /p:Configuration=%MG_CONFIG%;Platform=x86 Bindings.sln
+msbuild /m /p:Configuration=%MG_CONFIG%;Platform=x86 Bindings.sln
 if errorlevel 1 goto error
-msbuild /p:Configuration=%MG_CONFIG%;Platform=x64 Bindings.sln
+msbuild /m /p:Configuration=%MG_CONFIG%;Platform=x64 Bindings.sln
 if errorlevel 1 goto error
 popd
 pushd src\Bindings\DotNet\MapGuideDotNetApi
