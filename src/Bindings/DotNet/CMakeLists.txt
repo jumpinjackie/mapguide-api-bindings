@@ -54,7 +54,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -o ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [DotNet]. Output Dir: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi
     COMMAND ${SWIG_TOOL} -c++ -csharp 
-            -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER
+            -DDOTNETCORE -DSWIG_CSHARP_NO_EXCEPTION_HELPER
             -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER
             -namespace OSGeo.MapGuide
             -nodefaultctor -nodefaultdtor
