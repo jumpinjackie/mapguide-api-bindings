@@ -47,7 +47,7 @@ test_script:
 #    - build.cmd
 
 artifacts:
-  - path: c:\projects\mapguide-api-bindings\packages\*.nupkg
+  - path: .\packages\*.nupkg
     name: NuGetPackage
-  - path: c:\projects\mapguide-api-bindings\packages\*.zip
+  - path: .\packages\*.zip
     name: Bindings
