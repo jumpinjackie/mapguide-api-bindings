@@ -96,4 +96,9 @@ target_link_libraries(php_MapGuideApi${MG_VERSION_SUFFIX}
     ${XERCESC_LIBRARIES}
 )
 
+# Only needed for Linux
+if (UNIX)
+    file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+endif (UNIX)
+
 file(COPY "php.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

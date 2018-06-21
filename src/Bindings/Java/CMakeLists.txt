@@ -108,5 +108,10 @@ target_link_libraries(MapGuideJavaApi${MG_VERSION_SUFFIX}
     #MgWebApp${MG_VERSION_SUFFIX}
 )
 
+# Only needed for Linux
+if (UNIX)
+    file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+endif (UNIX)
+
 file(COPY "java.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY "org" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

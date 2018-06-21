@@ -69,184 +69,200 @@ if(WIN32)
     endif(MSVC)
 endif(WIN32)
 
+if (CMAKE_SYSTEM_NAME MATCHES Linux)
+    add_definitions(-DLINUX -DLINUX_IA32 -pthread -Wno-write-strings)
+endif (CMAKE_SYSTEM_NAME MATCHES Linux)
+
 set(MG_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}")
 
-if (MSVC)
-    # Prepared MapGuide buildpack headers
-    find_path(MG_COMMON_DIR NAMES "Foundation/Foundation.h"
-        HINTS "${MG_SDK_DIR}/Inc/Common"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH
-    )
-    if(NOT MG_COMMON_DIR)
-        message(FATAL_ERROR "MapGuide common include path not found")
-    else(NOT MG_COMMON_DIR)
-        message(STATUS "Found MapGuide common include path: ${MG_COMMON_DIR}")
-    endif()
-    find_path(ACE_INCLUDE_DIR NAMES "ace/ace_wchar.h"
-        HINTS "${MG_SDK_DIR}/Inc/ACE_Wrappers"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH
-    )
-    if(NOT ACE_INCLUDE_DIR)
-        message(FATAL_ERROR "ACE include path not found")
-    else(NOT ACE_INCLUDE_DIR)
-        message(STATUS "Found ACE include path: ${ACE_INCLUDE_DIR}")
-    endif()
-    find_path(MG_WEB_DIR NAMES "HttpHandler/HttpHandler.h"
-        HINTS "${MG_SDK_DIR}/Inc/Web"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH
-    )
-    if(NOT MG_WEB_DIR)
-        message(FATAL_ERROR "MapGuide web include path not found")
-    else(NOT MG_WEB_DIR)
-        message(STATUS "Found MapGuide web include path: ${MG_WEB_DIR}")
-    endif()
-    # Prepared MapGuide buildpack libs
-    find_library(ACE_LIBRARIES NAMES ACE
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT ACE_LIBRARIES)
-        message(FATAL_ERROR "ACE library path not found")
-    else(NOT ACE_LIBRARIES)
-        message(STATUS "Found ACE library path: ${ACE_LIBRARIES}")
-    endif()
-    find_library(MG_FOUNDATION_LIBRARY NAMES MgFoundation
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_FOUNDATION_LIBRARY)
-        message(FATAL_ERROR "MgFoundation library path not found")
-    else(NOT MG_FOUNDATION_LIBRARY)
-        message(STATUS "Found MgFoundation library path: ${MG_FOUNDATION_LIBRARY}")
-    endif()
-    find_library(MG_GEOMETRY_LIBRARY NAMES MgGeometry
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_GEOMETRY_LIBRARY)
-        message(FATAL_ERROR "MgGeometry library path not found")
-    else(NOT MG_GEOMETRY_LIBRARY)
-        message(STATUS "Found MgGeometry library path: ${MG_GEOMETRY_LIBRARY}")
-    endif()
-    find_library(MG_PLATFORMBASE_LIBRARY NAMES MgPlatformBase
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_PLATFORMBASE_LIBRARY)
-        message(FATAL_ERROR "MgPlatformBase library path not found")
-    else(NOT MG_PLATFORMBASE_LIBRARY)
-        message(STATUS "Found MgPlatformBase library path: ${MG_PLATFORMBASE_LIBRARY}")
-    endif()
-    find_library(MG_COMMON_LIBRARY NAMES MgMapGuideCommon
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_COMMON_LIBRARY)
-        message(FATAL_ERROR "MgMapGuideCommon library path not found")
-    else(NOT MG_COMMON_LIBRARY)
-        message(STATUS "Found MgMapGuideCommon library path: ${MG_COMMON_LIBRARY}")
-    endif()
-    find_library(MG_HTTPHANDLER_LIBRARY NAMES HttpHandler
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_HTTPHANDLER_LIBRARY)
-        message(FATAL_ERROR "HttpHandler library path not found")
-    else(NOT MG_HTTPHANDLER_LIBRARY)
-        message(STATUS "Found HttpHandler library path: ${MG_HTTPHANDLER_LIBRARY}")
-    endif()
-    find_library(MG_WEBAPP_LIBRARY NAMES WebApp
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_WEBAPP_LIBRARY)
-        message(FATAL_ERROR "WebApp library path not found")
-    else(NOT MG_WEBAPP_LIBRARY)
-        message(STATUS "Found WebApp library path: ${MG_WEBAPP_LIBRARY}")
-    endif()
-    find_library(MG_WEBSUPPORT_LIBRARY NAMES WebSupport
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_WEBSUPPORT_LIBRARY)
-        message(FATAL_ERROR "WebSupport library path not found")
-    else(NOT MG_WEBSUPPORT_LIBRARY)
-        message(STATUS "Found WebSupport library path: ${MG_WEBSUPPORT_LIBRARY}")
-    endif()
-    find_library(MG_MDFMODEL_LIBRARY NAMES MgMdfModel
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_MDFMODEL_LIBRARY)
-        message(FATAL_ERROR "MgMdfModel library path not found")
-    else(NOT MG_MDFMODEL_LIBRARY)
-        message(STATUS "Found MgMdfModel library path: ${MG_MDFMODEL_LIBRARY}")
-    endif()
-    find_library(MG_MDFPARSER_LIBRARY NAMES MgMdfParser
-        PATHS "${MG_SDK_DIR}/${LIB_SUFFIX}"
-        NO_DEFAULT_PATH
-        NO_CMAKE_ENVIRONMENT_PATH
-        NO_CMAKE_PATH
-        NO_SYSTEM_ENVIRONMENT_PATH
-        NO_CMAKE_SYSTEM_PATH
-        NO_CMAKE_FIND_ROOT_PATH)
-    if(NOT MG_MDFPARSER_LIBRARY)
-        message(FATAL_ERROR "MgMdfParser library path not found")
-    else(NOT MG_MDFPARSER_LIBRARY)
-        message(STATUS "Found MgMdfParser library path: ${MG_MDFPARSER_LIBRARY}")
-    endif()
-endif (MSVC)
+# Prepared MapGuide buildpack headers
+find_path(MG_COMMON_DIR NAMES "Foundation/Foundation.h"
+    HINTS "${MG_SDK_DIR}/Inc/Common"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH
+)
+if(NOT MG_COMMON_DIR)
+    message(FATAL_ERROR "MapGuide common include path not found")
+else(NOT MG_COMMON_DIR)
+    message(STATUS "Found MapGuide common include path: ${MG_COMMON_DIR}")
+endif()
+find_path(ACE_INCLUDE_DIR NAMES "ace/ace_wchar.h"
+    HINTS "${MG_SDK_DIR}/Inc/ACE_wrappers"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH
+)
+if(NOT ACE_INCLUDE_DIR)
+    message(FATAL_ERROR "ACE include path not found")
+else(NOT ACE_INCLUDE_DIR)
+    message(STATUS "Found ACE include path: ${ACE_INCLUDE_DIR}")
+endif()
+find_path(MG_WEB_DIR NAMES "HttpHandler/HttpHandler.h"
+    HINTS "${MG_SDK_DIR}/Inc/Web"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH
+)
+if(NOT MG_WEB_DIR)
+    message(FATAL_ERROR "MapGuide web include path not found")
+else(NOT MG_WEB_DIR)
+    message(STATUS "Found MapGuide web include path: ${MG_WEB_DIR}")
+endif()
+
+set(FIND_HTTPHANDLER_LIB "HttpHandler")
+set(FIND_WEBAPP_LIB "WebApp")
+set(FIND_WEBSUPPORT_LIB "WebSupport")
+set(MG_COMMON_LIB_PATH "${MG_SDK_DIR}/${LIB_SUFFIX}")
+set(MG_WEB_LIB_PATH "${MG_SDK_DIR}/${LIB_SUFFIX}")
+if (UNIX)
+    set(FIND_HTTPHANDLER_LIB "MgHttpHandler")
+    set(FIND_WEBAPP_LIB "MgWebApp")
+    set(FIND_WEBSUPPORT_LIB "MgWebSupport")
+    set(MG_COMMON_LIB_PATH "/usr/local/mapguideopensource-${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}.${MG_VERSION_PATCH}/lib")
+    set(MG_WEB_LIB_PATH "/usr/local/mapguideopensource-${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}.${MG_VERSION_PATCH}/webserverextensions/lib")
+endif (UNIX)
+
+# Prepared MapGuide buildpack libs
+find_library(ACE_LIBRARIES NAMES ACE
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT ACE_LIBRARIES)
+    message(FATAL_ERROR "ACE library path not found")
+else(NOT ACE_LIBRARIES)
+    message(STATUS "Found ACE library path: ${ACE_LIBRARIES}")
+endif()
+find_library(MG_FOUNDATION_LIBRARY NAMES MgFoundation
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_FOUNDATION_LIBRARY)
+    message(FATAL_ERROR "MgFoundation library path not found")
+else(NOT MG_FOUNDATION_LIBRARY)
+    message(STATUS "Found MgFoundation library path: ${MG_FOUNDATION_LIBRARY}")
+endif()
+find_library(MG_GEOMETRY_LIBRARY NAMES MgGeometry
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_GEOMETRY_LIBRARY)
+    message(FATAL_ERROR "MgGeometry library path not found")
+else(NOT MG_GEOMETRY_LIBRARY)
+    message(STATUS "Found MgGeometry library path: ${MG_GEOMETRY_LIBRARY}")
+endif()
+find_library(MG_PLATFORMBASE_LIBRARY NAMES MgPlatformBase
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_PLATFORMBASE_LIBRARY)
+    message(FATAL_ERROR "MgPlatformBase library path not found")
+else(NOT MG_PLATFORMBASE_LIBRARY)
+    message(STATUS "Found MgPlatformBase library path: ${MG_PLATFORMBASE_LIBRARY}")
+endif()
+find_library(MG_COMMON_LIBRARY NAMES MgMapGuideCommon
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_COMMON_LIBRARY)
+    message(FATAL_ERROR "MgMapGuideCommon library path not found")
+else(NOT MG_COMMON_LIBRARY)
+    message(STATUS "Found MgMapGuideCommon library path: ${MG_COMMON_LIBRARY}")
+endif()
+find_library(MG_HTTPHANDLER_LIBRARY NAMES ${FIND_HTTPHANDLER_LIB}
+    PATHS "${MG_WEB_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_HTTPHANDLER_LIBRARY)
+    message(FATAL_ERROR "HttpHandler library path not found")
+else(NOT MG_HTTPHANDLER_LIBRARY)
+    message(STATUS "Found HttpHandler library path: ${MG_HTTPHANDLER_LIBRARY}")
+endif()
+find_library(MG_WEBAPP_LIBRARY NAMES ${FIND_WEBAPP_LIB}
+    PATHS "${MG_WEB_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_WEBAPP_LIBRARY)
+    message(FATAL_ERROR "WebApp library path not found")
+else(NOT MG_WEBAPP_LIBRARY)
+    message(STATUS "Found WebApp library path: ${MG_WEBAPP_LIBRARY}")
+endif()
+find_library(MG_WEBSUPPORT_LIBRARY NAMES ${FIND_WEBSUPPORT_LIB}
+    PATHS "${MG_WEB_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_WEBSUPPORT_LIBRARY)
+    message(FATAL_ERROR "WebSupport library path not found")
+else(NOT MG_WEBSUPPORT_LIBRARY)
+    message(STATUS "Found WebSupport library path: ${MG_WEBSUPPORT_LIBRARY}")
+endif()
+find_library(MG_MDFMODEL_LIBRARY NAMES MgMdfModel
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_MDFMODEL_LIBRARY)
+    message(FATAL_ERROR "MgMdfModel library path not found")
+else(NOT MG_MDFMODEL_LIBRARY)
+    message(STATUS "Found MgMdfModel library path: ${MG_MDFMODEL_LIBRARY}")
+endif()
+find_library(MG_MDFPARSER_LIBRARY NAMES MgMdfParser
+    PATHS "${MG_COMMON_LIB_PATH}"
+    NO_DEFAULT_PATH
+    NO_CMAKE_ENVIRONMENT_PATH
+    NO_CMAKE_PATH
+    NO_SYSTEM_ENVIRONMENT_PATH
+    NO_CMAKE_SYSTEM_PATH
+    NO_CMAKE_FIND_ROOT_PATH)
+if(NOT MG_MDFPARSER_LIBRARY)
+    message(FATAL_ERROR "MgMdfParser library path not found")
+else(NOT MG_MDFPARSER_LIBRARY)
+    message(STATUS "Found MgMdfParser library path: ${MG_MDFPARSER_LIBRARY}")
+endif()
 
 # Java SDK
 if (WITH_JAVA)

@@ -30,9 +30,9 @@ if (MSVC)
 endif (MSVC)
 
 set(IMAKE_RELATIVE_RESOLUTION "-r ${CMAKE_CURRENT_SOURCE_DIR}")
-if (UNIX)
-    set(IMAKE_RELATIVE_RESOLUTION "")
-endif (UNIX)
+#if (UNIX)
+#    set(IMAKE_RELATIVE_RESOLUTION "")
+#endif (UNIX)
 
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
@@ -65,6 +65,11 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E remove -f 
             ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/MapGuideDotNetUnmanagedApi.cs
 )
+
+# Only needed for Linux
+if (UNIX)
+    file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+endif (UNIX)
 
 file(COPY "dotnetcore.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY "MapGuideDotNetApi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
