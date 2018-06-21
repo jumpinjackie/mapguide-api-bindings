@@ -43,8 +43,11 @@ install:
 test_script:
     - envsetupsdk.cmd 3 1 1 9389 c:\swigwin-3.0.12
     - cmake_build.cmd c:\projects\mg_bindings_build
+    - make_archives.cmd
 #    - build.cmd
 
 artifacts:
-  - path: c:\projects\mapguide-api-bindings\packages\MapGuideDotNetApi.3.1.1.9389.nupkg
+  - path: c:\projects\mapguide-api-bindings\packages\*.nupkg
     name: NuGetPackage
+  - path: c:\projects\mapguide-api-bindings\packages\*.zip
+    name: Bindings

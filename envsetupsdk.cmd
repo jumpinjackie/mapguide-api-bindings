@@ -57,6 +57,12 @@ popd
 echo Preparing native binaries for nuget package
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"
 copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x64\native"
+echo Preparing native binaries for PHP extension
+copy /y "sdk\%MG_VERSION%\Bin\*.dll" "packages\php\Release\x86"
+copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "packages\php\Release\x64"
+echo Preparing native binaries for Java binding
+copy /y "sdk\%MG_VERSION%\Bin\*.dll" "packages\Java\Release\x86"
+copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "packages\Java\Release\x64"
 
 IF "%MG_VERSION%"=="3.3" goto setvcvarsall_2015
 IF "%MG_VERSION%"=="3.1" goto setvcvarsall_2015
