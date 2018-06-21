@@ -58,9 +58,13 @@ echo Preparing native binaries for nuget package
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"
 copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x64\native"
 echo Preparing native binaries for PHP extension
+if not exist "packages\php\Release\x86" mkdir "packages\php\Release\x86"
+if not exist "packages\php\Release\x64" mkdir "packages\php\Release\x64"
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "packages\php\Release\x86"
 copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "packages\php\Release\x64"
 echo Preparing native binaries for Java binding
+if not exist "packages\Java\Release\x86" mkdir "packages\Java\Release\x86"
+if not exist "packages\Java\Release\x64" mkdir "packages\Java\Release\x64"
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "packages\Java\Release\x86"
 copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "packages\Java\Release\x64"
 

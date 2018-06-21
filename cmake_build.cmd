@@ -5,6 +5,12 @@ if %errorlevel% neq 0 (
     echo CMake not found
     goto error
 )
+REM Test for Ninja
+REM which ninja
+REM if %errorlevel% neq 0 (
+REM     echo Ninja not found
+REM     goto error
+REM )
 SET WITH_JAVA=1
 SET WITH_PHP=1
 SET WITH_DOTNET=1
@@ -19,6 +25,8 @@ if not exist "%WORKING_DIR%\x86_release" mkdir "%WORKING_DIR%\x86_release"
 SET PACKAGE_DIR=%CD%\packages
 SET USE_CMAKE_GENERATOR_X86=Visual Studio 14 2015
 SET USE_CMAKE_GENERATOR_X64=Visual Studio 14 2015 Win64
+REM SET USE_CMAKE_GENERATOR_X86=Ninja
+REM SET USE_CMAKE_GENERATOR_X64=Ninja
 SET USE_CMAKE_VSTOOLSET=v140
 
 echo CMake Generator (32-bit): %USE_CMAKE_GENERATOR_X86%
