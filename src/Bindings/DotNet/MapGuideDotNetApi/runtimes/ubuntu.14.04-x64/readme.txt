@@ -1,0 +1,1 @@
+This library was built on Ubuntu 14.04 64-bit via CMake
