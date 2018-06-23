@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using OSGeo.MapGuide;
 
 namespace TestMisc
 {
     class Program
     {
-        static void TestBody()
+        static void TestBody(string webConfigPath)
         {
-            MapGuideApi.MgInitializeWebTier("C:\\Program Files\\OSGeo\\MapGuide\\Web\\www\\webconfig.ini");
+            MapGuideApi.MgInitializeWebTier(webConfigPath);
             Console.WriteLine("[dotnet]: Initialized");
             var user = new MgUserInformation("Anonymous", "");
             var conn = new MgSiteConnection();
@@ -106,7 +107,16 @@ namespace TestMisc
 
         static void Main(string[] args)
         {
-            TestBody();
+            string path = args[0];
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Console.WriteLine($"Running on Windows: {path}");
+            }
+            else
+            {
+                Console.WriteLine($"Running on Linux: {path}");
+            }
+            TestBody(path);
             //If you have built the .net SWIG glue wrapper with REFCOUNTING_DIAGNOSTICS, then
             //you should be seeing a whole bunch of refcounting chatter, which is verification
             //that we are actually releasing our unmanaged resources 

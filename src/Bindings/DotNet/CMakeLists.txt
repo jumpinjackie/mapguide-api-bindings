@@ -21,6 +21,7 @@ set(DotNetUnmanagedApi_SRCS
 
 add_library(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} SHARED ${DotNetUnmanagedApi_SRCS})
 add_dependencies(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} IMake)
+add_definitions(-DDOTNETCORE)
 if (MSVC)
     add_definitions(-DSWIG_PUBLIC_API)
     add_definitions(/bigobj)
