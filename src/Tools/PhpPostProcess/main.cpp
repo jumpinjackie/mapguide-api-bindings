@@ -29,7 +29,7 @@ void apply_traits(const std::string& line, std::string& content, std::set<std::s
         if (pos_end != std::string::npos)
         {
             std::string className = line.substr(pos_class_start, pos_end - pos_class_start);
-            std::cout << pos_class_start << ":" << pos_end << " Checking if trait exists for class: `" << className << "`" << std::endl;
+            //std::cout << pos_class_start << ":" << pos_end << " Checking if trait exists for class: `" << className << "`" << std::endl;
             if (traits.find(className) != traits.end())
             {
                 content += "    use ";
