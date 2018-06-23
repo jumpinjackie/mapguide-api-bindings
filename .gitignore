@@ -14,6 +14,7 @@ obj
 /thirdparty/php7/src/php-7.1.18
 !/thirdparty/php7/src/php-7.1.18/main/config.w32.h
 /build
+/tools
 /runtimes/php/Release
 /runtimes/php/Release64
 /src/Test/Php/*.dll
