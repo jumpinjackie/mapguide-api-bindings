@@ -2,9 +2,8 @@
   "profiles": {
     "TestRunner": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\mg-trunk\\MgDev\\Release64\\Web\\www\\webconfig.ini\" \"D:\\mg-trunk\\MgDev\\Release64\\CS-Map\\Dictionaries\"",
-      "workingDirectory": "D:\\Workspace\\mapguide-api-bindings\\src\\Test\\Dnx\\src\\TestRunner",
-      "sdkVersion": "dnx-coreclr-win-x64.1.0.0-rc1-update1"
+      "commandLineArgs": "--web-config-path \"C:\\Program Files\\OSGeo\\MapGuide\\Web\\www\\webconfig.ini\" --dictionary-path \"C:\\Program Files\\OSGeo\\MapGuide\\CS-Map\\Dictionaries\" --test-data-root \"D:\\workspace\\mapguide-api-bindings\\src\\TestData\"",
+      "workingDirectory": "D:\\Workspace\\mapguide-api-bindings\\src\\Test\\DotNet\\src\\TestRunner"
     }
   }
 }

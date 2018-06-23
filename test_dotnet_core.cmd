@@ -1,4 +1,5 @@
 @echo off
+SET THIS_DIR=%CD%
 SET MG_INSTALL_DIR=%1
 IF "%MG_INSTALL_DIR%" == "" (
     SET MG_INSTALL_DIR=C:\Program Files\OSGeo\MapGuide
@@ -11,5 +12,5 @@ dotnet restore DotNet.sln
 dotnet build --configuration Release DotNet.sln
 popd
 pushd src\Test\DotNet\src\TestRunner
-dotnet run -f netcoreapp2.0 "%MG_INSTALL_DIR%\Web\www\webconfig.ini" "%MG_INSTALL_DIR%\CS-Map\Dictionaries"
+dotnet run -f netcoreapp2.0 --web-config-path "%MG_INSTALL_DIR%\Web\www\webconfig.ini" --dictionary-path "%MG_INSTALL_DIR%\CS-Map\Dictionaries" --test-data-root %THIS_DIR%\src\TestData
 popd
