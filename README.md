@@ -23,7 +23,7 @@ MapGuide API bindings to support the following languages/platforms:
 
 | Platform | Binding Notes                                | Windows (x86) | Windows (x64) | Linux (x86) | Linux (x64) |
 | -------- |:--------------------------------------------:| ------------- | ------------- | ----------- | ----------- |
-| .net     |[Binding Notes](src/Bindings/DotNet/README.md)| Supported     | Supported     | No (^1)     | TBD (^2)    |
+| .net     |[Binding Notes](src/Bindings/DotNet/README.md)| Supported     | Supported     | No (^1)     | Yes (^2)    |
 | PHP 7.1  |[Binding Notes](src/Bindings/Php/README.md)   | TBD (^3)      | Supported (^3)| TBD (^3)    | TBD (^3)    |
 | Java     |[Binding Notes](src/Bindings/Java/README.md)  | TBD           | Supported     | TBD         | TBD         |
  

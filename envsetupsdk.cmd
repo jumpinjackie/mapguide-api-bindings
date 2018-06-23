@@ -34,25 +34,36 @@ SET MG_SDK_INC=../../../%MG_SDK_DIR%/Inc
 SET MG_SDK_LIB=../../../%MG_SDK_DIR%/Lib
 SET MG_SDK_LIB64=../../../%MG_SDK_DIR%/Lib64
 
-REM restore nuget packages just in case
-pushd src\Tools
-call dotnet restore
-popd
+echo Checking for internal tools
+which tools/SwigPrepare
+if %errorlevel% neq 0 (
+    echo One or more internal tools not found. Run build_tools.cmd
+    goto error
+)
+which tools/StampVer
+if %errorlevel% neq 0 (
+    echo One or more internal tools not found. Run build_tools.cmd
+    goto error
+)
+which tools/PhpPostProcess
+if %errorlevel% neq 0 (
+    echo One or more internal tools not found. Run build_tools.cmd
+    goto error
+)
 
-echo Preparing SWIG configurations
-pushd src\Tools\SwigPrepare
-call dotnet run ..\..\..\sdk\%MG_VERSION% ..\..\Bindings\MapGuideApi
-popd
+SET MG_INTERNAL_TOOL_PATH=%CD%\tools
+echo Running SwigPrepare
+%MG_INTERNAL_TOOL_PATH%\SwigPrepare "sdk\%MG_VERSION%" "../../../sdk/%MG_VERSION%" "src\Bindings\MapGuideApi"
+if %errorlevel% neq 0 goto error
 
 echo Stamping version [%MG_VER_MAJOR%.%MG_VER_MINOR%.%MG_VER_REV%.%MG_VER_BUILD%]
-pushd src\Tools\StampVer
-call dotnet run ..\.. %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD%
-popd
+%MG_INTERNAL_TOOL_PATH%\StampVer %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD% "%CD%\src\Bindings\DotNet\MapGuideDotNetApi\Properties\AssemblyInfo.cs"  "%CD%\src\Bindings\DotNet\MapGuideDotNetApi\MapGuideDotNetApi.csproj"
+if %errorlevel% neq 0 goto error
 
-echo Regenerating Class Maps
-pushd src\Tools\ClassMapGen
-call dotnet run "%SRC_BASE%"
-popd
+REM echo Regenerating Class Maps
+REM pushd src\Tools\ClassMapGen
+REM call dotnet run "%SRC_BASE%"
+REM popd
 
 echo Preparing native binaries for nuget package
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"

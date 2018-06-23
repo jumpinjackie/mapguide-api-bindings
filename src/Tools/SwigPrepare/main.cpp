@@ -3,14 +3,15 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 3)
+    if (argc != 4)
     {
-        std::cout << "Usage: SwigPrepare [sdk path] [target dir]" << std::endl;
+        std::cout << "Usage: SwigPrepare [sdk path] [sdk rel path] [target dir]" << std::endl;
         return 1;
     }
 
     std::string sdkRoot = argv[1];
-    std::string targetDir = argv[2];
+    std::string sdkRelPath = argv[2];
+    std::string targetDir = argv[3];
 
     if (!directory_exists(sdkRoot))
     {
@@ -26,8 +27,8 @@ int main(int argc, char **argv)
     //Normalize on / as separator
     str_replace(sdkRoot, "\\", "/");
 
-    std::string fConstants = sdkRoot + "SWIG/Constants.xml";
-    std::string fMapGuideApiGen = sdkRoot + "SWIG/MapGuideApiGen.xml";
+    std::string fConstants = combine_paths(sdkRoot, "SWIG/Constants.xml");
+    std::string fMapGuideApiGen = combine_paths(sdkRoot, "SWIG/MapGuideApiGen.xml");
 
     std::string sbConstants;
     if (!read_all_text(fConstants, sbConstants))
@@ -51,14 +52,31 @@ int main(int argc, char **argv)
     str_replace(sbMapGuideApiGen, "%include \"../WebApp", "//%include \"../WebApp");
     str_replace(sbMapGuideApiGen, "%include \"../HttpHandler", "//%include \"../HttpHandler");
     //Fix header relative paths
-    str_replace(sbMapGuideApiGen, "<Header path=\"../../../Common", "<Header path=\"" + sdkRoot + "/Inc/Common");
-    str_replace(sbMapGuideApiGen, "<Header path=\"../WebApp", "<Header path=\"" + sdkRoot + "/Inc/Web/WebApp");
-    str_replace(sbMapGuideApiGen, "<Header path=\"../HttpHandler", "<Header path=\"" + sdkRoot + "/Inc/Web/HttpHandler");
+    str_replace(sbMapGuideApiGen, "<Header path=\"../../../Common", "<Header path=\"" + sdkRelPath + "/Inc/Common");
+    str_replace(sbMapGuideApiGen, "<Header path=\"../WebApp", "<Header path=\"" + sdkRelPath + "/Inc/Web/WebApp");
+    str_replace(sbMapGuideApiGen, "<Header path=\"../HttpHandler", "<Header path=\"" + sdkRelPath + "/Inc/Web/HttpHandler");
     //#elseif must've been valid in our custom version of SWIG we're using. Not here
     str_replace(sbMapGuideApiGen, "#elseif", "#elif");
 
     //Fix header relative paths
-    str_replace(sbConstants, "<Header path=\"../../../Common", "<Header path=\"" + sdkRoot + "/Inc/Common");
-    str_replace(sbConstants, "<Header path=\"../WebApp", "<Header path=\"" + sdkRoot + "/Inc/Web/WebApp");
-    str_replace(sbConstants, "<Header path=\"../HttpHandler", "<Header path=\"" + sdkRoot + "/Inc/Web/HttpHandler");
+    str_replace(sbConstants, "<Header path=\"../../../Common", "<Header path=\"" + sdkRelPath + "/Inc/Common");
+    str_replace(sbConstants, "<Header path=\"../WebApp", "<Header path=\"" + sdkRelPath + "/Inc/Web/WebApp");
+    str_replace(sbConstants, "<Header path=\"../HttpHandler", "<Header path=\"" + sdkRelPath + "/Inc/Web/HttpHandler");
+
+    std::string outConstants = combine_paths(targetDir, "Constants.xml");
+    std::string outMapGuideApiGen = combine_paths(targetDir, "MapGuideApiGen.xml");
+
+    if (!write_all_text(outConstants, sbConstants))
+    {
+        std::cout << "Failed to write Constants.xml" << std::endl;
+        return 1;
+    }
+    std::cout << "Wrote: " << outConstants << std::endl;
+    if (!write_all_text(outMapGuideApiGen, sbMapGuideApiGen))
+    {
+        std::cout << "Failed to write MapGuideApiGen.xml" << std::endl;
+        return 1;
+    }
+    std::cout << "Wrote: " << outMapGuideApiGen << std::endl;
+    return 0;
 }

@@ -162,4 +162,16 @@ bool read_all_text(const std::string& path, std::string& content)
     return false;
 }
 
+std::string combine_paths(const std::string& basePath, const std::string& part)
+{
+    if (basePath[basePath.length() - 1] == '/' || basePath[basePath.length() - 1] == '\\')
+    {
+        return basePath + part;
+    }
+    else
+    {
+        return basePath + "/" + part;
+    }
+}
+
 #endif
