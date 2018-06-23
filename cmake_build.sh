@@ -96,10 +96,8 @@ cmake -DCMAKE_BUILD_TYPE=Release -DMG_DISTRO=$DISTRO -DMG_DOTNET_RID=$DOTNET_RID
 if test "$?" -ne 0; then
     exit 1
 fi
-cmake --build . --config Release
-if test "$?" -ne 0; then
-    exit 1
-fi
+make
+make install
 echo "Building Sample dataset"
 cd $THIS_DIR/src/TestData/Samples/Sheboygan
 ./build.sh
