@@ -6,7 +6,7 @@ obj
 /packages
 /nuget_packages
 !/packages/Java/Release/x64/Ubuntu14.04.x86_64/libMapGuideJavaApi.so
-!/packages/Java/Release/x64/Ubuntu14.04.i686/libMapGuideJavaApi.so
+!/packages/Java/Release/x86/Ubuntu14.04.i686/libMapGuideJavaApi.so
 /thirdparty/php7/src/php-7.2.6
 !/thirdparty/php7/src/php-7.2.6/main/config.w32.h
 !/thirdparty/php7/src/php-7.2.6/main/php.h
@@ -14,6 +14,7 @@ obj
 /thirdparty/php7/src/php-7.1.18
 !/thirdparty/php7/src/php-7.1.18/main/config.w32.h
 /build
+/tools
 /runtimes/php/Release
 /runtimes/php/Release64
 /src/Test/Php/*.dll

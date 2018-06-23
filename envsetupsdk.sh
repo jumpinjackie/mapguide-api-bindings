@@ -79,6 +79,23 @@ install_swig()
     ./configure --prefix=${ROOT}/swig && make && make install
 }
 
+echo "Checking for internal tools"
+which tools/SwigPrepare
+if test "$?" -ne 0; then
+    echo "One or more internal tools not found. Run build_tools.sh"
+    exit 1
+fi
+which tools/StampVer
+if test "$?" -ne 0; then
+    echo "One or more internal tools not found. Run build_tools.sh"
+    exit 1
+fi
+which tools/PhpPostProcess
+if test "$?" -ne 0; then
+    echo "One or more internal tools not found. Run build_tools.sh"
+    exit 1
+fi
+
 if [ ! -d $ROOT/downloads ]; then
     echo "Creating download directory"
     mkdir -p $ROOT/downloads
@@ -140,22 +157,17 @@ if [ `uname -m` = "x86_64" ] && [ "$USE_DOTNET" = "1" ]; then
         echo "[error]: Please install the .net Core SDK"
         exit 1
     fi
-
-    cd $ROOT/src/Tools
-    dotnet restore
-    if test "$?" -ne 0; then
-        exit 1
-    fi
-    cd $ROOT/src/Tools/SwigPrepare
-    dotnet run ../../../sdk/$MG_VER_MAJOR.$MG_VER_MINOR ../../Bindings/MapGuideApi
-    if test "$?" -ne 0; then
-        exit 1
-    fi
-    cd $ROOT/src/Tools/StampVer
-    dotnet run ../.. $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD
-    if test "$?" -ne 0; then
-        exit 1
-    fi
 else
     echo "Skipping check for dotnet: Not a 64-bit OS"
+fi
+
+echo "Running SwigPrepare"
+./tools/SwigPrepare "sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "../../../sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "src/Bindings/MapGuideApi"
+if test "$?" -ne 0; then
+    exit 1
+fi
+echo "Stamping version [$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD]"
+./tools/StampVer $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/Properties/AssemblyInfo.cs"  "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/MapGuideDotNetApi.csproj"
+if test "$?" -ne 0; then
+    exit 1
 fi

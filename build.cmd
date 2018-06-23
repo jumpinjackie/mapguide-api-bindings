@@ -5,6 +5,7 @@ IF "%MG_VERSION%"=="3.1" SET MG_CONFIG=Release_VC14
 IF "%MG_VERSION%"=="3.0" SET MG_CONFIG=Release_VC11
 IF "%MG_VERSION%"=="2.6" SET MG_CONFIG=Release_VC11
 SET PACKAGE_DIR=%CD%\packages
+SET TOOLS_DIR=%CD%\tools
 echo Using configuration [%MG_CONFIG%]
 pushd src\Bindings
 msbuild /m /p:Configuration=%MG_CONFIG%;Platform=x86 Bindings.sln
@@ -18,11 +19,9 @@ if errorlevel 1 goto error
 call dotnet pack --configuration Release --output "%PACKAGE_DIR%"
 if errorlevel 1 goto error
 popd
-pushd src\Tools\PhpPostProcess
 echo Running PHP post-processor
-call dotnet run "%PACKAGE_DIR%\php\Release\x86"
-call dotnet run "%PACKAGE_DIR%\php\Release\x64"
-popd
+%TOOLS_DIR%\PhpPostProcess "%PACKAGE_DIR%\php\Release\x86\MapGuideApi.php"
+%TOOLS_DIR%\PhpPostProcess "%PACKAGE_DIR%\php\Release\x64\MapGuideApi.php"
 echo Building Sample dataset
 pushd src\TestData\Samples\Sheboygan
 call build.bat

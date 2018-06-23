@@ -15,6 +15,7 @@ SET WITH_JAVA=1
 SET WITH_PHP=1
 SET WITH_DOTNET=1
 SET THIS_DIR=%CD%
+SET TOOLS_DIR=%CD%\tools
 SET WORKING_DIR=%1
 if "%WORKING_DIR%" == "" goto no_working_dir
 
@@ -53,13 +54,11 @@ if "%WITH_DOTNET%" == "1" (
     popd
 )
 if "%WITH_PHP%" == "1" (
-    pushd src\Tools\PhpPostProcess
     echo Running PHP post-processor
-    call dotnet run "%PACKAGE_DIR%\php\Release\x86"
+    %TOOLS_DIR%\PhpPostProcess "%PACKAGE_DIR%\php\Release\x86\MapGuideApi.php"
     if %errorlevel% neq 0 goto error
-    call dotnet run "%PACKAGE_DIR%\php\Release\x64"
+    %TOOLS_DIR%\PhpPostProcess "%PACKAGE_DIR%\php\Release\x64\MapGuideApi.php"
     if %errorlevel% neq 0 goto error
-    popd
 )
 echo Building Sample dataset
 pushd src\TestData\Samples\Sheboygan

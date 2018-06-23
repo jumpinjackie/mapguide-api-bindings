@@ -1,5 +1,11 @@
 THIS_DIR=`pwd`
 DISTRO=$(./get_distro.sh)
+TEST_PLAT=$(uname -p)
+TEST_ARCH=x86
+if [ "$TEST_PLAT" = "x86_64" ]; then
+    TEST_ARCH=x64
+fi
+
 check_test()
 {
     error=$?
@@ -11,8 +17,8 @@ check_test()
 }
 pushd src/Test/Java
 TEST_COMPONENT="Java test suite"
-MG_JARPATH=$THIS_DIR/packages/Java/Release/x64
-MG_LD_PATH=$THIS_DIR/packages/Java/Release/x64/${DISTRO}
+MG_JARPATH=$THIS_DIR/packages/Java/Release/${TEST_ARCH}
+MG_LD_PATH=$THIS_DIR/packages/Java/Release/${TEST_ARCH}/${DISTRO}
 MG_RES_PATH=/usr/local/mapguideopensource-3.1.1/webserverextensions/www/Resources/mapguide_en.res
 MG_WEBCONFIG=/usr/local/mapguideopensource-3.1.1/webserverextensions/www/webconfig.ini
 MG_DICT_PATH=/usr/local/mapguideopensource-3.1.1/share/gis/coordsys
