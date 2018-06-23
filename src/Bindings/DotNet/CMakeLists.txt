@@ -69,14 +69,6 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/MapGuideDotNetUnmanagedApi.cs
 )
 
-# Only needed for Linux
-if (UNIX)
-    file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-endif (UNIX)
-
-file(COPY "dotnetcore.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY "MapGuideDotNetApi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
 target_link_libraries(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX}
     ${ACE_LIBRARY}
     ${MG_FOUNDATION_LIBRARY}
@@ -98,3 +90,12 @@ target_link_libraries(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX}
     ${XERCESC_LIBRARIES}
     #MgWebApp${MG_VERSION_SUFFIX}
 )
+
+# Only needed for Linux
+if (UNIX)
+    file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    install( TARGETS MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} DESTINATION "${MG_BINDING_SRC_DIR}/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${MG_DOTNET_RID}/native" )
+endif (UNIX)
+
+file(COPY "dotnetcore.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY "MapGuideDotNetApi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

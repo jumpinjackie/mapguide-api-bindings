@@ -111,6 +111,7 @@ target_link_libraries(MapGuideJavaApi${MG_VERSION_SUFFIX}
 # Only needed for Linux
 if (UNIX)
     file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    install( TARGETS MapGuideJavaApi${MG_VERSION_SUFFIX} DESTINATION "${MG_JAVA_OUTPUT_DIR}/${MG_DOTNET_RID}" )
 endif (UNIX)
 
 file(COPY "java.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

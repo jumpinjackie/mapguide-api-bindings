@@ -31,7 +31,12 @@ endif (NOT MG_VERSION_PATCH)
 set(MG_VERSION "${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}.${MG_VERSION_PATCH}")
 set(CMAKE_DEBUG_POSTFIX "d")
 
-set(MG_PACKAGE_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/packages")
+# TODO: Feed from the parsed output of "dotnet --info" but for now this is the only
+# practical distro that is supported by .net
+set(MG_DOTNET_RID "ubuntu.14.04-x64")
+
+set(MG_BINDING_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set(MG_PACKAGE_OUTPUT_DIR "${MG_BINDING_SRC_DIR}/packages")
 
 # Determine bitness
 if ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
