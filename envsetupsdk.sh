@@ -162,7 +162,7 @@ else
 fi
 
 echo "Running SwigPrepare"
-./tools/SwigPrepare "sdk/$MG_VERSION" "../../../sdk/$MG_VERSION" "src/Bindings/MapGuideApi"
+./tools/SwigPrepare "sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "../../../sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "src/Bindings/MapGuideApi"
 if test "$?" -ne 0; then
     exit 1
 fi
