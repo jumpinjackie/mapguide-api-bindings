@@ -12,5 +12,5 @@ dotnet restore DotNet.sln
 dotnet build --configuration Release DotNet.sln
 popd
 pushd src\Test\DotNet\src\TestRunner
-dotnet run -f netcoreapp2.0 --web-config-path "%MG_INSTALL_DIR%\Web\www\webconfig.ini" --dictionary-path "%MG_INSTALL_DIR%\CS-Map\Dictionaries" --test-data-root %THIS_DIR%\src\TestData
+dotnet run -f netcoreapp2.1 --web-config-path "%MG_INSTALL_DIR%\Web\www\webconfig.ini" --dictionary-path "%MG_INSTALL_DIR%\CS-Map\Dictionaries" --test-data-root %THIS_DIR%\src\TestData
 popd

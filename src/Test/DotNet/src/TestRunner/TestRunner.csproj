@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>TestRunner Console Application</Description>
     <Authors>OSGeo</Authors>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <AssemblyName>TestRunner</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>TestRunner</PackageId>

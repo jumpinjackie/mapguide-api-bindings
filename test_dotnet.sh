@@ -7,5 +7,5 @@ dotnet restore DotNet.sln
 dotnet build --configuration Release DotNet.sln
 popd
 pushd src/Test/DotNet/src/TestRunner
-dotnet run -f netcoreapp2.0 --web-config-path "/usr/local/mapguideopensource-3.1.1/webserverextensions/www/webconfig.ini" --dictionary-path "/usr/local/mapguideopensource-3.1.1/share/gis/coordsys" --test-data-root $THIS_DIR/src/TestData
+dotnet run -f netcoreapp2.1 --web-config-path "/usr/local/mapguideopensource-3.1.1/webserverextensions/www/webconfig.ini" --dictionary-path "/usr/local/mapguideopensource-3.1.1/share/gis/coordsys" --test-data-root $THIS_DIR/src/TestData
 popd
