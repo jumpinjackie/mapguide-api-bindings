@@ -5,7 +5,7 @@ obj
 /downloads
 /packages
 /nuget_packages
-!/packages/Java/Release/x64/Ubuntu14.04.x86_x64/libMapGuideJavaApi.so
+!/packages/Java/Release/x64/Ubuntu14.04.x86_64/libMapGuideJavaApi.so
 !/packages/Java/Release/x64/Ubuntu14.04.i686/libMapGuideJavaApi.so
 /thirdparty/php7/src/php-7.2.6
 !/thirdparty/php7/src/php-7.2.6/main/config.w32.h

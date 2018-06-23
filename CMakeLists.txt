@@ -76,6 +76,11 @@ if (CMAKE_SYSTEM_NAME MATCHES Linux)
     if (WITH_DOTNET)
         message(STATUS "Using .net RID of: ${MG_DOTNET_RID}")
     endif (WITH_DOTNET)
+    # CMake by default will strip RPATH when we "install" our libraries
+    # We *don't* want this in this case as we want to retain the path to the
+    # MapGuide common libraries is in this RPATH that will get stripped out
+    SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+    # TODO: Strip installed binaries, we have to currently do this manually
 endif (CMAKE_SYSTEM_NAME MATCHES Linux)
 
 set(MG_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}")

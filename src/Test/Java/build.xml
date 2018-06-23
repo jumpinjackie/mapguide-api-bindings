@@ -200,6 +200,8 @@
       <fileset dir="${dist}" includes="**/*.bin"/>
       <fileset dir="${dist}" includes="**/*.log"/>
     </delete>
+    <echo message="MENTOR_DICTIONARY_PATH is: ${mapguide.dictpath}" />
+    <echo message="java.library.path is: ${mapguide.ldpath}" />
     <java jar="${dist}/MgUnitTest.jar" fork="true" dir="${dist}">
       <arg value="${mapguide.config}" />
       <arg value="${unittest.logpath}" />

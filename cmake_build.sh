@@ -100,3 +100,9 @@ cmake --build . --config Release
 if test "$?" -ne 0; then
     exit 1
 fi
+echo "Building Sample dataset"
+cd $THIS_DIR/src/TestData/Samples/Sheboygan
+./build.sh
+if test "$?" -ne 0; then
+    exit 1
+fi
