@@ -31,10 +31,6 @@ endif (NOT MG_VERSION_PATCH)
 set(MG_VERSION "${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}.${MG_VERSION_PATCH}")
 set(CMAKE_DEBUG_POSTFIX "d")
 
-# TODO: Feed from the parsed output of "dotnet --info" but for now this is the only
-# practical distro that is supported by .net
-set(MG_DOTNET_RID "ubuntu.14.04-x64")
-
 set(MG_BINDING_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(MG_PACKAGE_OUTPUT_DIR "${MG_BINDING_SRC_DIR}/packages")
 
@@ -76,6 +72,10 @@ endif(WIN32)
 
 if (CMAKE_SYSTEM_NAME MATCHES Linux)
     add_definitions(-DLINUX -DLINUX_IA32 -pthread -Wno-write-strings)
+    message(STATUS "Distro is: ${MG_DISTRO}")
+    if (WITH_DOTNET)
+        message(STATUS "Using .net RID of: ${MG_DOTNET_RID}")
+    endif (WITH_DOTNET)
 endif (CMAKE_SYSTEM_NAME MATCHES Linux)
 
 set(MG_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sdk/${MG_VERSION_MAJOR}.${MG_VERSION_MINOR}")

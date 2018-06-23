@@ -5,8 +5,8 @@ obj
 /downloads
 /packages
 /nuget_packages
-!/packages/Java/Release/x64/ubuntu.14.04-x64/libMapGuideJavaApi.so
-!/packages/Java/Release/x64/ubuntu.14.04-x86/libMapGuideJavaApi.so
+!/packages/Java/Release/x64/Ubuntu14.04.x86_x64/libMapGuideJavaApi.so
+!/packages/Java/Release/x64/Ubuntu14.04.i686/libMapGuideJavaApi.so
 /thirdparty/php7/src/php-7.2.6
 !/thirdparty/php7/src/php-7.2.6/main/config.w32.h
 !/thirdparty/php7/src/php-7.2.6/main/php.h
@@ -123,5 +123,4 @@ src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/HydrographicPolygo
 src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/Parcels.FeatureSource_DATA_Parcels.sdf
 src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/Rail.FeatureSource_DATA_Rail.sdf
 src/TestData/Samples/Sheboygan/Library/Samples/Sheboygan/Data/RoadCenterLines.FeatureSource_DATA_RoadCenterLines.sdf
-src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win-x64/MapGuideDotNetUnmanagedApi.pdb
-src/Bindings/DotNet/MapGuideDotNetApi/runtimes/win-x86/MapGuideDotNetUnmanagedApi.pdb
+java_test_output.log

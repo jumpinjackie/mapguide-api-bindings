@@ -5,6 +5,8 @@ USE_PHP=0
 WORKING_DIR=
 MG_CPU=32
 MG_ARCH=x86
+DOTNET_RID=unknown
+DISTRO=$(./get_distro.sh)
 while [ $# -gt 0 ]; do    # Until you run out of parameters...
     case "$1" in
         --with-java)
@@ -50,6 +52,20 @@ while [ $# -gt 0 ]; do    # Until you run out of parameters...
     shift   # Check next set of parameters.
 done
 
+if [ -z $DISTRO ]; then
+    DISTRO=linux-generic
+    echo "[warning]: Could not determine distro, falling back to linux-generic"
+fi
+
+if test $USE_DOTNET -eq 1; then
+    echo "Checking for dotnet CLI"
+    which dotnet
+    if test "$?" -ne 0; then
+        exit 1
+    fi
+    DOTNET_RID=`dotnet --info | grep "RID:" | awk '{print $2}'`
+fi
+
 echo "Testing for CMake"
 which cmake
 if test "$?" -ne 0; then
@@ -76,7 +92,7 @@ cd $WORKING_DIR/${MG_ARCH}_release
 if test "$?" -ne 0; then
     exit 1
 fi
-cmake -DCMAKE_BUILD_TYPE=Release -DMG_CPU=$MG_CPU -DWITH_JAVA=$USE_JAVA -DWITH_DOTNET=$USE_DOTNET -DWITH_PHP=$USE_PHP $THIS_DIR
+cmake -DCMAKE_BUILD_TYPE=Release -DMG_DISTRO=$DISTRO -DMG_DOTNET_RID=$DOTNET_RID -DMG_CPU=$MG_CPU -DWITH_JAVA=$USE_JAVA -DWITH_DOTNET=$USE_DOTNET -DWITH_PHP=$USE_PHP $THIS_DIR
 if test "$?" -ne 0; then
     exit 1
 fi
