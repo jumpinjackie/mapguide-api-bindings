@@ -136,7 +136,7 @@ if [ ! -f $ROOT/downloads/mapguide-$MG_VER_MAJOR.$MG_VER_MINOR-buildpack.7z ]; t
 fi
 
 echo "Extracting buildpack"
-7z x $ROOT/downloads/mapguide-3.1-buildpack.7z -o$ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR
+7z x $ROOT/downloads/mapguide-3.1-buildpack.7z -aos -o$ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR
 echo "Fixing line endings in buildpack headers"
 find $ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR/Inc -type f -print0 | xargs -0 dos2unix
 
@@ -162,12 +162,12 @@ else
 fi
 
 echo "Running SwigPrepare"
-./tools/SwigPrepare "sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "../../../sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "src/Bindings/MapGuideApi"
+$ROOT/tools/SwigPrepare "$ROOT/sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "../../../sdk/$MG_VER_MAJOR.$MG_VER_MINOR" "$ROOT/src/Bindings/MapGuideApi"
 if test "$?" -ne 0; then
     exit 1
 fi
 echo "Stamping version [$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD]"
-./tools/StampVer $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/Properties/AssemblyInfo.cs"  "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/MapGuideDotNetApi.csproj"
+$ROOT/tools/StampVer $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/Properties/AssemblyInfo.cs"  "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/MapGuideDotNetApi.csproj"
 if test "$?" -ne 0; then
     exit 1
 fi

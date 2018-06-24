@@ -104,3 +104,11 @@ cd $THIS_DIR/src/TestData/Samples/Sheboygan
 if test "$?" -ne 0; then
     exit 1
 fi
+if test $USE_JAVA -eq 1; then
+    echo "Stripping Java glue library"
+    strip -s $THIS_DIR/packages/Java/Release/${MG_ARCH}/${DISTRO}/libMapGuideJavaApi.so
+fi
+if test $USE_DOTNET -eq 1; then
+    echo "Stripping .net glue library"
+    strip -s $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so
+fi
