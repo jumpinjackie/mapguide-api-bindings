@@ -87,7 +87,7 @@ add_dependencies(MapGuideJavaApi${MG_VERSION_SUFFIX} IMake)
 # endif (UNIX)
 target_link_libraries(MapGuideJavaApi${MG_VERSION_SUFFIX}
     ${ACE_LIBRARY}
-    ${JNI_LIBRARIES}
+    #${JNI_LIBRARIES}
     ${MG_FOUNDATION_LIBRARY}
     ${MG_GEOMETRY_LIBRARY}
     ${MG_PLATFORMBASE_LIBRARY}
