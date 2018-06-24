@@ -63,12 +63,11 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
 )
 
 add_library(MapGuideJavaApi${MG_VERSION_SUFFIX} SHARED ${MapGuideJavaApi_SRCS})
-add_definitions(-DJAVA)
+add_definitions(-DJAVA -DSWIG_PUBLIC_API)
 if (UNIX)
     add_definitions(-fno-strict-aliasing -fno-var-tracking-assignments)
 endif (UNIX)
 if (MSVC)
-    add_definitions(-DSWIG_PUBLIC_API)
     add_definitions(/bigobj)
     set_target_properties(MapGuideJavaApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${MG_JAVA_OUTPUT_DIR} )
     set_target_properties(MapGuideJavaApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${MG_JAVA_OUTPUT_DIR} )
