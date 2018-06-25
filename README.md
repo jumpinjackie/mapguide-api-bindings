@@ -23,18 +23,23 @@ MapGuide API bindings to support the following languages/platforms:
 
 | Platform | Binding Notes                                | Windows (x86) | Windows (x64) | Linux (x86) | Linux (x64) |
 | -------- |:--------------------------------------------:| ------------- | ------------- | ----------- | ----------- |
-| .net     |[Binding Notes](src/Bindings/DotNet/README.md)| Supported     | Supported     | No (^1)     | Yes (^2)    |
-| PHP 7.1  |[Binding Notes](src/Bindings/Php/README.md)   | TBD (^3)      | Supported (^3)| TBD (^3)    | TBD (^3)    |
-| Java     |[Binding Notes](src/Bindings/Java/README.md)  | TBD           | Supported     | TBD         | TBD         |
+| .net     |[Binding Notes](src/Bindings/DotNet/README.md)| Yes           | Yes           | No (^1)     | Yes (^2)    |
+| PHP 7.1  |[Binding Notes](src/Bindings/Php/README.md)   | TBD (^3)      | Yes (^3)      | TBD (^3)    | TBD (^3)    |
+| Java     |[Binding Notes](src/Bindings/Java/README.md)  | TBD           | Yes           | Yes (^4)    | Yes (^4)    |
  
 (^1): 
 Microsoft does not offer .net Core for 32-bit Linux.
 
 (^2): 
-If/when support is confirmed. This will only work on 64-bit Linux distros where both binary packages for MapGuide and .net Core are both available (ie. Ubuntu 14.04)
+Ubuntu 14.04 64-bit only
 
 (^3):
 Because official MapGuide release does not (yet) bundle PHP 7.x, the current way to use this binding is through a standalone install of PHP 7.x and manually registering the MapGuide API extension with it.
+
+(^4):
+Only supported on Linux distros where we provide MapGuide binaries for:
+ * Ubuntu 14.04
+ * CentOS 6.x
 
 With the possibility in the future for experimental (a.k.a Use at your own risk) support for other platforms that a current and unmodified SWIG can offer us:
 
@@ -47,18 +52,23 @@ With the possibility in the future for experimental (a.k.a Use at your own risk)
 
  * Microsoft Visual C++ 2015 (You can use the Community Edition)
     * If you have VS 2017, make sure it has the MSVC 2015 (v140) toolset installed
- * SWIG 3.0.12 (On Linux, swigsetup.sh can download and install this for you)
- * .net Core SDK (if you have VS 2017, make sure you installed it with the .net Core workload)
+ * SWIG 3.0.12 (On Linux, envsetupsdk.sh can download and install this for you)
+ * .net Core SDK 2.1
  * 7-zip
  * Java SDK
  * ant
+ * ant-contrib
+ * CMake (>= 2.8)
 
 # Build requirements (Linux)
 
- * Ubuntu 14.04 64-bit
+ * Ubuntu 14.04 or CentOS 6.x
  * MapGuide is installed
  * .net Core SDK
  * Java SDK
+ * dos2unix
+ * p7zip (for CentOS, you need to enable EPEL repositories)
+ * CMake (>= 2.8)
 
 # Before you build
 
@@ -67,19 +77,29 @@ the SWIG bindings. Grab the appropriate buildpacks here (URL TBD) and extract th
 
 For example, if you are installing the 3.1 buildpack, extract the buildpack contents to ```sdk\3.1```
 
+On Linux, only the headers from this buildpack are needed as this project will link against the libraries of your MapGuide installation.
+
 # Build Instructions (Windows)
 
 ## Build Steps (CMake)
 
- 1. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.1.1, you would run ```envsetup.cmd 3 1 1 9378```
- 2. Run ```cmake_build.cmd``` to build the SWIG bindings and associated wrappers
+ 1. Run ```build_tools.cmd``` to build all the internal tools required for the rest of the build 
+ 2. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV <path to swig installation>```. For example, if building against MGOS 3.1.1 and SWIG is installed in ```C:\swigwin-3.0.12```, you would run ```envsetup.cmd 3 1 1 9378 C:\swigwin-3.0.12```
+ 3. Run ```cmake_build.cmd <path to working directory>``` to build the SWIG bindings and associated wrappers
+ 4. To test any of the bindings, run:
+   - For .net Core: `test_dotnet_core.cmd`
+   - For .net Full Framework: `test_dotnet_full.cmd`
+   - For PHP: `test_php.cmd`
+   - For Java: `test_java.cmd`
 
-## Build Steps
+## Build Steps (MSBuild)
 
- 1. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.1.1, you would run ```envsetup.cmd 3 1 1 9378```
- 2. Run ```build.cmd``` to build the SWIG bindings and associated wrappers
- 3. To test any of the bindings, run:
-   - For .net: `test_dotnet.cmd`
+ 1. Run ```build_tools.cmd``` to build all the internal tools required for the rest of the build 
+ 2. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.1.1, you would run ```envsetup.cmd 3 1 1 9378```
+ 3. Run ```build.cmd``` to build the SWIG bindings and associated wrappers
+ 4. To test any of the bindings, run:
+   - For .net Core: `test_dotnet_core.cmd`
+   - For .net Full Framework: `test_dotnet_full.cmd`
    - For PHP: `test_php.cmd`
    - For Java: `test_java.cmd`
 
@@ -87,10 +107,13 @@ For example, if you are installing the 3.1 buildpack, extract the buildpack cont
 
 ## Before you start
 
-Also note that this build process on Linux will only build the SWIG glue library for .net Core. The .net wrapper itself is expected to be built on Windows
+Also note that this build process on Linux will only build the SWIG glue library for .net/Java/PHP. The mananged wrapper libraries themselves are expected to be built on Windows
 
 ## Build Steps
 
- 1. Run ```source ./envsetup.sh $PATH_TO_MAPGUIDE_SOURCE_MGDEV $MG_VERSION_MAJOR_MINOR $MG_VERSION_FULL``` if this is the first time, run the command as administrator (so that symlinks can be created)
- 2. Enter ```src/Bindings/DotNet```
- 3. Run ```make```
+ 1. Run ```./build_tools.sh``` to build all the internal tools required for the rest of the build
+ 2. Run ```./envsetupsdk.sh --version $VERSION_MAJOR.$VERSION_MINOR.$VERSION_BUILD.$VERSION_REV [--with-java] [--with-dotnet] [--with-php]``` to prepare the environment to build for .net/Java/PHP. This will download SWIG and the equivalent MapGuide buildpack if required. Please observe the above support matrix when deciding what languages to enable. For example, ```--with-dotnet``` is useless on 32-bit Linux because there is no .net Core SDK for 32-bit Linux.
+ 3. Run ```./cmake_build.sh --version $VERSION_MAJOR.$VERSION_MINOR.$VERSION_BUILD.$VERSION_REV --working-dir <path to working directory> [--with-java] [--with-dotnet] [--with-php]``` to build the glue libraries in `<working directory>`
+ 4. To test any of the bindings, run:
+   - For .net Core: `test_dotnet.sh`
+   - For Java: `test_java.sh`
