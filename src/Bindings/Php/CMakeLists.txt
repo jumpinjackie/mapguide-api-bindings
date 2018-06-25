@@ -45,13 +45,18 @@ if (MSVC)
     set_target_properties(php_MapGuideApi${MG_VERSION_SUFFIX} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${MG_PHP_OUTPUT_DIR} )
 endif (MSVC)
 
+set(IMAKE_RELATIVE_RESOLUTION "-r ${CMAKE_CURRENT_SOURCE_DIR}")
+if (UNIX)
+    set(IMAKE_RELATIVE_RESOLUTION "-a")
+endif (UNIX)
+
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E make_directory ${MG_PHP_OUTPUT_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Regenerating: ${CMAKE_CURRENT_BINARY_DIR}/constants.php
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
         -l PHP 
-        -r ${CMAKE_CURRENT_SOURCE_DIR}
+        ${IMAKE_RELATIVE_RESOLUTION}
         -o ${MG_PHP_OUTPUT_DIR}/constants.php
         -t
     COMMAND ${CMAKE_COMMAND} -E copy
@@ -59,7 +64,7 @@ add_custom_command(OUTPUT ${php_MapGuideApi_SRCS}
         ${CMAKE_CURRENT_BINARY_DIR}/language.i
     COMMAND ${IMAKE_TOOL} -p ../MapGuideApi/MapGuideApiGen.xml
         -l PHP
-        -r ${CMAKE_CURRENT_SOURCE_DIR}
+        ${IMAKE_RELATIVE_RESOLUTION}
         -o ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [PHP7]
     COMMAND ${SWIG_TOOL} -c++ -php7 

@@ -13,7 +13,7 @@ enum Language
     java
 };
 
-static char version[] = "1.4.2";
+static char version[] = "1.5.0";
 static char EXTERNAL_API_DOCUMENTATION[] = "(NOTE: This API is not officially supported and may be subject to removal in a future release without warning. Use with caution.)";
 
 static string module;
@@ -36,6 +36,7 @@ static char charbuf[2];
 static bool translateMode;
 static Language language;
 static bool verbose;
+static bool absPaths;
 
 static set<string> wroteDestructorsFor;
 
@@ -1557,15 +1558,22 @@ void processHeaderFile(string header, const string& relRoot)
     vector<string> tokens;
 
     string theHeader;
-    if (relRoot.empty())
+    if (absPaths)
     {
         theHeader = header;
     }
     else
     {
-        theHeader = relRoot;
-        theHeader += "/";
-        theHeader += header;
+        if (relRoot.empty())
+        {
+            theHeader = header;
+        }
+        else
+        {
+            theHeader = relRoot;
+            theHeader += "/";
+            theHeader += header;
+        }
     }
     tokenize(theHeader, tokens);
 
@@ -1609,7 +1617,7 @@ void processHeaderFile(string header, const string& relRoot)
         bool ignore = translateMode && classes.find(className) == classes.end();
         if (verbose)
         {
-            printf("Processing header: %s\n", className.c_str());
+            printf("Processing header: %s (from: %s)\n", className.c_str(), theHeader.c_str());
         }
         if(!ignore)
         {
@@ -1940,6 +1948,7 @@ int main(int argc, char** argv)
         cmd.add(argRelRoot);
 
         TCLAP::SwitchArg argTranslateMode("t", "translate-mode", "Enable translate (generate constants) mode", cmd, false);
+        TCLAP::SwitchArg argAbsPaths("a", "absolute-paths", "Disable relative path resolution in headers. Header paths are assumed to be absolute", cmd, false);
 
         cmd.parse(argc, argv);
 
@@ -1947,12 +1956,17 @@ int main(int argc, char** argv)
         string relRoot;
         string outDir;
         translateMode = false;
+        absPaths = false;
         verbose = true;
         language = unknown;
 
         if (argTranslateMode.getValue())
         {
             translateMode = true;
+        }
+        if (argAbsPaths.getValue())
+        {
+            absPaths = true;
         }
         pFile = argInputFile.getValue();
         string sLang = argLanguage.getValue();
@@ -2035,13 +2049,20 @@ int main(int argc, char** argv)
             printf("INFO: Auto-generated files will be output to this directory\n");
         }
 
-        if (!relRoot.empty())
+        if (absPaths)
         {
-            printf("INFO: Headers will be resolved relative to: %s\n", relRoot.c_str());
+            printf("INFO: No relative path resolution will be performed on header paths. Header paths assumed to be absolute\n");
         }
         else
         {
-            printf("INFO: Headers will be resolved relative to this directory\n");
+            if (!relRoot.empty())
+            {
+                printf("INFO: Headers will be resolved relative to: %s\n", relRoot.c_str());
+            }
+            else
+            {
+                printf("INFO: Headers will be resolved relative to this directory\n");
+            }
         }
 
         if (translateMode)

@@ -42,7 +42,6 @@ if ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
     else(CMAKE_SIZEOF_VOID_P EQUAL 8)
         set(MG_CPU 32)
     endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    message (STATUS "MG_CPU is ${MG_CPU}")
 endif ((NOT MG_CPU EQUAL 32) AND (NOT MG_CPU EQUAL 64))
 
 # Check VS toolset
@@ -58,6 +57,9 @@ if (MG_CPU EQUAL 64)
     set(BIN_SUFFIX "bin64")
     set(MG_ARCH "x64")
 endif (MG_CPU EQUAL 64)
+
+message (STATUS "MG_CPU is ${MG_CPU}")
+message (STATUS "MG_ARCH is ${MG_ARCH}")
 
 if(WIN32)
     add_definitions(/MP)

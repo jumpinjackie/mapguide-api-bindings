@@ -24,13 +24,18 @@ set(MapGuideJavaApi_SRCS
     ${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp
 )
 
+set(IMAKE_RELATIVE_RESOLUTION "-r ${CMAKE_CURRENT_SOURCE_DIR}")
+if (UNIX)
+    set(IMAKE_RELATIVE_RESOLUTION "-a")
+endif (UNIX)
+
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E make_directory ${MG_JAVA_OUTPUT_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Regenerating constant classes
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l Java 
-            -r ${CMAKE_CURRENT_SOURCE_DIR}
+            ${IMAKE_RELATIVE_RESOLUTION}
             -o ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide
             -t
     COMMAND ${CMAKE_COMMAND} -E copy
@@ -38,7 +43,7 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
             ${CMAKE_CURRENT_BINARY_DIR}/language.i
     COMMAND ${IMAKE_TOOL} -p ../MapGuideApi/MapGuideApiGen.xml
             -l Java
-            -r ${CMAKE_CURRENT_SOURCE_DIR}
+            ${IMAKE_RELATIVE_RESOLUTION}
             -o ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [Java]
     COMMAND ${SWIG_TOOL} -c++ -java

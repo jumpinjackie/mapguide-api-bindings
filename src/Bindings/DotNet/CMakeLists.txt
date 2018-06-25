@@ -33,9 +33,9 @@ if (MSVC)
 endif (MSVC)
 
 set(IMAKE_RELATIVE_RESOLUTION "-r ${CMAKE_CURRENT_SOURCE_DIR}")
-#if (UNIX)
-#    set(IMAKE_RELATIVE_RESOLUTION "")
-#endif (UNIX)
+if (UNIX)
+    set(IMAKE_RELATIVE_RESOLUTION "-a")
+endif (UNIX)
 
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}

@@ -41,6 +41,7 @@ while [ $# -gt 0 ]; do    # Until you run out of parameters...
             echo "Usage: $0 (options)"
             echo "Options:"
             echo "  --version [major.minor.rev.build]"
+            echo "  --cpu [32|64]"
             echo "  --working-dir [build working directory]"
             echo "  --with-java [build with java support]"
             echo "  --with-dotnet [build with .net Core support]"
@@ -97,7 +98,13 @@ if test "$?" -ne 0; then
     exit 1
 fi
 make
+if test "$?" -ne 0; then
+    exit 1
+fi
 make install
+if test "$?" -ne 0; then
+    exit 1
+fi
 echo "Building Sample dataset"
 cd $THIS_DIR/src/TestData/Samples/Sheboygan
 ./build.sh
@@ -105,10 +112,18 @@ if test "$?" -ne 0; then
     exit 1
 fi
 if test $USE_JAVA -eq 1; then
-    echo "Stripping Java glue library"
-    strip -s $THIS_DIR/packages/Java/Release/${MG_ARCH}/${DISTRO}/libMapGuideJavaApi.so
+    if [ -f $THIS_DIR/packages/Java/Release/${MG_ARCH}/${DISTRO}/libMapGuideJavaApi.so ]; then
+        echo "Stripping Java glue library"
+        strip -s $THIS_DIR/packages/Java/Release/${MG_ARCH}/${DISTRO}/libMapGuideJavaApi.so
+    else
+        echo "No Java glue library found to strip"
+    fi
 fi
 if test $USE_DOTNET -eq 1; then
-    echo "Stripping .net glue library"
-    strip -s $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so
+    if [ -f $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so ]; then
+        echo "Stripping .net glue library"
+        strip -s $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so
+    else
+        echo "No .net glue library found to strip"
+    fi
 fi
