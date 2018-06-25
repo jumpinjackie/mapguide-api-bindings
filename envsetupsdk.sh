@@ -49,7 +49,7 @@ echo "MapGuide API: [$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD]"
 MG_VER_MAJOR_MINOR=$MG_VER_MAJOR.$MG_VER_MINOR
 case $MG_VER_MAJOR_MINOR in
 3.1)
-    MG_BUILDPACK_URL=https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3/mapguide-3.1-buildpack.7z
+    MG_BUILDPACK_URL=https://github.com/jumpinjackie/mapguide-api-bindings/releases/download/v0.3.1/mapguide-3.1-buildpack.7z
     ;;
 *)
     echo "[error]: Don't know the buildpack URL for this version of MapGuide ($MG_VER_MAJOR_MINOR)"
