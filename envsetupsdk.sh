@@ -144,9 +144,14 @@ if [ "$USE_JAVA" = "1" ]; then
     echo "Checking for: javac"
     which javac
     if test "$?" -ne 0; then
-        echo "[error]: Not found: javac"
-        echo "[error]: Please install the Java SDK"
-        exit 1
+        echo "[warn]: javac not found on PATH. Trying JAVA_HOME"
+        if [ ! -f "$JAVA_HOME/bin/javac" ]; then
+            echo "[error]: Not found: javac"
+            echo "[error]: Please install the Java SDK"
+            exit 1
+        else
+            echo "[info]: Found javac on JAVA_HOME ($JAVA_HOME) cmake should hopefully detect this"
+        fi
     fi
 fi
 if [ `uname -m` = "x86_64" ] && [ "$USE_DOTNET" = "1" ]; then

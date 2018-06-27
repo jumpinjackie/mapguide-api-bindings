@@ -6,6 +6,8 @@ obj
 /packages
 /nuget_packages
 /linux_build/packer/packer_cache
+/linux_build/packer/*.box
+packer_*.log
 !/packages/Java/Release/x64/Ubuntu14.04.x86_64/libMapGuideJavaApi.so
 !/packages/Java/Release/x86/Ubuntu14.04.i686/libMapGuideJavaApi.so
 /thirdparty/php7/src/php-7.2.6
