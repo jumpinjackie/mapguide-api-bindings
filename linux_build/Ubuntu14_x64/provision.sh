@@ -30,7 +30,13 @@ if test "$?" -ne 0; then
     exit 1
 fi
 ./test_dotnet.sh
+if test "$?" -ne 0; then
+    exit 1
+fi
 ./test_java.sh
+if test "$?" -ne 0; then
+    exit 1
+fi
 echo "Copying java glue library"
 cp $SRC_AREA/packages/Java/Release/x64/Ubuntu14.04.x86_64/libMapGuideJavaApi.so /mapguide_sources/packages/Java/Release/x64/Ubuntu14.04.x86_64
 echo "Copying .net glue library"

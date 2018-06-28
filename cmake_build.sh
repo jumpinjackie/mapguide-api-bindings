@@ -126,4 +126,10 @@ if test $USE_DOTNET -eq 1; then
     else
         echo "No .net glue library found to strip"
     fi
+    cd $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi
+    dotnet restore
+    if test "$?" -ne 0; then
+        exit 1
+    fi
+    dotnet pack --configuration Release --output "$THIS_DIR/packages"
 fi
