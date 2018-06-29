@@ -25,7 +25,7 @@ if test "$?" -ne 0; then
     exit 1
 fi
 mkdir -p $CMAKE_BUILD_AREA
-./cmake_build.sh --with-java --version $MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD --cpu 64 --working-dir $CMAKE_BUILD_AREA
+./cmake_build.sh --with-java --version $MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD --cpu 32 --working-dir $CMAKE_BUILD_AREA
 if test "$?" -ne 0; then
     exit 1
 fi
