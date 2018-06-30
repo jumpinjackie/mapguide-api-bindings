@@ -118,6 +118,13 @@ if test $USE_JAVA -eq 1; then
     else
         echo "No Java glue library found to strip"
     fi
+    cd $THIS_DIR/src/Managed/Java
+    echo "Building java classes..."
+    $JAVA_HOME/bin/javac -classpath . org/osgeo/mapguide/*.java
+    echo "Building JAR file"
+    $JAVA_HOME/bin/jar cf $THIS_DIR/packages/Java/Release/${MG_ARCH}/MapGuideApi.jar org/osgeo/mapguide/*.class
+    echo "Building -sources JAR file"
+    $JAVA_HOME/bin/jar cf $THIS_DIR/packages/Java/Release/${MG_ARCH}/MapGuideApi-sources.jar org/osgeo/mapguide/*.java
 fi
 if test $USE_DOTNET -eq 1; then
     if [ -f $THIS_DIR/src/Managed/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so ]; then
