@@ -34,37 +34,6 @@ SET MG_SDK_INC=../../../%MG_SDK_DIR%/Inc
 SET MG_SDK_LIB=../../../%MG_SDK_DIR%/Lib
 SET MG_SDK_LIB64=../../../%MG_SDK_DIR%/Lib64
 
-echo Checking for internal tools
-which tools/SwigPrepare
-if %errorlevel% neq 0 (
-    echo One or more internal tools not found. Run build_tools.cmd
-    goto error
-)
-which tools/StampVer
-if %errorlevel% neq 0 (
-    echo One or more internal tools not found. Run build_tools.cmd
-    goto error
-)
-which tools/PhpPostProcess
-if %errorlevel% neq 0 (
-    echo One or more internal tools not found. Run build_tools.cmd
-    goto error
-)
-
-SET MG_INTERNAL_TOOL_PATH=%CD%\tools
-echo Running SwigPrepare
-%MG_INTERNAL_TOOL_PATH%\SwigPrepare "sdk\%MG_VERSION%" "../../../sdk/%MG_VERSION%" "src\Bindings\MapGuideApi"
-if %errorlevel% neq 0 goto error
-
-echo Stamping version [%MG_VER_MAJOR%.%MG_VER_MINOR%.%MG_VER_REV%.%MG_VER_BUILD%]
-%MG_INTERNAL_TOOL_PATH%\StampVer %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD% "%CD%\src\Managed\DotNet\MapGuideDotNetApi\Properties\AssemblyInfo.cs"  "%CD%\src\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetApi.csproj"
-if %errorlevel% neq 0 goto error
-
-REM echo Regenerating Class Maps
-REM pushd src\Tools\ClassMapGen
-REM call dotnet run "%SRC_BASE%"
-REM popd
-
 echo Preparing native binaries for nuget package
 copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"
 copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "src\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\native"
@@ -129,3 +98,34 @@ exit /B 1
 
 :done
 echo Environment set for [%MG_VERSION%] using SDK in [%MG_SDK_DIR%]
+
+echo Checking for internal tools
+which tools/SwigPrepare
+if %errorlevel% neq 0 (
+    echo One or more internal tools not found. Run build_tools.cmd
+    goto error
+)
+which tools/StampVer
+if %errorlevel% neq 0 (
+    echo One or more internal tools not found. Run build_tools.cmd
+    goto error
+)
+which tools/PhpPostProcess
+if %errorlevel% neq 0 (
+    echo One or more internal tools not found. Run build_tools.cmd
+    goto error
+)
+
+SET MG_INTERNAL_TOOL_PATH=%CD%\tools
+echo Running SwigPrepare
+%MG_INTERNAL_TOOL_PATH%\SwigPrepare "sdk\%MG_VERSION%" "../../../sdk/%MG_VERSION%" "src\Bindings\MapGuideApi"
+if %errorlevel% neq 0 goto error
+
+echo Stamping version [%MG_VER_MAJOR%.%MG_VER_MINOR%.%MG_VER_REV%.%MG_VER_BUILD%]
+%MG_INTERNAL_TOOL_PATH%\StampVer %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD% "%CD%\src\Managed\DotNet\MapGuideDotNetApi\Properties\AssemblyInfo.cs"  "%CD%\src\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetApi.csproj"
+if %errorlevel% neq 0 goto error
+
+REM echo Regenerating Class Maps
+REM pushd src\Tools\ClassMapGen
+REM call dotnet run "%SRC_BASE%"
+REM popd
