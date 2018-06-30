@@ -97,14 +97,8 @@
 copy .\java.i .\language.i
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
 $(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
-move /Y *.java "$(ProjectDir)org\osgeo\mapguide"
-if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
-echo Building java classes...
-"$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
-echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid.jar" org\osgeo\mapguide\*.class
-echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid-sources.jar" org\osgeo\mapguide\*.java</Command>
+move /Y *.java "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide"
+if exist "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class" del "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class"</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -138,14 +132,8 @@ echo Building -sources JAR file
 copy .\java.i .\language.i
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
 $(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
-move /Y "$(ProjectDir)*.java" "$(ProjectDir)org\osgeo\mapguide"
-if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
-echo Building java classes...
-"$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
-echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid.jar" org\osgeo\mapguide\*.class
-echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApid-sources.jar" org\osgeo\mapguide\*.java</Command>
+move /Y "$(ProjectDir)*.java" "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide"
+if exist "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class" del "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class"</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -179,15 +167,8 @@ echo Building -sources JAR file
 copy .\java.i .\language.i
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
 $(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
-move /Y *.java "$(ProjectDir)org\osgeo\mapguide"
-if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
-echo Building java classes...
-"$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
-echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi.jar" org\osgeo\mapguide\*.class
-echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi-sources.jar" org\osgeo\mapguide\*.java
-</Command>
+move /Y *.java "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide"
+if exist "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class" del "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class"</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -222,14 +203,8 @@ echo Building -sources JAR file
 copy .\java.i .\language.i
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l Java
 $(SWIG_TOOL_PATH)\swig -c++ -java -DJAVA -DWIN32 -package org.osgeo.mapguide -nodefaultctor -nodefaultdtor -module MapGuideJavaApi -o MgApi_wrap.cpp MapGuideApi.i
-move /Y *.java "$(ProjectDir)org\osgeo\mapguide"
-if exist "$(ProjectDir)org\osgeo\mapguide\*.class" del "$(ProjectDir)org\osgeo\mapguide\*.class"
-echo Building java classes...
-"$(JAVA_HOME)\bin\javac" -classpath . org\osgeo\mapguide\*.java
-echo Building JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi.jar" org\osgeo\mapguide\*.class
-echo Building -sources JAR file
-"$(JAVA_HOME)\bin\jar" cf "$(OutDir)MapGuideApi-sources.jar" org\osgeo\mapguide\*.java</Command>
+move /Y *.java "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide"
+if exist "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class" del "$(ProjectDir)..\..\Managed\Java\org\osgeo\mapguide\*.class"</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>

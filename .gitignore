@@ -58,7 +58,7 @@ packer_*.log
 /src/Bindings/Php/MgApi_wrap.cpp
 /src/Bindings/Php/MapGuideApi.php
 /src/Bindings/Php/php_MapGuideApi.h
-/src/Managed/Java/org/osgeo/mapguide/*.Java
+/src/Managed/Java/org/osgeo/mapguide/*.java
 /src/Managed/Java/org/osgeo/mapguide/*.class
 /src/Bindings/Java/MgApi_wrap.cpp
 /src/Bindings/Java/MapGuideApi.i

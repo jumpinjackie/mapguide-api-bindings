@@ -45,6 +45,17 @@ if %errorlevel% neq 0 goto error
 cmake --build . --config Release
 if %errorlevel% neq 0 goto error
 popd
+if "%WITH_JAVA%" == "1" (
+    pushd src\Managed\Java
+    echo Building java classes...
+    "%JAVA_HOME%\bin\javac" -classpath . org\osgeo\mapguide\*.java
+    echo Building JAR file
+    "%JAVA_HOME%\bin\jar" cf %PACKAGE_DIR%\Java\Release\x86\MapGuideApi.jar org\osgeo\mapguide\*.class
+    echo Building -sources JAR file
+    "%JAVA_HOME%\bin\jar" cf %PACKAGE_DIR%\Java\Release\x86\MapGuideApi-sources.jar org\osgeo\mapguide\*.java
+    copy /Y %PACKAGE_DIR%\Java\Release\x86\*.jar %PACKAGE_DIR%\Java\Release\x64
+    popd
+)
 if "%WITH_DOTNET%" == "1" (
     pushd src\Managed\DotNet\MapGuideDotNetApi
     call dotnet restore
