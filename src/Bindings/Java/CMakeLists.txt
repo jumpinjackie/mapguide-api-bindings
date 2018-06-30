@@ -36,7 +36,7 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l Java 
             ${IMAKE_RELATIVE_RESOLUTION}
-            -o ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide
+            -o ${MG_JAVA_PROJECT_DIR}/org/osgeo/mapguide
             -t
     COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_CURRENT_BINARY_DIR}/java.i
@@ -54,10 +54,10 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
             -o "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp" 
             ${CMAKE_CURRENT_BINARY_DIR}/MapGuideApi.i
     COMMAND ${CMAKE_COMMAND} -E remove -f 
-            ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide/*.class 
+            ${MG_JAVA_PROJECT_DIR}/org/osgeo/mapguide/*.class 
     COMMAND ${MOVE_COMMAND} ${MOVE_ARGS}
             *.java
-            ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide
+            ${MG_JAVA_PROJECT_DIR}/org/osgeo/mapguide
 )
 
 add_library(MapGuideJavaApi${MG_VERSION_SUFFIX} SHARED ${MapGuideJavaApi_SRCS})
@@ -112,4 +112,3 @@ if (UNIX)
 endif (UNIX)
 
 file(COPY "java.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY "org" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

@@ -72,6 +72,7 @@ if(WIN32)
     endif(MSVC)
 endif(WIN32)
 
+set(MG_JAVA_PROJECT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/Managed/Java")
 set(MG_DOTNET_PROJECT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/Managed/DotNet/MapGuideDotNetApi")
 set(MG_DOTNET_OUTPUT_DIR "${MG_DOTNET_PROJECT_DIR}/runtimes/win-${MG_ARCH}/native")
 if (CMAKE_SYSTEM_NAME MATCHES Linux)

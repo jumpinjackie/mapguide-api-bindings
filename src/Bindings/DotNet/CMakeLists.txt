@@ -35,6 +35,11 @@ if (UNIX)
     set(IMAKE_RELATIVE_RESOLUTION "-a")
 endif (UNIX)
 
+set(SWIG_DOTNET_DEFS "")
+if (WIN32)
+    set(SWIG_DOTNET_DEFS "-DWIN32")
+endif (WIN32)
+
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
     COMMAND ${CMAKE_COMMAND} -E echo Removing: ${MG_DOTNET_PROJECT_DIR}/*.cs
@@ -55,7 +60,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -o ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [DotNet]. Output Dir: ${MG_DOTNET_PROJECT_DIR}
     COMMAND ${SWIG_TOOL} -c++ -csharp 
-            -DDOTNETCORE -DSWIG_CSHARP_NO_EXCEPTION_HELPER
+            ${SWIG_DOTNET_DEFS} -DDOTNETCORE -DSWIG_CSHARP_NO_EXCEPTION_HELPER
             -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER
             -namespace OSGeo.MapGuide
             -nodefaultctor -nodefaultdtor
