@@ -29,10 +29,6 @@ mkdir -p $CMAKE_BUILD_AREA
 if test "$?" -ne 0; then
     exit 1
 fi
-./test_dotnet.sh
-if test "$?" -ne 0; then
-    exit 1
-fi
 ./test_java.sh
 if test "$?" -ne 0; then
     exit 1
