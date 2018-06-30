@@ -172,7 +172,7 @@ if test "$?" -ne 0; then
     exit 1
 fi
 echo "Stamping version [$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV.$MG_VER_BUILD]"
-$ROOT/tools/StampVer $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/Properties/AssemblyInfo.cs"  "$ROOT/src/Bindings/DotNet/MapGuideDotNetApi/MapGuideDotNetApi.csproj"
+$ROOT/tools/StampVer $MG_VER_MAJOR $MG_VER_MINOR $MG_VER_REV $MG_VER_BUILD "$ROOT/src/Managed/DotNet/MapGuideDotNetApi/Properties/AssemblyInfo.cs"  "$ROOT/src/Managed/DotNet/MapGuideDotNetApi/MapGuideDotNetApi.csproj"
 if test "$?" -ne 0; then
     exit 1
 fi

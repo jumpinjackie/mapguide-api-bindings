@@ -13,7 +13,7 @@ if errorlevel 1 goto error
 msbuild /m /p:Configuration=%MG_CONFIG%;Platform=x64 Bindings.sln
 if errorlevel 1 goto error
 popd
-pushd src\Bindings\DotNet\MapGuideDotNetApi
+pushd src\Managed\DotNet\MapGuideDotNetApi
 call dotnet restore
 if errorlevel 1 goto error
 call dotnet pack --configuration Release --output "%PACKAGE_DIR%"

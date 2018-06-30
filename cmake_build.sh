@@ -120,13 +120,13 @@ if test $USE_JAVA -eq 1; then
     fi
 fi
 if test $USE_DOTNET -eq 1; then
-    if [ -f $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so ]; then
+    if [ -f $THIS_DIR/src/Managed/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so ]; then
         echo "Stripping .net glue library"
-        strip -s $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so
+        strip -s $THIS_DIR/src/Managed/DotNet/MapGuideDotNetApi/runtimes/${DOTNET_RID}/native/libMapGuideDotNetUnmanagedApi.so
     else
         echo "No .net glue library found to strip"
     fi
-    cd $THIS_DIR/src/Bindings/DotNet/MapGuideDotNetApi
+    cd $THIS_DIR/src/Managed/DotNet/MapGuideDotNetApi
     dotnet restore
     if test "$?" -ne 0; then
         exit 1

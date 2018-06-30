@@ -58,13 +58,6 @@ add_custom_command(OUTPUT ${MapGuideJavaApi_SRCS}
     COMMAND ${MOVE_COMMAND} ${MOVE_ARGS}
             *.java
             ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide
-    COMMAND ${Java_JAVAC_EXECUTABLE} -classpath ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/org/osgeo/mapguide/*.java
-    COMMAND ${Java_JAR_EXECUTABLE} -cf 
-            ${MG_JAVA_OUTPUT_DIR}/MapGuideApi.jar
-            org/osgeo/mapguide/*.class
-    COMMAND ${Java_JAR_EXECUTABLE} -cf 
-            ${MG_JAVA_OUTPUT_DIR}/MapGuideApi-sources.jar
-            org/osgeo/mapguide/*.java
 )
 
 add_library(MapGuideJavaApi${MG_VERSION_SUFFIX} SHARED ${MapGuideJavaApi_SRCS})

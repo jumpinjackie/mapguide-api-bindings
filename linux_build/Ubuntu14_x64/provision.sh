@@ -40,4 +40,4 @@ fi
 echo "Copying java glue library"
 cp $SRC_AREA/packages/Java/Release/x64/Ubuntu14.04.x86_64/libMapGuideJavaApi.so /mapguide_sources/packages/Java/Release/x64/Ubuntu14.04.x86_64
 echo "Copying .net glue library"
-cp $SRC_AREA/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/ubuntu.14.04-x64/native/libMapGuideDotNetUnmanagedApi.so /mapguide_sources/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/ubuntu.14.04-x64/native
+cp $SRC_AREA/src/Managed/DotNet/MapGuideDotNetApi/runtimes/ubuntu.14.04-x64/native/libMapGuideDotNetUnmanagedApi.so /mapguide_sources/src/Managed/DotNet/MapGuideDotNetApi/runtimes/ubuntu.14.04-x64/native

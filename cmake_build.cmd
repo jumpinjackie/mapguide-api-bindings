@@ -46,7 +46,7 @@ cmake --build . --config Release
 if %errorlevel% neq 0 goto error
 popd
 if "%WITH_DOTNET%" == "1" (
-    pushd src\Bindings\DotNet\MapGuideDotNetApi
+    pushd src\Managed\DotNet\MapGuideDotNetApi
     call dotnet restore
     if %errorlevel% neq 0 goto error
     call dotnet pack --configuration Release --output "%PACKAGE_DIR%"

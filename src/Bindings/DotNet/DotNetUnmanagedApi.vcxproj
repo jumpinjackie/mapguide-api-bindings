@@ -122,14 +122,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">MapGuideDotNetApi\runtimes\win-x86\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">MapGuideDotNetApi\runtimes\win-x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">obj\$(Configuration)\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">MapGuideDotNetApi\runtimes\win-x64\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">MapGuideDotNetApi\runtimes\win-x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">obj\$(Configuration)64\DotNetUnmanagedApi\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">false</LinkIncremental>
@@ -169,13 +169,13 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|Win32'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -192,7 +192,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
@@ -206,13 +206,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|Win32'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -229,7 +229,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
@@ -243,13 +243,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC11|x64'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -266,7 +266,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
@@ -280,13 +280,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_VC14|x64'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -303,7 +303,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApid.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApid.pdb</ProgramDatabaseFile>
@@ -317,13 +317,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|Win32'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -339,7 +339,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_SOURCE_ROOT)\Common\lib\Release;$(MG_SOURCE_ROOT)\Web\lib\Release;$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
@@ -355,13 +355,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|Win32'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -377,7 +377,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB);$(MG_SOURCE_ROOT)\Common\lib\Release;$(MG_SOURCE_ROOT)\Web\lib\Release;$(MG_OEM_ACE_LIB_ROOT)\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)\..\..\..\bin\MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
@@ -393,13 +393,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC11|x64'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -415,7 +415,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>
@@ -431,13 +431,13 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_VC14|x64'">
     <PreBuildEvent>
-      <Command>del /Q "$(ProjectDir)MapGuideDotNetApi\*.cs"
+      <Command>del /Q "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\*.cs"
 if exist "$(ProjectDir)MapGuideApi_Properties.i" del /Q "$(ProjectDir)MapGuideApi_Properties.i"
-"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)MapGuideDotNetApi\Constants.cs" -t
+"..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\Constants.xml" -l C# -o "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\Constants.cs" -t
 copy "$(ProjectDir)dotnetcore.i" "$(ProjectDir)language.i"
 "..\..\IMake\Win32\IMake.exe" -p "$(ProjectDir)..\MapGuideApi\MapGuideApiGen.xml" -l C#
-$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)MapGuideDotNetApi" MapGuideApi.i
-del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
+$(SWIG_TOOL_PATH)\swig -c++ -csharp -DDOTNETCORE -DWIN32 -DSWIG_CSHARP_NO_EXCEPTION_HELPER -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER -namespace OSGeo.MapGuide -nodefaultctor -nodefaultdtor -module MapGuideDotNetUnmanagedApi -o "$(ProjectDir)MgApi_wrap.cpp" -outdir "$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi" MapGuideApi.i
+del /Q ..\..\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -453,7 +453,7 @@ del /Q MapGuideDotNetApi\MapGuideDotNetUnmanagedApi.cs
     </ClCompile>
     <Link>
       <AdditionalDependencies>ACE.lib;MgFoundation.lib;MgGeometry.lib;MgPlatformBase.lib;MgMapGuideCommon.lib;HttpHandler.lib;WebApp.lib;WebSupport.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(ProjectDir)MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
+      <OutputFile>$(ProjectDir)..\..\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\native\MapGuideDotNetUnmanagedApi.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MG_SDK_LIB64);$(MG_SOURCE_ROOT)\Common\lib\Release64;$(MG_SOURCE_ROOT)\Web\lib\Release64;$(MG_OEM_ACE_LIB_ROOT)\lib64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)\..\..\..\bin\MapGuideDotNetUnmanagedApi.pdb</ProgramDatabaseFile>

@@ -72,11 +72,14 @@ if(WIN32)
     endif(MSVC)
 endif(WIN32)
 
+set(MG_DOTNET_PROJECT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/Managed/DotNet/MapGuideDotNetApi")
+set(MG_DOTNET_OUTPUT_DIR "${MG_DOTNET_PROJECT_DIR}/runtimes/win-${MG_ARCH}/native")
 if (CMAKE_SYSTEM_NAME MATCHES Linux)
     add_definitions(-DLINUX -DLINUX_IA32 -pthread -Wno-write-strings)
     message(STATUS "Distro is: ${MG_DISTRO}")
     if (WITH_DOTNET)
         message(STATUS "Using .net RID of: ${MG_DOTNET_RID}")
+        set(MG_DOTNET_OUTPUT_DIR "${MG_DOTNET_PROJECT_DIR}/runtimes/${MG_DOTNET_RID}/native")
     endif (WITH_DOTNET)
     # CMake by default will strip RPATH when we "install" our libraries
     # We *don't* want this in this case as we want to retain the path to the

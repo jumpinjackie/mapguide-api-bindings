@@ -13,8 +13,6 @@ include_directories(
     ${XERCESC_INCLUDE_DIR}
 )
 
-set(MG_DOTNET_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/runtimes/win-${MG_ARCH}/native")
-
 set(DotNetUnmanagedApi_SRCS
     ${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp
 )
@@ -39,14 +37,14 @@ endif (UNIX)
 
 message(STATUS "Using IMake at: ${IMAKE_TOOL}")
 add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
-    COMMAND ${CMAKE_COMMAND} -E echo Removing: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/*.cs
+    COMMAND ${CMAKE_COMMAND} -E echo Removing: ${MG_DOTNET_PROJECT_DIR}/*.cs
     COMMAND ${CMAKE_COMMAND} -E remove -f 
-            ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/*.cs
-    COMMAND ${CMAKE_COMMAND} -E echo Regenerating: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/Constants.cs
+            ${MG_DOTNET_PROJECT_DIR}/*.cs
+    COMMAND ${CMAKE_COMMAND} -E echo Regenerating: ${MG_DOTNET_PROJECT_DIR}/Constants.cs
     COMMAND ${IMAKE_TOOL} -p ${CMAKE_CURRENT_BINARY_DIR}/../MapGuideApi/Constants.xml 
             -l "C#"
             ${IMAKE_RELATIVE_RESOLUTION}
-            -o ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/Constants.cs
+            -o ${MG_DOTNET_PROJECT_DIR}/Constants.cs
             -t
     COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_CURRENT_BINARY_DIR}/dotnetcore.i
@@ -55,7 +53,7 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -l "C#"
             ${IMAKE_RELATIVE_RESOLUTION}
             -o ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [DotNet]. Output Dir: ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi
+    COMMAND ${CMAKE_COMMAND} -E echo Running SWIG [DotNet]. Output Dir: ${MG_DOTNET_PROJECT_DIR}
     COMMAND ${SWIG_TOOL} -c++ -csharp 
             -DDOTNETCORE -DSWIG_CSHARP_NO_EXCEPTION_HELPER
             -DSWIG_CSHARP_NO_STRING_HELPER -DSWIG_CSHARP_NO_WSTRING_HELPER
@@ -63,10 +61,10 @@ add_custom_command(OUTPUT ${DotNetUnmanagedApi_SRCS}
             -nodefaultctor -nodefaultdtor
             -module MapGuideDotNetUnmanagedApi
             -o "${CMAKE_CURRENT_BINARY_DIR}/MgApi_wrap.cpp"
-            -outdir "${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi" 
+            -outdir "${MG_DOTNET_PROJECT_DIR}" 
             "${CMAKE_CURRENT_BINARY_DIR}/MapGuideApi.i"
     COMMAND ${CMAKE_COMMAND} -E remove -f 
-            ${CMAKE_CURRENT_SOURCE_DIR}/MapGuideDotNetApi/MapGuideDotNetUnmanagedApi.cs
+            ${MG_DOTNET_PROJECT_DIR}/MapGuideDotNetUnmanagedApi.cs
 )
 
 target_link_libraries(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX}
@@ -94,8 +92,7 @@ target_link_libraries(MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX}
 # Only needed for Linux
 if (UNIX)
     file(COPY "InitializeWebTier.cpp" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-    install( TARGETS MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} DESTINATION "${MG_BINDING_SRC_DIR}/src/Bindings/DotNet/MapGuideDotNetApi/runtimes/${MG_DOTNET_RID}/native" )
+    install( TARGETS MapGuideDotNetUnmanagedApi${MG_VERSION_SUFFIX} DESTINATION ${MG_DOTNET_OUTPUT_DIR})
 endif (UNIX)
 
 file(COPY "dotnetcore.i" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY "MapGuideDotNetApi" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

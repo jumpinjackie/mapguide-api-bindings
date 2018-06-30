@@ -57,7 +57,7 @@ echo Running SwigPrepare
 if %errorlevel% neq 0 goto error
 
 echo Stamping version [%MG_VER_MAJOR%.%MG_VER_MINOR%.%MG_VER_REV%.%MG_VER_BUILD%]
-%MG_INTERNAL_TOOL_PATH%\StampVer %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD% "%CD%\src\Bindings\DotNet\MapGuideDotNetApi\Properties\AssemblyInfo.cs"  "%CD%\src\Bindings\DotNet\MapGuideDotNetApi\MapGuideDotNetApi.csproj"
+%MG_INTERNAL_TOOL_PATH%\StampVer %MG_VER_MAJOR% %MG_VER_MINOR% %MG_VER_REV% %MG_VER_BUILD% "%CD%\src\Managed\DotNet\MapGuideDotNetApi\Properties\AssemblyInfo.cs"  "%CD%\src\Managed\DotNet\MapGuideDotNetApi\MapGuideDotNetApi.csproj"
 if %errorlevel% neq 0 goto error
 
 REM echo Regenerating Class Maps
@@ -66,8 +66,8 @@ REM call dotnet run "%SRC_BASE%"
 REM popd
 
 echo Preparing native binaries for nuget package
-copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"
-copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "src\Bindings\DotNet\MapGuideDotNetApi\runtimes\win-x64\native"
+copy /y "sdk\%MG_VERSION%\Bin\*.dll" "src\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x86\native"
+copy /y "sdk\%MG_VERSION%\Bin64\*.dll" "src\Managed\DotNet\MapGuideDotNetApi\runtimes\win-x64\native"
 echo Preparing native binaries for PHP extension
 if not exist "packages\php\Release\x86" mkdir "packages\php\Release\x86"
 if not exist "packages\php\Release\x64" mkdir "packages\php\Release\x64"
