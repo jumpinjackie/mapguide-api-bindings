@@ -13,7 +13,6 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MapGuideDotNetApi" Version="3.1.1.9389-pre123" />
     <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.1" />
   </ItemGroup>
 </Project>

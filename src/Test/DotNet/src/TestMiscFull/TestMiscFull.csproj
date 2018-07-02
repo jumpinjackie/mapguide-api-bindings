@@ -53,9 +53,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MapGuideDotNetApi, Version=3.1.1.9389, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\MapGuideDotNetApi.3.1.1.9389\lib\netstandard2.0\MapGuideDotNetApi.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,11 +75,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\MapGuideDotNetApi.3.1.1.9389\build\net461\MapGuideDotNetApi.targets" Condition="Exists('..\..\packages\MapGuideDotNetApi.3.1.1.9389\build\net461\MapGuideDotNetApi.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\MapGuideDotNetApi.3.1.1.9389\build\net461\MapGuideDotNetApi.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MapGuideDotNetApi.3.1.1.9389\build\net461\MapGuideDotNetApi.targets'))" />
   </Target>
 </Project>
