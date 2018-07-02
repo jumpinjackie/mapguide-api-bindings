@@ -1,4 +1,8 @@
 @echo off
+IF "%MG_PKG_VER%"=="" (
+    echo Could not determine NuGet package version. This should've been set by envsetupsdk.cmd
+    exit /B 1
+)
 REM Test for CMake
 which cmake
 if %errorlevel% neq 0 (
@@ -60,7 +64,7 @@ if "%WITH_DOTNET%" == "1" (
     pushd src\Managed\DotNet\MapGuideDotNetApi
     call dotnet restore
     if %errorlevel% neq 0 goto error
-    call dotnet pack --configuration Release --output "%PACKAGE_DIR%"
+    call dotnet pack --configuration Release --output "%PACKAGE_DIR%" /p:Version=%MG_PKG_VER%
     if %errorlevel% neq 0 goto error
     popd
 )

@@ -1,4 +1,8 @@
 @echo off
+IF "%MG_PKG_VER%"=="" (
+    echo Could not determine NuGet package version. This should've been set by envsetupsdk.cmd
+    exit /B 1
+)
 which nuget
 if %errorlevel% neq 0 (
     echo NuGet command-line tool not installed
@@ -11,13 +15,13 @@ IF "%MG_INSTALL_DIR%" == "" (
 )
 SET MG_NUGET_PKG_DIR=%CD%\packages
 pushd src\Test\DotNet\src\TestCommonFull
-nuget install MapGuideDotNetApi -o %MG_NUGET_PKG_DIR%
+nuget install MapGuideDotNetApi -o %MG_NUGET_PKG_DIR% -Version %MG_PKG_VER%
 popd
 pushd src\Test\DotNet\src\TestMapGuideApiFull
-nuget install MapGuideDotNetApi -o %MG_NUGET_PKG_DIR%
+nuget install MapGuideDotNetApi -o %MG_NUGET_PKG_DIR% -Version %MG_PKG_VER%
 popd
 pushd src\Test\DotNet\src\TestRunnerFull
-nuget install MapGuideDotNetApi -o %MG_NUGET_PKG_DIR%
+nuget install MapGuideDotNetApi -o %MG_NUGET_PKG_DIR% -Version %MG_PKG_VER%
 popd
 pushd src\Test\DotNet
 nuget restore FullFramework.sln

@@ -4,6 +4,11 @@ IF "%MG_VERSION%"=="3.3" SET MG_CONFIG=Release_VC14
 IF "%MG_VERSION%"=="3.1" SET MG_CONFIG=Release_VC14
 IF "%MG_VERSION%"=="3.0" SET MG_CONFIG=Release_VC11
 IF "%MG_VERSION%"=="2.6" SET MG_CONFIG=Release_VC11
+IF "%MG_PKG_VER%"=="" (
+    echo Could not determine NuGet package version. This should've been set by envsetupsdk.cmd
+    exit /B 1
+)
+
 SET PACKAGE_DIR=%CD%\packages
 SET TOOLS_DIR=%CD%\tools
 echo Using configuration [%MG_CONFIG%]
@@ -16,7 +21,7 @@ popd
 pushd src\Managed\DotNet\MapGuideDotNetApi
 call dotnet restore
 if errorlevel 1 goto error
-call dotnet pack --configuration Release --output "%PACKAGE_DIR%"
+call dotnet pack --configuration Release --output "%PACKAGE_DIR%" /p:Version=%MG_PKG_VER%
 if errorlevel 1 goto error
 popd
 pushd src\Managed\Java

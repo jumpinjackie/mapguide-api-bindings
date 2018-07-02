@@ -6,6 +6,11 @@ SET MG_VER_BUILD=%4
 SET MG_VERSION=%1.%2
 SET MG_VER_TRIPLET=%1.%2.%3
 SET SWIG_TOOL_PATH=%5
+SET MG_PKG_BUILD=%6
+SET MG_PKG_VER=%MG_VER_TRIPLET%.%MG_VER_BUILD%
+if not "%MG_PKG_BUILD%" == "" (
+    SET MG_PKG_VER=%MG_VER_TRIPLET%.%MG_VER_BUILD%-pre%MG_PKG_BUILD%
+)
 if not exist "%SWIG_TOOL_PATH%\swig.exe" goto no_swig
 
 SET MG_SDK_DIR=sdk/%MG_VERSION%
@@ -13,6 +18,8 @@ IF NOT EXIST %MG_SDK_DIR% (
     echo No SDK found at [%MG_SDK_DIR%]
     exit /b 1
 )
+
+echo NuGet package version will be: %MG_PKG_VER%
 
 SET SRC_BASE=%CD%/src
 SET PHP_SRC=%CD%/thirdparty/php7/src/php-7.1.18
