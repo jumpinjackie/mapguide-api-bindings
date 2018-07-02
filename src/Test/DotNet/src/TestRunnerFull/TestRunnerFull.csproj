@@ -6,12 +6,7 @@
     <AssemblyName>TestRunner</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>TestRunner</PackageId>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Platforms>x64;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>

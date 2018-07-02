@@ -5,12 +5,7 @@
     <TargetFramework>net461</TargetFramework>
     <AssemblyName>TestMapGuideApi</AssemblyName>
     <PackageId>TestMapGuideApi</PackageId>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\TestMapGuideApi\DrawingService\DrawingServiceOperationExecutor.cs" Link="DrawingService\DrawingServiceOperationExecutor.cs" />
