@@ -5,6 +5,7 @@ obj
 /downloads
 /packages
 /nuget_packages
+/packages_fullfx
 /linux_build/packer/packer_cache
 /linux_build/packer/*.box
 packer_*.log
