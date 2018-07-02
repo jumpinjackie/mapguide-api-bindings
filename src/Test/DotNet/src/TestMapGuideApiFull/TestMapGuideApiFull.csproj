@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>TestMapGuideApi Class Library (Full Framework)</Description>
     <Authors>OSGeo</Authors>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>TestMapGuideApi</AssemblyName>
     <PackageId>TestMapGuideApi</PackageId>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -36,14 +36,5 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DrawingService\" />
-    <Folder Include="ExternalTests\" />
-    <Folder Include="MappingService\" />
-    <Folder Include="WebLayout\" />
-    <Folder Include="SiteService\" />
-    <Folder Include="ServerAdmin\" />
-    <Folder Include="RenderingService\" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Description>TestCommon Class Library (Full Framework)</Description>
     <Authors>OSGeo</Authors>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>TestCommon</AssemblyName>
     <PackageId>TestCommon</PackageId>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -41,11 +41,5 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ExternalTests\" />
-    <Folder Include="FeatureService\" />
-    <Folder Include="MapLayer\" />
-    <Folder Include="ResourceService\" />
   </ItemGroup>
 </Project>
