@@ -3,9 +3,9 @@
     <Description>TestRunner Console Application (Full Framework)</Description>
     <Authors>OSGeo</Authors>
     <TargetFramework>net461</TargetFramework>
-    <AssemblyName>TestRunner</AssemblyName>
+    <AssemblyName>TestRunnerFull</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>TestRunner</PackageId>
+    <PackageId>TestRunnerFull</PackageId>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Platforms>x64;x86</Platforms>
   </PropertyGroup>
