@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMiscFull", "src\TestMiscFull\TestMiscFull.csproj", "{27285BB5-37B4-42DD-AB2C-CCD91824D044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMiscFull", "src\TestMiscFull\TestMiscFull.csproj", "{27285BB5-37B4-42DD-AB2C-CCD91824D044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCommonFull", "src\TestCommonFull\TestCommonFull.csproj", "{EB8713C5-0284-47C5-950A-90E4EB326669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCommonFull", "src\TestCommonFull\TestCommonFull.csproj", "{EB8713C5-0284-47C5-950A-90E4EB326669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMapGuideApiFull", "src\TestMapGuideApiFull\TestMapGuideApiFull.csproj", "{6584C02F-080F-425D-BE53-9F72F7BE2897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMapGuideApiFull", "src\TestMapGuideApiFull\TestMapGuideApiFull.csproj", "{6584C02F-080F-425D-BE53-9F72F7BE2897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunnerFull", "src\TestRunnerFull\TestRunnerFull.csproj", "{757BA8EB-065F-47A7-834D-025C1559E2A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestRunnerFull", "src\TestRunnerFull\TestRunnerFull.csproj", "{757BA8EB-065F-47A7-834D-025C1559E2A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

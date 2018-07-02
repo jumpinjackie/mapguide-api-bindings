@@ -13,9 +13,37 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestCommon\TestCommonFull.csproj" />
+    <Compile Include="..\TestMapGuideApi\DrawingService\DrawingServiceOperationExecutor.cs" Link="DrawingService\DrawingServiceOperationExecutor.cs" />
+    <Compile Include="..\TestMapGuideApi\DrawingService\Operations.cs" Link="DrawingService\Operations.cs" />
+    <Compile Include="..\TestMapGuideApi\ExternalTests\CollectionTests.cs" Link="ExternalTests\CollectionTests.cs" />
+    <Compile Include="..\TestMapGuideApi\ExternalTests\MapTests.cs" Link="ExternalTests\MapTests.cs" />
+    <Compile Include="..\TestMapGuideApi\ExternalTests\RenderingServiceTests.cs" Link="ExternalTests\RenderingServiceTests.cs" />
+    <Compile Include="..\TestMapGuideApi\ExternalTests\ResourceServiceTests.cs" Link="ExternalTests\ResourceServiceTests.cs" />
+    <Compile Include="..\TestMapGuideApi\MapGuideResources.cs" Link="MapGuideResources.cs" />
+    <Compile Include="..\TestMapGuideApi\MapGuideTestExecutorCollection.cs" Link="MapGuideTestExecutorCollection.cs" />
+    <Compile Include="..\TestMapGuideApi\MapGuideTests.cs" Link="MapGuideTests.cs" />
+    <Compile Include="..\TestMapGuideApi\MappingService\MappingServiceOperationExecutor.cs" Link="MappingService\MappingServiceOperationExecutor.cs" />
+    <Compile Include="..\TestMapGuideApi\RenderingService\RenderingServiceOperationExecutor.cs" Link="RenderingService\RenderingServiceOperationExecutor.cs" />
+    <Compile Include="..\TestMapGuideApi\ServerAdmin\Operations.cs" Link="ServerAdmin\Operations.cs" />
+    <Compile Include="..\TestMapGuideApi\ServerAdmin\ServerAdminOperationExecutor.cs" Link="ServerAdmin\ServerAdminOperationExecutor.cs" />
+    <Compile Include="..\TestMapGuideApi\SiteService\Operations.cs" Link="SiteService\Operations.cs" />
+    <Compile Include="..\TestMapGuideApi\SiteService\SiteServiceOperationExecutor.cs" Link="SiteService\SiteServiceOperationExecutor.cs" />
+    <Compile Include="..\TestMapGuideApi\WebLayout\Operations.cs" Link="WebLayout\Operations.cs" />
+    <Compile Include="..\TestMapGuideApi\WebLayout\WebLayoutOperationExecutor.cs" Link="WebLayout\WebLayoutOperationExecutor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestCommonFull\TestCommonFull.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DrawingService\" />
+    <Folder Include="ExternalTests\" />
+    <Folder Include="MappingService\" />
+    <Folder Include="WebLayout\" />
+    <Folder Include="SiteService\" />
+    <Folder Include="ServerAdmin\" />
+    <Folder Include="RenderingService\" />
   </ItemGroup>
 </Project>

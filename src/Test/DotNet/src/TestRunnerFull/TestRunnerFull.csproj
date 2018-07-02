@@ -12,10 +12,14 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <Platforms>x64;x86</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestCommon\TestCommonFull.csproj" />
-    <ProjectReference Include="..\TestMapGuideApi\TestMapGuideApiFull.csproj" />
+    <Compile Include="..\TestRunner\Program.cs" Link="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestCommonFull\TestCommonFull.csproj" />
+    <ProjectReference Include="..\TestMapGuideApiFull\TestMapGuideApiFull.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.2.1" />

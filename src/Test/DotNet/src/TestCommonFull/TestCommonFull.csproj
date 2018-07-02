@@ -13,6 +13,39 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\TestCommon\ApiTypes.cs" Link="ApiTypes.cs" />
+    <Compile Include="..\TestCommon\Assert.cs" Link="Assert.cs" />
+    <Compile Include="..\TestCommon\CommonTests.cs" Link="CommonTests.cs" />
+    <Compile Include="..\TestCommon\CommonUtility.cs" Link="CommonUtility.cs" />
+    <Compile Include="..\TestCommon\ExternalTests\ByteReaderTest.cs" Link="ExternalTests\ByteReaderTest.cs" />
+    <Compile Include="..\TestCommon\ExternalTests\CollectionTests.cs" Link="ExternalTests\CollectionTests.cs" />
+    <Compile Include="..\TestCommon\ExternalTests\ConvenienceTests.cs" Link="ExternalTests\ConvenienceTests.cs" />
+    <Compile Include="..\TestCommon\ExternalTests\PropertiesTest.cs" Link="ExternalTests\PropertiesTest.cs" />
+    <Compile Include="..\TestCommon\FeatureService\FeatureServiceOperationExecutor.cs" Link="FeatureService\FeatureServiceOperationExecutor.cs" />
+    <Compile Include="..\TestCommon\FeatureService\Operations.cs" Link="FeatureService\Operations.cs" />
+    <Compile Include="..\TestCommon\ITestExecutor.cs" Link="ITestExecutor.cs" />
+    <Compile Include="..\TestCommon\ITestExecutorCollection.cs" Link="ITestExecutorCollection.cs" />
+    <Compile Include="..\TestCommon\ITestLogger.cs" Link="ITestLogger.cs" />
+    <Compile Include="..\TestCommon\MapLayer\MapLayerOperationExecutor.cs" Link="MapLayer\MapLayerOperationExecutor.cs" />
+    <Compile Include="..\TestCommon\MapLayer\Operations.cs" Link="MapLayer\Operations.cs" />
+    <Compile Include="..\TestCommon\PlatformApiTestExecutor.cs" Link="PlatformApiTestExecutor.cs" />
+    <Compile Include="..\TestCommon\PlatformResources.cs" Link="PlatformResources.cs" />
+    <Compile Include="..\TestCommon\ResourceService\Operations.cs" Link="ResourceService\Operations.cs" />
+    <Compile Include="..\TestCommon\ResourceService\ResourceServiceOperationExecutor.cs" Link="ResourceService\ResourceServiceOperationExecutor.cs" />
+    <Compile Include="..\TestCommon\Sqlite.cs" Link="Sqlite.cs" />
+    <Compile Include="..\TestCommon\TestDataRoot.cs" Link="TestDataRoot.cs" />
+    <Compile Include="..\TestCommon\TestExecutionRun.cs" Link="TestExecutionRun.cs" />
+    <Compile Include="..\TestCommon\TestExecutorBase.cs" Link="TestExecutorBase.cs" />
+    <Compile Include="..\TestCommon\TestResult.cs" Link="TestResult.cs" />
+    <Compile Include="..\TestCommon\UnitTestException.cs" Link="UnitTestException.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SQLite" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ExternalTests\" />
+    <Folder Include="FeatureService\" />
+    <Folder Include="MapLayer\" />
+    <Folder Include="ResourceService\" />
   </ItemGroup>
 </Project>
