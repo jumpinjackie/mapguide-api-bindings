@@ -11,8 +11,10 @@ CMAKE_BUILD_AREA=~/mapguide_build_cmake
 
 git clone --depth 1 https://github.com/jumpinjackie/mapguide-api-bindings $SRC_AREA
 
-echo "Going to download: http://192.168.0.2/releases/$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV/Final/ubuntu14_x64/mginstallubuntu.sh"
-wget -q http://192.168.0.2/releases/$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV/Final/ubuntu14_x64/mginstallubuntu.sh
+#DOWNLOAD_URL=http://192.168.0.2/releases/$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV/Final/ubuntu14_x64/mginstallubuntu.sh
+DOWNLOAD_URL=http://download.osgeo.org/mapguide/releases/$MG_VER_MAJOR.$MG_VER_MINOR.$MG_VER_REV/Final/ubuntu14_x64/mginstallubuntu.sh
+echo "Going to download: $DOWNLOAD_URL"
+wget -q $DOWNLOAD_URL
 chmod +x mginstallubuntu.sh
 sudo ./mginstallubuntu.sh --headless --with-sdf --with-shp --with-sqlite
 if test "$?" -ne 0; then
