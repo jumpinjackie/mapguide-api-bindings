@@ -4,7 +4,9 @@ This document describes the PHP language binding for the MapGuide API
 
 # Supported PHP version
 
-This binding targets PHP 7.1.18, the current PHP version in the 7.1 series
+This binding targets the Windows release of PHP 7.1.18, the current PHP version in the 7.1 series.
+
+No binding is provided for PHP 7.1 on Linux at this point in time as none of the Linux distros where we provide MapGuide binaries for (CentOS 6.x / Ubuntu 14.04), provide an official PHP 7.x package.
 
 # Known issues
 
