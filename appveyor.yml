@@ -1,5 +1,7 @@
 version: 0.4.0.{build}
 shallow_clone: true
+environment:
+    JAVA_HOME: C:\Program Files\Java\jdk1.7.0
 # Don't actually build. This is not a .net project
 build: false
 branches:
