@@ -27,7 +27,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("MapGuide .net API Dynamic Link Library")]
 [assembly: AssemblyDescription(".net wrapper for the MapGuide API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Open Source Geospatial Foundation")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MapGuide Open Source")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
