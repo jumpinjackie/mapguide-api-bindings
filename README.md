@@ -103,7 +103,7 @@ On Linux, only the headers from this buildpack are needed as this project will l
    - For PHP: `test_php.cmd`
    - For Java: `test_java.cmd`
 
-# Build Instructions (Linux)
+# Build Instructions (Linux, bare metal)
 
 ## Before you start
 
@@ -117,3 +117,24 @@ Also note that this build process on Linux will only build the SWIG glue library
  4. To test any of the bindings, run:
    - For .net Core: `test_dotnet.sh`
    - For Java: `test_java.sh`
+
+# Build Instructions (Linux, via vagrant on Windows host)
+
+Vagrantfiles are provided which can build the required SWIG glue libraries for the supported distros on Linux.
+
+These Vagrantfiles assume vagrant base boxes that are already present:
+  - `env-centos6-amd64`
+  - `env-centos6-i386`
+  - `env-ubuntu14-amd64`
+  - `env-ubuntu14-i386`
+
+If these base boxes aren't present, you can build them using using [packer](https://www.packer.io/) and the provided templates in `linux_build/packer`. For convenience, a `make_boxes.cmd` wrapper batch file is included to build all these vagrant base boxes for you (make sure packer is in your Windows `PATH`).
+
+ 1. Enter any of the following directories:
+   - `linux_build/CentOS6_x64`
+   - `linux_build/CentOS6_x86`
+   - `linux_build/Ubuntu14_x64`
+   - `linux_build/Ubuntu14_x86`
+ 2. Run `vagrant up` to spin up the Linux VM and build the SWIG glue libraries supported on that distro. Upon completion, the glue libraries will be in (on your host):
+   - Java: `packages/Java/Release/$CPU/$DISTRO/libMapGuideJavaApi.so`
+   - .net: `src/Managed/DotNet/MapGuideDotNetApi/runtimes/ubuntu14.04-x64/native/libMapGuideDotNetUnmanagedApi.so` (Ubuntu 14.04 64-bit only)
