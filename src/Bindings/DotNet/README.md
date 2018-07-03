@@ -6,6 +6,7 @@ This document describes the .net language binding for the MapGuide API
 
  * General
     * This binding is back to being a monolithic assembly. A split assembly layout is not possible due to missing types in .net Core that made this possible in the full framework (eg. AppDomain)
+    * This assembly is not strong named.
     * In line with the .net core build system, the unit of consumption is a nuget package.
     * The nuget package is completely portable and self-contained. It contains both x86 and x64 windows binaries (and also includes a native interop binary for Ubuntu 14.04 64-bit) and because it targets `netstandard2.0` it can be used in both .net Core and Full Framework.
       * For full .net Framework, the package includes a MSBuild `.targets` file that will ensure that in the consuming project, the supporting windows binaries are copied to the project's output directory
