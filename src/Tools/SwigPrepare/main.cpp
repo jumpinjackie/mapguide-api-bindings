@@ -47,10 +47,10 @@ int main(int argc, char **argv)
     str_replace(sbMapGuideApiGen, "#if defined(PHP) || defined(JAVA)", "#if defined(PHP) || defined(JAVA) || defined(DOTNETCORE)");
     //Patch STRINGPARAM typedef for PHP
     str_replace(sbMapGuideApiGen, "typedef char*         STRINGPARAM;", "typedef std::wstring STRINGPARAM;");
-    //Comment out class id includes
-    str_replace(sbMapGuideApiGen, "%include \"../../../Common", "//%include \"../../../Common");
-    str_replace(sbMapGuideApiGen, "%include \"../WebApp", "//%include \"../WebApp");
-    str_replace(sbMapGuideApiGen, "%include \"../HttpHandler", "//%include \"../HttpHandler");
+    //Patch class id includes
+    str_replace(sbMapGuideApiGen, "%include \"../../../Common", "%include \"" + sdkRelPath + "/Inc/Common");
+    str_replace(sbMapGuideApiGen, "%include \"../WebApp", "%include \"" + sdkRelPath + "/Inc/Web/WebApp");
+    str_replace(sbMapGuideApiGen, "%include \"../HttpHandler", "%include \"" + sdkRelPath + "/Inc/Web/HttpHandler");
     //Fix header relative paths
     str_replace(sbMapGuideApiGen, "<Header path=\"../../../Common", "<Header path=\"" + sdkRelPath + "/Inc/Common");
     str_replace(sbMapGuideApiGen, "<Header path=\"../WebApp", "<Header path=\"" + sdkRelPath + "/Inc/Web/WebApp");
