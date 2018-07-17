@@ -295,7 +295,7 @@ if (WITH_PHP)
         endif (MG_CPU EQUAL 64)
 
         find_path(PHP_INCLUDE_DIR NAMES "Zend/Zend_API.h"
-            HINTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/php7/src/php-7.1.18"
+            HINTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/php7/src/php-7.1.19"
             NO_DEFAULT_PATH
             NO_CMAKE_ENVIRONMENT_PATH
             NO_CMAKE_PATH
@@ -303,7 +303,7 @@ if (WITH_PHP)
             NO_CMAKE_SYSTEM_PATH
             NO_CMAKE_FIND_ROOT_PATH
         )
-        find_library(PHP_LIBRARY NAMES php7ts
+        find_library(PHP_LIBRARY NAMES php7 #php7ts
             PATHS "${EXPECTED_PHP_PATH}/dev"
             NO_DEFAULT_PATH
             NO_CMAKE_ENVIRONMENT_PATH

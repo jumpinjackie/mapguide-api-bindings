@@ -95,7 +95,7 @@ On Linux, only the headers from this buildpack are needed as this project will l
 ## Build Steps (MSBuild)
 
  1. Run ```build_tools.cmd``` to build all the internal tools required for the rest of the build 
- 2. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV```. For example, if building against MGOS 3.1.1, you would run ```envsetup.cmd 3 1 1 9378```
+ 2. Run ```envsetup.cmd $VERSION_MAJOR $VERSION_MINOR $VERSION_BUILD $VERSION_REV <path to swig installation>```. For example, if building against MGOS 3.1.1 and SWIG is installed in ```C:\swigwin-3.0.12```, you would run ```envsetup.cmd 3 1 1 9378 C:\swigwin-3.0.12```
  3. Run ```build.cmd``` to build the SWIG bindings and associated wrappers
  4. To test any of the bindings, run:
    - For .net Core: `test_dotnet_core.cmd`
