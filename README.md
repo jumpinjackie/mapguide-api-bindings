@@ -1,5 +1,7 @@
 # mapguide-api-bindings
 
+**IMPORTANT** Development work on this repository has been suspended and development work is continuing on the [vanilla_swig branch](https://trac.osgeo.org/mapguide/browser/sandbox/jng/vanilla_swig) of MapGuide
+
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/rf40wvqdsedmk6lm?svg=true)](https://ci.appveyor.com/project/jumpinjackie/mapguide-api-bindings)
 
 Language bindings for the MapGuide API
