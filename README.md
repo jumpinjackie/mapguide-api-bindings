@@ -1,3 +1,7 @@
+# Deprecated Repository
+
+These API binding work is now part of MapGuide Open Source 4.0. This repository has been archived as a result.
+
 # mapguide-api-bindings
 
 **IMPORTANT** Development work on this repository has been suspended and development work is continuing on the [vanilla_swig branch](https://trac.osgeo.org/mapguide/browser/sandbox/jng/vanilla_swig) of MapGuide
